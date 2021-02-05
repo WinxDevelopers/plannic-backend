@@ -1,0 +1,144 @@
+[main] INFO  br.com.plannic.service.UsuarioService  - testando log
+[main] INFO  br.com.plannic.service.UsuarioService  - testando log
+[main] INFO  br.com.plannic.service.UsuarioService  - ttttttttttttteste
+[main] INFO  br.com.plannic.service.UsuarioService  - ttttttttttttteste
+[main] INFO  br.com.plannic.service.UsuarioService  - ttttttttttttteste
+30 jan. 2021 20:14:43,321 1    [main] INFO  UsuarioService  - ttttttttttttteste
+ttttttttttttteste
+ttttttttttttteste
+30 jan. 2021 20:32:05,800 0    [main] INFO  UsuarioService  - ttttttttttttteste
+30 jan. 2021 20:33:08,132 0    [main] INFO  UsuarioService  - ttttttttttttteste
+31 jan. 2021 12:38:56,495 0    [main] INFO  UsuarioService  - logando no banco
+31 jan. 2021 12:41:22,393 0    [main] INFO  UsuarioService  - logando no banco
+31 jan. 2021 12:49:15,292 0    [main] INFO  UsuarioService  - logando no banco
+31 jan. 2021 13:15:55,961 0    [main] INFO  UsuarioService  - logando no banco
+31 jan. 2021 13:20:22,380 0    [main] INFO  UsuarioService  - logando no banco
+31 jan. 2021 13:44:19,496 0    [main] INFO  UsuarioService  - logando no banco
+01 fev 2021 20:46:14,954 0    [http-nio-8080-exec-1] INFO  AuthenticateController  - Autenticando o usuário.
+01 fev. 2021 21:55:34,146 0    [main] INFO  UsuarioService null - testando log com utc
+01 fev. 2021 22:08:05,590 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:08:27,010 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:15:25,494 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:16:45,856 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:18:44,228 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:20:59,768 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:21:57,157 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:24:15,470 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 22:30:02,819 0    [main] INFO  UsuarioService  - testando log com utc
+01 fev. 2021 23:41:45,641 0    [main] INFO  UsuarioService  - testando mdc
+01 fev. 2021 23:46:21,920 0    [main] INFO  UsuarioService  - testando mdc
+02 fev. 2021 00:27:58,524 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:39:21,327 1    [http-nio-8080-exec-6] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:39:26,951 5625 [http-nio-8080-exec-6] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:39:37,588 16262 [http-nio-8080-exec-9] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:39:37,831 16505 [http-nio-8080-exec-9] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:39:47,487 26161 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:39:47,667 26341 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:40:51,990 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:40:54,810 2820 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:44:40,585 228595 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:44:41,443 229453 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:45:00,996 249006 [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:45:01,362 249372 [http-nio-8080-exec-4] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 00:46:04,586 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:47:58,164 113578 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 00:49:25,534 200948 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuários recuperados
+02 fev. 2021 00:58:58,703 774117 [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 01:01:46,417 0    [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:01:48,609 2192 [http-nio-8080-exec-4] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:02:01,685 15268 [http-nio-8080-exec-6] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:02:02,188 15771 [http-nio-8080-exec-6] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:02:22,654 36237 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:02:23,135 36718 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:02:25,133 38716 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:02:25,630 39213 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:05:27,967 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:05:31,150 3183 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:14,767 46800 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:15,256 47289 [http-nio-8080-exec-5] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:17,110 49143 [http-nio-8080-exec-7] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:17,602 49635 [http-nio-8080-exec-7] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:18,974 51007 [http-nio-8080-exec-9] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:19,454 51487 [http-nio-8080-exec-9] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:29,460 61493 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:29,950 61983 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:31,609 63642 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:32,096 64129 [http-nio-8080-exec-3] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:41,529 73562 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:42,027 74060 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:06:50,905 82938 [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:06:51,386 83419 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:07:02,051 94084 [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:07:02,647 94680 [http-nio-8080-exec-4] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:08:40,105 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:08:42,606 2501 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:09:05,825 25720 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:09:06,317 26212 [http-nio-8080-exec-3] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:09:07,510 27405 [http-nio-8080-exec-6] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:09:07,997 27892 [http-nio-8080-exec-6] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:09:09,078 28973 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:09:09,568 29463 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:09:10,936 30831 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:09:11,415 31310 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:10:50,823 130718 [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:10:51,311 131206 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:10:52,867 132762 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:10:53,355 133250 [http-nio-8080-exec-3] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:10:54,769 134664 [http-nio-8080-exec-6] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:10:55,257 135152 [http-nio-8080-exec-6] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:10:58,488 138383 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:10:58,974 138869 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:11:00,504 140399 [http-nio-8080-exec-10] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:11:00,984 140879 [http-nio-8080-exec-10] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:11:01,970 141865 [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:11:02,453 142348 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 01:11:18,127 158022 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 01:11:18,641 158536 [http-nio-8080-exec-3] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:28:55,063 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:28:57,802 2739 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:29:00,620 5557 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:29:01,511 6448 [http-nio-8080-exec-5] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:29:59,447 64384 [http-nio-8080-exec-6] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:29:59,954 64891 [http-nio-8080-exec-6] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:30:01,522 66459 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:30:02,021 66958 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:31:07,864 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:31:13,412 5548 [http-nio-8080-exec-2] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:31:52,419 44555 [http-nio-8080-exec-7] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:31:52,588 44724 [http-nio-8080-exec-7] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:31:54,752 46888 [http-nio-8080-exec-9] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:31:54,918 47054 [http-nio-8080-exec-9] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:36:11,076 303212 [http-nio-8080-exec-1] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:36:11,592 303728 [http-nio-8080-exec-1] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:37:16,519 368655 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:37:16,699 368835 [http-nio-8080-exec-3] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:37:44,557 396693 [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:37:44,728 396864 [http-nio-8080-exec-4] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:37:46,274 398410 [http-nio-8080-exec-7] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:37:46,434 398570 [http-nio-8080-exec-7] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:38:52,246 464382 [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:38:52,430 464566 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:40:16,225 0    [http-nio-8080-exec-1] INFO  AuthenticateController  - Autenticando o usuário.
+02 fev. 2021 07:40:20,007 3782 [http-nio-8080-exec-1] ERROR AuthenticateController  - Erro na autenticação do usuário
+02 fev. 2021 07:43:07,496 171271 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 07:44:39,010 0    [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 07:53:10,602 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 07:55:07,394 116792 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 07:56:17,948 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+02 fev. 2021 07:57:31,864 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:14:46,580 0    [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:15:12,702 26122 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:15:15,889 29309 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:16:55,853 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:17:17,903 22050 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:52:01,801 0    [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:53:08,381 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:53:13,583 5202 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 16:53:21,381 13000 [http-nio-8080-exec-9] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 17:02:50,516 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 17:33:21,057 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 17:33:24,685 3628 [http-nio-8080-exec-6] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 17:33:33,722 12665 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário salvo
+02 fev 2021 17:35:47,231 146174 [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário salvo
+05 fev. 2021 00:24:03,436 0    [main] INFO  AuthenticateController  - teste
+05 fev. 2021 00:28:52,325 0    [main] INFO  AuthenticateController  - teste
