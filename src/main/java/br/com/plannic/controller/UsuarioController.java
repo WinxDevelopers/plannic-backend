@@ -2,6 +2,7 @@ package br.com.plannic.controller;
 
 import br.com.plannic.model.Usuario;
 import br.com.plannic.service.UsuarioService;
+import br.com.plannic.service.EmailService;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,13 @@ import javax.validation.Valid;
 public class UsuarioController {
 
     private UsuarioService usuarioService;
+    private EmailService emailService;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService,
+                             EmailService emailService) {
         this.usuarioService = usuarioService;
+        this.emailService = emailService;
     }
 
     @PostMapping("/cadastro")
@@ -26,6 +30,7 @@ public class UsuarioController {
         try {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "POST save");
+            emailService.welcome(usuario);
             usuarioService.save(usuario);
         }finally{
             MDC.clear();
