@@ -6,5 +6,5 @@ import br.com.plannic.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MateriaRepository extends JpaRepository<Materia,Integer> {
-    Materia findBy(String id);
+    Materia findById(int id);
 }

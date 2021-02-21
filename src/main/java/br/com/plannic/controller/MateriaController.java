@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/materia")
 public class MateriaController {
 
     private MateriaService materiaService;
@@ -23,7 +23,7 @@ public class MateriaController {
         this.materiaService = materiaService;
     }
 
-    @PostMapping("/cadastroMateria")
+    @PostMapping("/cadastro")
     public ResponseEntity<Materia> save(@Valid @RequestBody Materia materia){
         try {
             MDC.put("name", materia.getMateria());

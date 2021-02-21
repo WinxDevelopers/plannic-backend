@@ -48,7 +48,7 @@ public class MateriaService {
     }
 
     public boolean update(Materia materia) {
-        Optional<Materia> materias = this.repository.findById(materia.getId());
+        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getId()));
 
         if (materias.isPresent()) {
             logger.info("Materia atualizada");
@@ -61,7 +61,7 @@ public class MateriaService {
 
 
     public boolean delete(Materia materia) {
-        Optional<Materia> materias = this.repository.findById(materia.getId());
+        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getId()));
 
         if (materias.isPresent()) {
             logger.info("Materia deletada");

@@ -15,9 +15,12 @@ import java.time.LocalDateTime;
 public class Materia {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "idusuario")
     private int idUsuario;
-    private String descricao;
+    @Column(name = "materia")
     private String materia;
+    @Column(name = "descricao")
+    private String descricao;
 }

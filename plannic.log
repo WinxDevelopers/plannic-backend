@@ -142,3 +142,18 @@ ttttttttttttteste
 02 fev 2021 17:35:47,231 146174 [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário salvo
 05 fev. 2021 00:24:03,436 0    [main] INFO  AuthenticateController  - teste
 05 fev. 2021 00:28:52,325 0    [main] INFO  AuthenticateController  - teste
+21 fev. 2021 16:11:22,159 0    [http-nio-8080-exec-8] INFO  AuthenticateController  - Autenticando o usuário.
+21 fev. 2021 16:11:25,053 2894 [http-nio-8080-exec-8] ERROR AuthenticateController  - Erro na autenticação do usuário
+21 fev. 2021 16:41:35,238 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+21 fev. 2021 16:41:44,842 9604 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+21 fev. 2021 19:40:22,757 0    [http-nio-8080-exec-6] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:44:16,815 234058 [http-nio-8080-exec-7] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:46:40,689 0    [http-nio-8080-exec-2] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:49:04,073 143384 [http-nio-8080-exec-4] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:50:13,984 213295 [http-nio-8080-exec-5] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:51:19,127 278438 [http-nio-8080-exec-6] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:51:33,032 292343 [http-nio-8080-exec-7] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:52:22,434 341745 [http-nio-8080-exec-8] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:53:11,736 0    [http-nio-8080-exec-3] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:55:19,106 127370 [http-nio-8080-exec-5] INFO  MateriaService  - Materia salva
+21 fev. 2021 19:55:41,594 149858 [http-nio-8080-exec-8] INFO  MateriaService  - Materia salva
