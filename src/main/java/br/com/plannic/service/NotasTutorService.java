@@ -1,5 +1,6 @@
 package br.com.plannic.service;
 
+
 import br.com.plannic.model.NotasTutor;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.NotasTutorRepository;
@@ -71,5 +72,6 @@ public class NotasTutorService {
 
         return false;
     }
+
 
 }

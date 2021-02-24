@@ -31,4 +31,5 @@ public class NotasTutor {
 
     @Column(name = "idUsuarioTutor")
     private Long idUsuarioTutor;
+
 }

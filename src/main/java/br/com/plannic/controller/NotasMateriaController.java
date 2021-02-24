@@ -1,5 +1,6 @@
 package br.com.plannic.controller;
 
+
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.service.NotasMateriaService;
@@ -69,4 +70,5 @@ public class NotasMateriaController {
             MDC.clear();
         }
     }
+
 }
