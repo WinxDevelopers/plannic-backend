@@ -21,7 +21,7 @@ public class PlannicApplication {
 		PropertyConfigurator.configure("src/main/resources/log4j.properties");
 		SpringApplication.run(PlannicApplication.class, args);
 	}
-	
+	    @Bean
 	    public JavaMailSender getJavaMailSender() {
 		var mailSender = new JavaMailSenderImpl();
 		mailSender.setHost(System.getenv("SMTP_HOST"));
