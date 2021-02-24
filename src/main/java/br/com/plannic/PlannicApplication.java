@@ -21,4 +21,17 @@ public class PlannicApplication {
 		PropertyConfigurator.configure("src/main/resources/log4j.properties");
 		SpringApplication.run(PlannicApplication.class, args);
 	}
+	
+	    public JavaMailSender getJavaMailSender() {
+		var mailSender = new JavaMailSenderImpl();
+		mailSender.setHost(System.getenv("SMTP_HOST"));
+		mailSender.setPort(587);
+		mailSender.setUsername(System.getenv("SMTP_EMAIL"));
+		mailSender.setPassword(System.getenv("SMTP_PASSWORD"));
+		var props = mailSender.getJavaMailProperties();
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		return mailSender;
+    }
 }
