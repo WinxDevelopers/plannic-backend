@@ -11,15 +11,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "materia")
+public class Materia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique =true)
-    private String email;
-    private String password;
-    private String nome;
-    private LocalDateTime data = LocalDateTime.now();
+    @Column(name = "idusuario")
+    private int idUsuario;
+    @Column(name = "materia")
+    private String materia;
+    @Column(name = "descricao")
+    private String descricao;
 }
