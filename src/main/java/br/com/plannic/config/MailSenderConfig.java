@@ -1,4 +1,4 @@
-package br.com.plannic.config;
+/* package br.com.plannic.config;
 
 
 import org.springframework.context.annotation.Bean;
