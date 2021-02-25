@@ -2,6 +2,7 @@ package br.com.plannic.service;
 
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -21,6 +22,10 @@ public class NotasMateriaService {
     private NotasMateriaRepository repository;
 
     private static Logger logger = Logger.getLogger(NotasMateriaService.class);
+
+    public NotasMateriaService(NotasMateriaRepository repository) {
+        this.repository = repository;
+    }
 
     public List<NotasMateria> getAll() {
         ModelMapper mapper = new ModelMapper();
@@ -42,12 +47,11 @@ public class NotasMateriaService {
         MDC.put("user_id", notaMateriaSalva.getIdUsuario());
         logger.info("Nota da materia salva");
 
-
     }
 
 
     public boolean update(NotasMateria notasMateria) {
-        Optional<NotasMateria> notasMaterias = this.repository.findById(notasMateria.getIdMateira());
+        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(notasMateria.getIdMateria()));
 
         if (notasMaterias.isPresent()) {
             logger.info("Nota da materia atualizado");
@@ -61,11 +65,11 @@ public class NotasMateriaService {
 
 
     public boolean delete(NotasMateria notasMateria) {
-        Optional<NotasMateria> notasMaterias = this.repository.findById(notasMateria.getIdMateira());
+        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(notasMateria.getIdMateria()));
 
         if (notasMaterias.isPresent()) {
             logger.info("Notas da materia deletada");
-            this.repository.deleteById(notasMateria.getIdMateira());
+            this.repository.deleteById(notasMateria.getIdMateria());
             return true;
         }
 

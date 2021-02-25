@@ -20,6 +20,6 @@
 //
 //    @Test
 //    void generateToken() {
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken("teste", "teste"));
+//        authenticationManager.authenticate(new UsernamePasswordAutahenticationToken("teste", "teste"));
 //    }
 //}

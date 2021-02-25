@@ -43,12 +43,12 @@ public class MateriaService {
     public void save(Materia materia) {
         ModelMapper mapper = new ModelMapper();
         var materiaSalva = repository.save(mapper.map(materia, Materia.class));
-        MDC.put("materia_id", materiaSalva.getId());
+        MDC.put("materia_id", materiaSalva.getIdMateria());
         logger.info("Materia salva");
     }
 
     public boolean update(Materia materia) {
-        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getId()));
+        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getIdMateria()));
 
         if (materias.isPresent()) {
             logger.info("Materia atualizada");
@@ -61,11 +61,11 @@ public class MateriaService {
 
 
     public boolean delete(Materia materia) {
-        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getId()));
+        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getIdMateria()));
 
         if (materias.isPresent()) {
             logger.info("Materia deletada");
-            this.repository.deleteById(materia.getId());
+            this.repository.deleteById(materia.getIdMateria());
             return true;
         }
         return false;

@@ -56,7 +56,7 @@ public class UsuarioService {
         usuario.setPassword(passwordEncoder.encode(senha));
         ModelMapper mapper = new ModelMapper();
         var usuarioSalvo = repository.save(mapper.map(usuario, Usuario.class));
-        MDC.put("user_id", usuarioSalvo.getId());
+        MDC.put("user_id", usuarioSalvo.getIdUsuario());
         logger.info("Usuário salvo");
 
 
@@ -64,7 +64,7 @@ public class UsuarioService {
 
 
     public boolean update(Usuario usuario) {
-        Optional<Usuario> usuarios = this.repository.findById(usuario.getId());
+        Optional<Usuario> usuarios = this.repository.findById(usuario.getIdUsuario());
 
         if (usuarios.isPresent()) {
             logger.info("Usuário atualizado");
@@ -78,11 +78,11 @@ public class UsuarioService {
 
 
     public boolean delete(Usuario usuario) {
-        Optional<Usuario> usuarios = this.repository.findById(usuario.getId());
+        Optional<Usuario> usuarios = this.repository.findById(usuario.getIdUsuario());
 
         if (usuarios.isPresent()) {
             logger.info("Usuário deletado");
-            this.repository.deleteById(usuario.getId());
+            this.repository.deleteById(usuario.getIdUsuario());
             return true;
         }
 

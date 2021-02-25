@@ -1,37 +1,45 @@
 package br.com.plannic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "notasMateria")
+@Table(name = "notasmateria")
 public class NotasMateria {
 
     @Id
-    @GeneratedValue
-    private Long idNotaMateria;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idnotamateria")
+    private int idNotaMateria;
 
-    @Column(name = "idUsuario")
-    private Long idUsuario;
+    @Column(name = "idmateria")
+    private int idMateria;
 
-    @Column(name = "idMateira")
-    private Long idMateira;
+    @Column(name = "idusuario")
+    private int idUsuario;
 
-    @Column(name = "notaMateria")
-    private Integer notaMateria;
+    @Column(name = "notamateria")
+    private Double notaMateria;
 
-    @Column(name = "tipoNota")
+    @Column(name = "tiponota")
     private String tipoNota;
 
-    @Column(name = "dataNascimento")
-    private String dataNascimento;
+    @Column(name = "datanota")
+    private Date dataNota;
 
-
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
+    @JsonBackReference
+    private Usuario usuario;
 
 }

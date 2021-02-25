@@ -3,8 +3,10 @@ package br.com.plannic.controller;
 import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.service.AgendamentoService;
+import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
 import org.apache.log4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,15 @@ public class AgendamentoController {
 
     private AgendamentoService agendamentoService;
 
-    @PostMapping
+    @Autowired
+    public AgendamentoController(AgendamentoService agendamentoService) {
+        this.agendamentoService = agendamentoService;
+    }
+
+    @PostMapping("/cadastro")
     public ResponseEntity<Agendamento> save(@Valid @RequestBody Agendamento agendamento){
         try {
-            MDC.put("id_agendamento", agendamento.getIdAgendamento());
+            MDC.put("name", agendamento.getIdAgendamento());
             MDC.put("fluxo", "POST save");
             agendamentoService.save(agendamento);
         }finally{

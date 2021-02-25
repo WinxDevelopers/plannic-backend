@@ -19,8 +19,9 @@ public class UsuarioController {
     private EmailService emailService;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService,
-                             EmailService emailService) {
+    //TODO voltar a parte do email
+    public UsuarioController(UsuarioService usuarioService
+                             ) {
         this.usuarioService = usuarioService;
         this.emailService = emailService;
     }
@@ -30,7 +31,7 @@ public class UsuarioController {
         try {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "POST save");
-            emailService.welcome(usuario);
+//            emailService.welcome(usuario);
             usuarioService.save(usuario);
         }finally{
             MDC.clear();
@@ -42,7 +43,7 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity update(@RequestBody Usuario usuario) {
         try {
-            MDC.put("user_id", usuario.getId());
+            MDC.put("user_id", usuario.getIdUsuario());
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "PUT update");
             if(usuarioService.update(usuario)) {
@@ -57,7 +58,7 @@ public class UsuarioController {
     @DeleteMapping
     public ResponseEntity delete(@RequestBody Usuario usuario) {
         try {
-            MDC.put("user_id", usuario.getId());
+            MDC.put("user_id", usuario.getIdUsuario());
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "DELETE delete");
             if (usuarioService.delete(usuario)) {

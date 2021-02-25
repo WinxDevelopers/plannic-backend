@@ -3,8 +3,10 @@ package br.com.plannic.controller;
 
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
 import org.apache.log4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,14 @@ import javax.validation.Valid;
 @RequestMapping("/notasMateria")
 public class NotasMateriaController {
 
-
     private NotasMateriaService notasMateriaService;
 
-    @PostMapping
+    @Autowired
+    public NotasMateriaController(NotasMateriaService notasMateriaService) {
+        this.notasMateriaService = notasMateriaService;
+    }
+
+    @PostMapping("/cadastro")
     public ResponseEntity<NotasMateria> save(@Valid @RequestBody NotasMateria notasMateria){
         try {
             MDC.put("nota", notasMateria.getNotaMateria());

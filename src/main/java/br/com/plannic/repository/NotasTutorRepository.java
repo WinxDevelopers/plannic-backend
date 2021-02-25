@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NotasTutorRepository extends JpaRepository<NotasTutor,Long> {
+public interface NotasTutorRepository extends JpaRepository<NotasTutor,Integer> {
 
 }

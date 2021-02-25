@@ -3,6 +3,7 @@ package br.com.plannic.service;
 import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.repository.AgendamentoRepository;
+import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -21,7 +22,12 @@ public class AgendamentoService {
 
     private AgendamentoRepository repository;
 
-    private static Logger logger = Logger.getLogger(NotasMateriaService.class);
+    private static Logger logger = Logger.getLogger(AgendamentoService.class);
+
+    public AgendamentoService(AgendamentoRepository repository) {
+        this.repository = repository;
+    }
+
 
     public List<Agendamento> getAll() {
         ModelMapper mapper = new ModelMapper();
@@ -47,7 +53,7 @@ public class AgendamentoService {
 
 
     public boolean update(Agendamento agendamento) {
-        Optional<Agendamento> agendamentos = this.repository.findById(agendamento.getIdAgendamento());
+        Optional<Agendamento> agendamentos = Optional.ofNullable(this.repository.findById(agendamento.getIdAgendamento()));
 
         if (agendamentos.isPresent()) {
             logger.info("agendamento atualizado");
@@ -61,7 +67,7 @@ public class AgendamentoService {
 
 
     public boolean delete(Agendamento agendamento) {
-        Optional<Agendamento> agendamentos = this.repository.findById(agendamento.getIdAgendamento());
+        Optional<Agendamento> agendamentos = Optional.ofNullable(this.repository.findById(agendamento.getIdAgendamento()));
 
         if (agendamentos.isPresent()) {
             logger.info("Agendamento deletado");
