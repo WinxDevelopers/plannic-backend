@@ -20,8 +20,8 @@ public class UsuarioController {
 
     @Autowired
     //TODO voltar a parte do email
-    public UsuarioController(UsuarioService usuarioService
-                             ) {
+    public UsuarioController(UsuarioService usuarioService,
+                             EmailService emailService) {
         this.usuarioService = usuarioService;
         this.emailService = emailService;
     }
@@ -31,7 +31,7 @@ public class UsuarioController {
         try {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "POST save");
-//            emailService.welcome(usuario);
+            emailService.welcome(usuario);
             usuarioService.save(usuario);
         }finally{
             MDC.clear();

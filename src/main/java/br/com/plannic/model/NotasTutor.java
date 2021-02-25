@@ -16,26 +16,27 @@ public class NotasTutor {
 
     @Id
     @GeneratedValue
+    @Column(name = "idnotausuario")
     private int idNotaUsuario;
 
-    @Column(name = "idUsuario")
+    @Column(name = "idusuario")
     private int idUsuario;
 
-    @Column(name = "idMateria")
+    @Column(name = "idmateria")
     private int idMateria;
 
-    @Column(name = "notaTutor")
+    @Column(name = "notatutor")
     private Integer notaTutor;
 
-    @Column(name = "descricaoNota")
+    @Column(name = "descricaonota")
     private String descricaoNota;
 
-    @Column(name = "idUsuarioTutor")
+    @Column(name = "idusuariotutor")
     private int idUsuarioTutor;
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "idUsuario", insertable=false, updatable=false)
+    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
     private Usuario usuario;
 
 }
