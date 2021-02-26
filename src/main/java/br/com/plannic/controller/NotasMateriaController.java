@@ -6,23 +6,23 @@ import br.com.plannic.model.Usuario;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
 import org.apache.log4j.MDC;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/notasMateria")
 public class NotasMateriaController {
-
+    @Autowired
     private NotasMateriaService notasMateriaService;
 
-    @Autowired
-    public NotasMateriaController(NotasMateriaService notasMateriaService) {
-        this.notasMateriaService = notasMateriaService;
-    }
+
 
     @PostMapping("/cadastro")
     public ResponseEntity<NotasMateria> save(@Valid @RequestBody NotasMateria notasMateria){
@@ -109,7 +109,9 @@ public class NotasMateriaController {
     public ResponseEntity getNotaVsTipo(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
-            return new ResponseEntity<>(notasMateriaService.buscaNotavsTipo(idusuario), HttpStatus.OK);
+            List teste =notasMateriaService.buscaNotavsTipoList(idusuario);
+
+            return new ResponseEntity<>(teste, HttpStatus.OK);
         }finally {
             MDC.clear();
         }
@@ -119,6 +121,8 @@ public class NotasMateriaController {
     public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
+
+
             return new ResponseEntity<>(notasMateriaService.buscaNotavsMateria(idusuario), HttpStatus.OK);
         }finally {
             MDC.clear();

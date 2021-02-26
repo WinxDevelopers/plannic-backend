@@ -1,6 +1,8 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.NotasMateria;
+import br.com.plannic.dto.TipoNotaVsNotaDTO;
+import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -18,6 +20,8 @@ import static java.util.stream.Collectors.averagingDouble;
 public class NotasMateriaService {
 
     private NotasMateriaRepository repository;
+    private  MateriaRepository materiaRepository;
+
 
     private static Logger logger = Logger.getLogger(NotasMateriaService.class);
 
@@ -103,24 +107,54 @@ public class NotasMateriaService {
         return  filtered;
     }
 
+//    public JSONArray buscaNotavsTipo(Integer idusuario){
+//        JSONObject result = new JSONObject();
+//        JSONArray addresses = new JSONArray();
+//        result.put("addresses", addresses);
+//        List<NotasMateria> notasMaterias = repository.findAll();
+//        Map<String, Double> filtered = notasMaterias.stream().
+//                filter(t -> t.getIdUsuario()== idusuario)
+//                .collect(Collectors.groupingBy(NotasMateria::getTipoNota,
+//                         Collectors.mapping(NotasMateria::getNotaMateria,
+//                                 averagingDouble(Double::doubleValue))));
+//
+//        filtered.entrySet().stream()       //iterate the map
+//                .map(e -> {                 //build an object
+//                    HashMap address = new HashMap();
+//                    address.put("address", e.getKey());
+//                    address.put("domain", e.getValue());
+//                    return address;
+//                })
+//                .forEach(addresses::put);   //insert into the array
+//
+//
+//
+//         return  addresses;
+//    }
 
-    public Map<String, Double> buscaNotavsTipo(Integer idusuario){
+    public  List<TipoNotaVsNotaDTO> buscaNotavsTipoList(Integer idusuario) {
+
         List<NotasMateria> notasMaterias = repository.findAll();
-//        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
-//                .collect(averagingDouble(Double::doubleValue));
-        Map<String, Double> filtered = notasMaterias.stream().collect(
-        Collectors.groupingBy(NotasMateria::getTipoNota,
-                Collectors.mapping(NotasMateria::getNotaMateria,
-                        averagingDouble(Double::doubleValue))));
-        return  filtered;
+
+        List<TipoNotaVsNotaDTO> result = notasMaterias.stream()
+                .filter(t -> t.getIdUsuario()== idusuario)
+                .collect(Collectors.groupingBy(NotasMateria::getTipoNota,
+                        Collectors.mapping(NotasMateria::getNotaMateria,
+                                averagingDouble(Double::doubleValue))))
+                .entrySet().stream()
+                .map(TipoNotaVsNotaDTO:: new )
+                .collect(Collectors.toList());
+
+        return  result;
     }
 
     public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
         List<NotasMateria> notasMaterias = repository.findAll();
 //        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
 //                .collect(averagingDouble(Double::doubleValue));
-        Map<Integer, Double> filtered = notasMaterias.stream().collect(
-                Collectors.groupingBy(NotasMateria::getIdMateria,
+        Map<Integer, Double> filtered = notasMaterias.stream()
+                .filter(t -> t.getIdUsuario()== idusuario )
+                .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
                         Collectors.mapping(NotasMateria::getNotaMateria,
                                 averagingDouble(Double::doubleValue))));
         return  filtered;

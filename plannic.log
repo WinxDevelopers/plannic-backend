@@ -175,3 +175,4 @@ ttttttttttttteste
 25 fev. 2021 17:55:48,215 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuários recuperados
 25 fev. 2021 19:32:28,638 0    [http-nio-8080-exec-1] INFO  NotasMateriaService  - Nota da materia salva
 25 fev. 2021 19:32:48,704 20066 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuários recuperados
+26 fev 2021 14:17:56,013 0    [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
