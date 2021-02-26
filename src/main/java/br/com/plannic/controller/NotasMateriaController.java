@@ -6,8 +6,6 @@ import br.com.plannic.model.Usuario;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
 import org.apache.log4j.MDC;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
