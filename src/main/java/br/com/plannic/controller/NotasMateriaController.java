@@ -105,5 +105,26 @@ public class NotasMateriaController {
             MDC.clear();
         }
     }
+    @GetMapping("notavstipo/{idusuario}")
+    public ResponseEntity getNotaVsTipo(@PathVariable final Integer idusuario) {
+        try{
+            MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
+            return new ResponseEntity<>(notasMateriaService.buscaNotavsTipo(idusuario), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("notavsmateira/{idusuario}")
+    public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
+        try{
+            MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
+            return new ResponseEntity<>(notasMateriaService.buscaNotavsMateria(idusuario), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+
 
 }
