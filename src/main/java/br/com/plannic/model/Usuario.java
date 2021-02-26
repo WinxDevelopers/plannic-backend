@@ -21,7 +21,7 @@ public class Usuario {
     @Id
     @Column(name = "idusuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private int idUsuario;
 
     @Column(name = "email", unique = true)
     private String email;
@@ -39,7 +39,7 @@ public class Usuario {
     @JsonIgnoreProperties("materias")
     List<Materia> materias;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("agendamentos")
     List<Agendamento> agendamentos;
 

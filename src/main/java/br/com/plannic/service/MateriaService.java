@@ -60,12 +60,12 @@ public class MateriaService {
     }
 
 
-    public boolean delete(Materia materia) {
-        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(materia.getIdMateria()));
+    public boolean delete(int id) {
+        Optional<Materia> materias = Optional.ofNullable(this.repository.findById(id));
 
         if (materias.isPresent()) {
             logger.info("Materia deletada");
-            this.repository.deleteById(materia.getIdMateria());
+            this.repository.deleteById(id);
             return true;
         }
         return false;

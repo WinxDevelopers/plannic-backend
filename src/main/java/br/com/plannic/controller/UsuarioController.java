@@ -55,13 +55,13 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity delete(@RequestBody Usuario usuario) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") int id) {
         try {
-            MDC.put("user_id", usuario.getIdUsuario());
-            MDC.put("name", usuario.getNome());
+//            MDC.put("user_id", usuario.getIdUsuario());
+//            MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "DELETE delete");
-            if (usuarioService.delete(usuario)) {
+            if (usuarioService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
@@ -75,6 +75,16 @@ public class UsuarioController {
         try{
             MDC.put("fluxo", "GET usuarios");
             return new ResponseEntity<>(usuarioService.getAll(), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getUser(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET usuarios");
+            return new ResponseEntity<>(usuarioService.getUser(id), HttpStatus.OK);
         }finally {
             MDC.clear();
         }
