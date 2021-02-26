@@ -6,8 +6,6 @@ import br.com.plannic.model.Usuario;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
 import org.apache.log4j.MDC;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,13 +52,13 @@ public class NotasMateriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity delete(@RequestBody NotasMateria notasMateria) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") int id) {
         try {
-            MDC.put("user_id", notasMateria.getIdUsuario());
-            MDC.put("nota", notasMateria.getNotaMateria());
+//            MDC.put("user_id", notasMateria.getIdUsuario());
+//            MDC.put("nota", notasMateria.getNotaMateria());
             MDC.put("fluxo", "DELETE delete");
-            if (notasMateriaService.delete(notasMateria)) {
+            if (notasMateriaService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
@@ -121,7 +119,7 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("notavsmateira/{idusuario}")
+    @GetMapping("notasmateira/{idusuario}")
     public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");

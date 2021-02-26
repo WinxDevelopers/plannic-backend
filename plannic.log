@@ -175,4 +175,24 @@ ttttttttttttteste
 25 fev. 2021 17:55:48,215 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuários recuperados
 25 fev. 2021 19:32:28,638 0    [http-nio-8080-exec-1] INFO  NotasMateriaService  - Nota da materia salva
 25 fev. 2021 19:32:48,704 20066 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuários recuperados
-26 fev 2021 14:17:56,013 0    [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+26 fev. 2021 08:40:50,669 0    [http-nio-8080-exec-4] INFO  MateriaService  - Materia atualizada
+26 fev. 2021 08:41:45,550 54881 [http-nio-8080-exec-3] INFO  MateriaService  - Materia atualizada
+26 fev. 2021 08:42:11,904 81235 [http-nio-8080-exec-6] INFO  MateriaService  - Materia atualizada
+26 fev. 2021 08:46:41,733 351064 [http-nio-8080-exec-7] INFO  MateriaService  - Materia deletada
+26 fev. 2021 09:07:14,026 0    [http-nio-8080-exec-3] INFO  MateriaService  - Materia deletada
+26 fev. 2021 09:18:44,705 690679 [http-nio-8080-exec-5] INFO  MateriaService  - Materia atualizada
+26 fev. 2021 14:03:15,425 0    [http-nio-8080-exec-2] INFO  MateriaService  - Materia deletada
+26 fev. 2021 14:03:38,330 22905 [http-nio-8080-exec-3] INFO  MateriaService  - Materia deletada
+26 fev. 2021 14:51:23,777 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+26 fev. 2021 14:52:40,788 77011 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário deletado
+26 fev. 2021 14:52:56,704 92927 [http-nio-8080-exec-7] INFO  UsuarioService  - Usuário deletado
+26 fev. 2021 15:11:40,751 0    [http-nio-8080-exec-2] INFO  AgendamentoService  - Agendamento salvo
+26 fev. 2021 15:15:01,629 0    [http-nio-8080-exec-1] INFO  AgendamentoService  - Agendamento deletado
+26 fev. 2021 15:22:50,286 0    [http-nio-8080-exec-1] INFO  AgendamentoService  - Agendamento salvo
+26 fev. 2021 16:39:50,903 1    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuários recuperados
+26 fev. 2021 16:42:30,020 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
+26 fev. 2021 16:45:43,448 0    [http-nio-8080-exec-1] INFO  NotasMateriaService  - Notas da materia deletada
+26 fev. 2021 17:00:17,482 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário deletado
+26 fev. 2021 17:26:49,654 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário deletado
+26 fev. 2021 17:27:25,914 36260 [http-nio-8080-exec-3] INFO  AgendamentoService  - Agendamento salvo
+26 fev. 2021 17:27:40,019 50365 [http-nio-8080-exec-4] INFO  AgendamentoService  - Agendamento deletado
