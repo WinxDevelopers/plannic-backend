@@ -35,7 +35,6 @@ public class MateriaController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
     @PutMapping
     public ResponseEntity update(@RequestBody Materia materia) {
         try {
@@ -50,12 +49,12 @@ public class MateriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity delete(@RequestBody Materia materia) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") int id) {
         try {
-            MDC.put("name", materia.getDescricao());
-            MDC.put("fluxo", "DELETE delete");
-            if (materiaService.delete(materia)) {
+//            MDC.put("name", materia.getDescricao());
+//            MDC.put("fluxo", "DELETE delete");
+            if (materiaService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
