@@ -42,7 +42,7 @@ public class UsuarioService {
 
         if (!usuarios.isEmpty()) {
             logger.info("Usuários recuperados");
-            return  usuarios
+            return usuarios
                     .stream()
                     .map(usuario -> mapper.map(usuario, Usuario.class))
                     .collect(Collectors.toList());
@@ -56,7 +56,7 @@ public class UsuarioService {
 
         if (!usuarios.isEmpty()) {
             logger.info("Usuário recuperado");
-            return  usuarios
+            return usuarios
                     .stream()
                     .map(usuario -> mapper.map(usuario, Usuario.class))
                     .collect(Collectors.toList());
@@ -71,10 +71,7 @@ public class UsuarioService {
         var usuarioSalvo = repository.save(mapper.map(usuario, Usuario.class));
         MDC.put("user_id", usuarioSalvo.getIdUsuario());
         logger.info("Usuário salvo");
-
-
     }
-
 
     public boolean update(Usuario usuario) {
         Optional<Usuario> usuarios = this.repository.findById(usuario.getIdUsuario());
@@ -82,10 +79,24 @@ public class UsuarioService {
         if (usuarios.isPresent()) {
             logger.info("Usuário atualizado");
             ModelMapper mapper = new ModelMapper();
-            repository.save(mapper.map(usuario, Usuario.class));
+            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria());
+            repository.save(mapper.map(user, Usuario.class));
             return true;
         }
 
+        return false;
+    }
+
+    public boolean updatePassword(int id, String password) {
+        Usuario usuario = this.repository.findByIdUsuario(id);
+        if (!password.isBlank()) {
+            usuario.setPassword(passwordEncoder.encode(password));
+            ModelMapper mapper = new ModelMapper();
+            var usuarioSalvo = repository.save(mapper.map(usuario, Usuario.class));
+            MDC.put("user_id", usuarioSalvo.getIdUsuario());
+            logger.info("Senha atualizada");
+            return true;
+        }
         return false;
     }
 

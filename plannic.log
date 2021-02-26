@@ -196,3 +196,14 @@ ttttttttttttteste
 26 fev. 2021 17:26:49,654 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário deletado
 26 fev. 2021 17:27:25,914 36260 [http-nio-8080-exec-3] INFO  AgendamentoService  - Agendamento salvo
 26 fev. 2021 17:27:40,019 50365 [http-nio-8080-exec-4] INFO  AgendamentoService  - Agendamento deletado
+26 fev. 2021 19:22:25,888 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+26 fev. 2021 19:23:40,600 74712 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário salvo
+26 fev. 2021 19:33:11,868 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário atualizado
+26 fev. 2021 19:33:43,247 31379 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário atualizado
+26 fev. 2021 19:57:59,777 1487909 [http-nio-8080-exec-6] INFO  UsuarioService  - Usuário atualizado
+26 fev. 2021 20:00:09,851 2    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário atualizado
+26 fev. 2021 20:39:53,445 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Senha atualizada
+26 fev. 2021 20:40:06,802 13357 [http-nio-8080-exec-3] INFO  UsuarioService  - Senha atualizada
+26 fev. 2021 20:40:50,927 57482 [http-nio-8080-exec-4] INFO  UsuarioService  - Senha atualizada
+26 fev. 2021 20:54:04,991 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Senha atualizada
+26 fev. 2021 20:54:43,192 38201 [http-nio-8080-exec-3] INFO  UsuarioService  - Senha atualizada
