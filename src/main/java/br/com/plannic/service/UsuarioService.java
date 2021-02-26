@@ -1,6 +1,5 @@
 package br.com.plannic.service;
 
-import br.com.plannic.controller.AuthenticateController;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.UsuarioRepository;
 import org.apache.log4j.Logger;
@@ -87,5 +86,9 @@ public class UsuarioService {
         }
 
         return false;
+    }
+
+    public Usuario findByEmail(String email) {
+        return this.repository.findByEmail(email);
     }
 }

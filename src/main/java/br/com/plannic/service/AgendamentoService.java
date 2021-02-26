@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 public class AgendamentoService {
 
     private AgendamentoRepository repository;
+    private NotasMateriaRepository notasMateriaRepository;
+
 
     private static Logger logger = Logger.getLogger(AgendamentoService.class);
 
