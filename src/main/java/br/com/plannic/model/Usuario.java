@@ -39,7 +39,7 @@ public class Usuario {
     @JsonIgnoreProperties("materias")
     List<Materia> materias;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("agendamentos")
     List<Agendamento> agendamentos;
 
