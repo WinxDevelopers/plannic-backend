@@ -107,7 +107,7 @@ public class NotasMateriaController {
             MDC.clear();
         }
     }
-    @GetMapping("notavstipo/{idusuario}")
+    @GetMapping("notastipo/{idusuario}")
     public ResponseEntity getNotaVsTipo(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
@@ -119,7 +119,7 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("notasmateira/{idusuario}")
+    @GetMapping("notasmateria/{idusuario}")
     public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
