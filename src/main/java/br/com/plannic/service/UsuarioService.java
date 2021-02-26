@@ -51,6 +51,20 @@ public class UsuarioService {
         return Collections.emptyList();
     }
 
+    public List<Usuario> getUser(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Usuario> usuarios = Optional.ofNullable(this.repository.findByIdUsuario(id));
+
+        if (!usuarios.isEmpty()) {
+            logger.info("Usuário recuperado");
+            return  usuarios
+                    .stream()
+                    .map(usuario -> mapper.map(usuario, Usuario.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
     public void save(Usuario usuario) {
         var senha = usuario.getPassword();
         usuario.setPassword(passwordEncoder.encode(senha));
@@ -77,12 +91,12 @@ public class UsuarioService {
     }
 
 
-    public boolean delete(Usuario usuario) {
-        Optional<Usuario> usuarios = this.repository.findById(usuario.getIdUsuario());
+    public boolean delete(int id) {
+        Optional<Usuario> usuarios = this.repository.findById(id);
 
         if (usuarios.isPresent()) {
             logger.info("Usuário deletado");
-            this.repository.deleteById(usuario.getIdUsuario());
+            this.repository.deleteById(id);
             return true;
         }
 

@@ -51,13 +51,13 @@ public class AgendamentoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity delete(@RequestBody Agendamento agendamento) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") int id) {
         try {
-            MDC.put("user_id", agendamento.getIdAgendamento());
-            MDC.put("tipo_estudo", agendamento.getTipoEstudo());
+//            MDC.put("user_id", agendamento.getIdAgendamento());
+//            MDC.put("tipo_estudo", agendamento.getTipoEstudo());
             MDC.put("fluxo", "DELETE delete");
-            if (agendamentoService.delete(agendamento)) {
+            if (agendamentoService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{

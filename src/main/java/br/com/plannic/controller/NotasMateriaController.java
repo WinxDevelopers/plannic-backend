@@ -52,13 +52,13 @@ public class NotasMateriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity delete(@RequestBody NotasMateria notasMateria) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") int id) {
         try {
-            MDC.put("user_id", notasMateria.getIdUsuario());
-            MDC.put("nota", notasMateria.getNotaMateria());
+//            MDC.put("user_id", notasMateria.getIdUsuario());
+//            MDC.put("nota", notasMateria.getNotaMateria());
             MDC.put("fluxo", "DELETE delete");
-            if (notasMateriaService.delete(notasMateria)) {
+            if (notasMateriaService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{

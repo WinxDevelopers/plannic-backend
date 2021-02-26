@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -29,10 +31,10 @@ public class Agendamento {
     private int idUsuario;
 
     @Column(name = "timestampinicio")
-    private Date timestampInicio;
+    private LocalDateTime timestampInicio;
 
     @Column(name = "timestampfim")
-    private Date timestampFim;
+    private LocalDateTime timestampFim;
 
     @Column(name = "recorrencia")
     private String recorrencia;

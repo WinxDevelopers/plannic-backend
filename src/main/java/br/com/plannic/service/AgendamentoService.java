@@ -66,12 +66,12 @@ public class AgendamentoService {
     }
 
 
-    public boolean delete(Agendamento agendamento) {
-        Optional<Agendamento> agendamentos = Optional.ofNullable(this.repository.findById(agendamento.getIdAgendamento()));
+    public boolean delete(int id) {
+        Optional<Agendamento> agendamentos = Optional.ofNullable(this.repository.findById(id));
 
         if (agendamentos.isPresent()) {
             logger.info("Agendamento deletado");
-            this.repository.deleteById(agendamento.getIdAgendamento());
+            this.repository.deleteById(id);
             return true;
         }
 

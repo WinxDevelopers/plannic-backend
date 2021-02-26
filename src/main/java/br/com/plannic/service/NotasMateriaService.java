@@ -64,12 +64,12 @@ public class NotasMateriaService {
     }
 
 
-    public boolean delete(NotasMateria notasMateria) {
-        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(notasMateria.getIdMateria()));
+    public boolean delete(int id) {
+        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(id));
 
         if (notasMaterias.isPresent()) {
             logger.info("Notas da materia deletada");
-            this.repository.deleteById(notasMateria.getIdMateria());
+            this.repository.deleteById(id);
             return true;
         }
 
