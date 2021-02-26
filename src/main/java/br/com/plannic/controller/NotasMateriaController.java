@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/notasMateria")
@@ -79,7 +81,9 @@ public class NotasMateriaController {
     public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario,@PathVariable final Integer idmateria) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
-            return new ResponseEntity<>(notasMateriaService.buscaNotavsData(idusuario,idmateria), HttpStatus.OK);
+            List teste = notasMateriaService.buscaNotavsData(idusuario,idmateria);
+
+            return new ResponseEntity<>(teste ,HttpStatus.OK);
         }finally {
             MDC.clear();
         }
@@ -103,7 +107,7 @@ public class NotasMateriaController {
             MDC.clear();
         }
     }
-    @GetMapping("notavstipo/{idusuario}")
+    @GetMapping("notastipo/{idusuario}")
     public ResponseEntity getNotaVsTipo(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
@@ -115,13 +119,12 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("notasmateira/{idusuario}")
+    @GetMapping("notasmateria/{idusuario}")
     public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
-
-
-            return new ResponseEntity<>(notasMateriaService.buscaNotavsMateria(idusuario), HttpStatus.OK);
+            List lista =notasMateriaService.buscaNotavsMateriaList(idusuario);
+            return new ResponseEntity<>(lista, HttpStatus.OK);
         }finally {
             MDC.clear();
         }
