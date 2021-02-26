@@ -1,5 +1,6 @@
 package br.com.plannic.service;
 
+import br.com.plannic.dto.MateriaVsNotaDTO;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.dto.TipoNotaVsNotaDTO;
 import br.com.plannic.repository.MateriaRepository;
@@ -7,6 +8,7 @@ import br.com.plannic.repository.NotasMateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -79,7 +81,7 @@ public class NotasMateriaService {
     }
 
     public List<NotasMateria> buscaNotavsData(Integer idusuario,Integer idmateria){
-        List<NotasMateria> notasMaterias = repository.findAll();
+        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
         List<NotasMateria> filtered =
                 notasMaterias.stream()
                         .filter(t -> t.getIdUsuario()== idusuario && t.getIdMateria()== idmateria)
@@ -134,7 +136,7 @@ public class NotasMateriaService {
 
     public  List<TipoNotaVsNotaDTO> buscaNotavsTipoList(Integer idusuario) {
 
-        List<NotasMateria> notasMaterias = repository.findAll();
+        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
 
         List<TipoNotaVsNotaDTO> result = notasMaterias.stream()
                 .filter(t -> t.getIdUsuario()== idusuario)
@@ -148,17 +150,33 @@ public class NotasMateriaService {
         return  result;
     }
 
-    public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
-        List<NotasMateria> notasMaterias = repository.findAll();
-//        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
-//                .collect(averagingDouble(Double::doubleValue));
-        Map<Integer, Double> filtered = notasMaterias.stream()
-                .filter(t -> t.getIdUsuario()== idusuario )
+    public  List<MateriaVsNotaDTO> buscaNotavsMateriaList(Integer idusuario) {
+
+        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
+
+        List<MateriaVsNotaDTO> result = notasMaterias.stream()
+                .filter(t -> t.getIdUsuario()== idusuario)
                 .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
                         Collectors.mapping(NotasMateria::getNotaMateria,
-                                averagingDouble(Double::doubleValue))));
-        return  filtered;
+                                averagingDouble(Double::doubleValue))))
+                .entrySet().stream()
+                .map(MateriaVsNotaDTO:: new )
+                .collect(Collectors.toList());
+
+        return  result;
     }
+
+//    public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
+//        List<NotasMateria> notasMaterias = repository.findAll();
+////        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
+////                .collect(averagingDouble(Double::doubleValue));
+//        Map<Integer, Double> filtered = notasMaterias.stream()
+//                .filter(t -> t.getIdUsuario()== idusuario )
+//                .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
+//                        Collectors.mapping(NotasMateria::getNotaMateria,
+//                                averagingDouble(Double::doubleValue))));
+//        return  filtered;
+//    }
 
 
 
