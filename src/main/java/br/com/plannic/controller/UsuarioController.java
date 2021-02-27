@@ -31,7 +31,7 @@ public class UsuarioController {
         try {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "POST save");
-            emailService.welcome(usuario);
+//            emailService.welcome(usuario);
             usuarioService.save(usuario);
         }finally{
             MDC.clear();
@@ -47,6 +47,21 @@ public class UsuarioController {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "PUT update");
             if(usuarioService.update(usuario)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/redefinicao")
+    public ResponseEntity updatePassword(@Valid @RequestBody Usuario usuario) {
+        try {
+//            MDC.put("user_id", usuario.getIdUsuario());
+//            MDC.put("name", usuario.getNome());
+            MDC.put("fluxo", "PUT update");
+            if(usuarioService.updatePassword(usuario.getIdUsuario(), usuario.getPassword())) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
