@@ -9,6 +9,7 @@ import java.util.Map;
 
 @Data
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public  class TipoNotaVsNotaDTO {
     private String tipoNota;
     private double nota;

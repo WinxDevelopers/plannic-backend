@@ -26,7 +26,7 @@ public class Materia {
     private int idUsuario;
 
     @Column(name = "materia")
-    private String materia;
+    private String nomeMateria;
 
     @Column(name = "descricao")
     private String descricao;

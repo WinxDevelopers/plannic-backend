@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -77,11 +78,11 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("/{idusuario}/{idmateria}")
-    public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario,@PathVariable final Integer idmateria) {
+    @GetMapping("/{idusuario}")
+    public ResponseEntity getNotaVsMatsferia(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
-            List teste = notasMateriaService.buscaNotavsData(idusuario,idmateria);
+            List teste = notasMateriaService.buscaNotavfffsTipoList(idusuario);
 
             return new ResponseEntity<>(teste ,HttpStatus.OK);
         }finally {

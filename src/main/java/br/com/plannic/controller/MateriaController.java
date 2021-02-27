@@ -1,9 +1,7 @@
 package br.com.plannic.controller;
 
 import br.com.plannic.model.Materia;
-import br.com.plannic.model.Usuario;
 import br.com.plannic.service.MateriaService;
-import br.com.plannic.service.UsuarioService;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +24,7 @@ public class MateriaController {
     @PostMapping("/cadastro")
     public ResponseEntity<Materia> save(@Valid @RequestBody Materia materia){
         try {
-            MDC.put("name", materia.getMateria());
+            MDC.put("name", materia.getNomeMateria());
             MDC.put("fluxo", "POST save");
             materiaService.save(materia);
         }finally{
