@@ -4,6 +4,7 @@ import br.com.plannic.dto.MateriaVsNotaDTO;
 import br.com.plannic.dto.NotasVsTipoEstudoDTO;
 import br.com.plannic.dto.TipoEstudoNotaDTO;
 import br.com.plannic.dto.NotasMateriaDTO;
+import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.dto.TipoNotaVsNotaDTO;
@@ -186,10 +187,12 @@ public class NotasMateriaService {
         List<NotasVsTipoEstudoDTO> list =  new ArrayList<>();
 
         user.getNotasMateria().forEach(
-                nm -> list.add(new NotasVsTipoEstudoDTO(
+                nm ->
+                        list.add(
+                                new NotasVsTipoEstudoDTO(
                         nm.getIdMateria(),
                         nm.getNotaMateria(),
-                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().get().getTipoEstudo() )
+                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Agendamento("")).getTipoEstudo() )
 
                 ));
 
@@ -202,7 +205,7 @@ public class NotasMateriaService {
         groupByAgendamentoTipo.forEach(
                 (k,v) -> tipoEstudoNotaDTO.add(new TipoEstudoNotaDTO(v,k))
         );
-        return tipoEstudoNotaDTO;
+        return tipoEstudoNotaDTO.stream().filter(tipoEstudo-> !tipoEstudo.getTipoEstudo().equals("")).collect(Collectors.toList());
 
 
     }

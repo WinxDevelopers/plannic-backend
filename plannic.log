@@ -219,3 +219,4 @@ ttttttttttttteste
 27 fev. 2021 23:32:51,296 435514 [http-nio-8080-exec-6] INFO  NotasMateriaService  - Nota da materia salva
 27 fev. 2021 23:34:21,395 525613 [http-nio-8080-exec-7] INFO  NotasMateriaService  - Nota da materia salva
 27 fev. 2021 23:34:29,429 533647 [http-nio-8080-exec-3] INFO  NotasMateriaService  - Nota da materia salva
+28 fev. 2021 02:16:39,360 0    [http-nio-8080-exec-5] INFO  MateriaService  - Materias recuperadas
