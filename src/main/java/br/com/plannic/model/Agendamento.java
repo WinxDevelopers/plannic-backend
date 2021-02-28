@@ -1,6 +1,7 @@
 package br.com.plannic.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,10 +32,10 @@ public class Agendamento {
     private int idUsuario;
 
     @Column(name = "timestampinicio")
-    private LocalDateTime timestampInicio;
+    private Date timestampInicio;
 
     @Column(name = "timestampfim")
-    private LocalDateTime timestampFim;
+    private Date timestampFim;
 
     @Column(name = "recorrencia")
     private String recorrencia;

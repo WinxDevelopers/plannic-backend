@@ -143,7 +143,6 @@ ttttttttttttteste
 05 fev. 2021 00:24:03,436 0    [main] INFO  AuthenticateController  - teste
 05 fev. 2021 00:28:52,325 0    [main] INFO  AuthenticateController  - teste
 
-=======
 17 fev. 2021 17:34:39,476 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário 
 17 fev. 2021 18:18:45,637 38841 [http-nio-8080-exec-6] INFO  UsuarioService  - Usuário salvo
 17 fev. 2021 18:55:39,688 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
@@ -196,6 +195,8 @@ ttttttttttttteste
 26 fev. 2021 17:26:49,654 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário deletado
 26 fev. 2021 17:27:25,914 36260 [http-nio-8080-exec-3] INFO  AgendamentoService  - Agendamento salvo
 26 fev. 2021 17:27:40,019 50365 [http-nio-8080-exec-4] INFO  AgendamentoService  - Agendamento deletado
+26 fev 2021 21:57:21,071 0    [http-nio-8080-exec-6] INFO  MateriaService  - Materias recuperadas
+27 fev 2021 15:54:19,120 0    [http-nio-8080-exec-6] INFO  AgendamentoService  - Agendamento salvo
 26 fev. 2021 19:22:25,888 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
 26 fev. 2021 19:23:40,600 74712 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário salvo
 26 fev. 2021 19:33:11,868 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário atualizado

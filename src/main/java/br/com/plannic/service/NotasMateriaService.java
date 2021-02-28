@@ -3,7 +3,7 @@ package br.com.plannic.service;
 import br.com.plannic.dto.MateriaVsNotaDTO;
 import br.com.plannic.dto.NotasVsTipoEstudoDTO;
 import br.com.plannic.dto.TipoEstudoNotaDTO;
-import br.com.plannic.model.Agendamento;
+import br.com.plannic.dto.NotasMateriaDTO;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.dto.TipoNotaVsNotaDTO;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
-import java.util.stream.Collector;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.averagingDouble;
@@ -30,13 +30,17 @@ public class NotasMateriaService {
 
     private NotasMateriaRepository repository;
     private UsuarioRepository usuarioRepository;
+    private final MateriaRepository materiaRepository;
+    private final MateriaRepository materiaRepository1;
 
 
     private static Logger logger = Logger.getLogger(NotasMateriaService.class);
 
-    public NotasMateriaService(NotasMateriaRepository repository, UsuarioRepository usuarioRepository) {
+    public NotasMateriaService(NotasMateriaRepository repository, MateriaRepository materiaRepository, MateriaRepository materiaRepository1, UsuarioRepository usuarioRepository, MateriaRepository materiaRepository11) {
         this.repository = repository;
+        this.materiaRepository = materiaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.materiaRepository1 = materiaRepository11;
     }
 
 
@@ -215,6 +219,36 @@ public class NotasMateriaService {
 //                                averagingDouble(Double::doubleValue))));
 //        return  filtered;
 //    }
+
+    public List<NotasMateriaDTO>buscaNotavfffsTipoList(Integer idusuario) {
+
+        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
+        List<Materia> materias = materiaRepository.findAll();
+        ModelMapper mapper = new ModelMapper();
+
+        List<NotasMateriaDTO> filter1 =
+                notasMaterias.stream()
+                        .filter(t -> t.getIdUsuario()== idusuario)
+                        .map(mt -> mapper.map(mt, NotasMateriaDTO.class))
+                        .collect(Collectors.toList());
+
+        List<NotasMateriaDTO> filter2  = materias.stream()
+                .filter(t ->t.getIdUsuario() ==(idusuario))
+                .map(mt -> mapper.map(mt, NotasMateriaDTO.class))
+                .collect(Collectors.toList());
+
+        Map<Object, NotasMateriaDTO> serverMap1 = filter1.stream().collect(Collectors.toMap(NotasMateriaDTO::getIdMateria, Function.identity()));
+        Map<Object, NotasMateriaDTO> serverMap2 = filter2.stream().collect(Collectors.toMap(NotasMateriaDTO::getIdMateria, Function.identity()));
+        serverMap1.keySet().forEach(key -> serverMap1.merge(key,
+                serverMap2.get(key),
+                (server1, server2) -> {
+                    server1.setNomeMateria(server2.getNomeMateria());
+                    return server1;
+                }));
+        List<NotasMateriaDTO> values = serverMap1.values().stream().collect(Collectors.toList());
+
+        return  values;
+    }
 
 
 
