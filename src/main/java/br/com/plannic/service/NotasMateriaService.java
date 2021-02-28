@@ -193,23 +193,24 @@ public class NotasMateriaService {
                 nm ->
                         list.add(
                                 new NotasVsTipoEstudoDTO(
-                        nm.getIdMateria(),
-                        nm.getNotaMateria(),
-                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Agendamento("")).getTipoEstudo() )
+                                        nm.getIdMateria(),
+                                        nm.getNotaMateria(),
+                                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Agendamento("")).getTipoEstudo() )
 
-                ));
+                        ));
 
         Map<String, Double> groupByAgendamentoTipo =
                 list.stream().collect(Collectors.groupingBy(NotasVsTipoEstudoDTO::getTipoEstudo,Collectors.averagingDouble(NotasVsTipoEstudoDTO::getNota)));
 
-
         List<TipoEstudoNotaDTO> tipoEstudoNotaDTO = new ArrayList<>();
 
-        groupByAgendamentoTipo.forEach(
-                (k,v) -> tipoEstudoNotaDTO.add(new TipoEstudoNotaDTO(v,k))
-        );
+        groupByAgendamentoTipo.entrySet().stream()
+                .filter(ag-> ag.getKey()!="")
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+                .forEach(
+                        (k,v) -> tipoEstudoNotaDTO.add(new TipoEstudoNotaDTO(v,k))
+                );
         return tipoEstudoNotaDTO;
-
 
     }
 
