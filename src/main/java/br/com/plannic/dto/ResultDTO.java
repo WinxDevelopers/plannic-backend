@@ -29,12 +29,12 @@ public class ResultDTO  {
 
     private Usuario usuario;
 
-    public ResultDTO(KeyResult key, ValueResult value, String notaMateria) {
-        super(
-                key.getIdUsuario(), key.getIdMateria(),
-                value.getAvgNotaMateria(), value.getMinIdNotaMateria(),
-                key.getTipoNota()
-        );
-        this.nomeMateria = notaMateria;
-    }
+//    public ResultDTO(KeyResult key, ValueResult value, String notaMateria) {
+//        super(
+//                key.getIdUsuario(), key.getIdMateria(),
+//                value.getAvgNotaMateria(), value.getMinIdNotaMateria(),
+//                key.getTipoNota()
+//        );
+//        this.nomeMateria = notaMateria;
+//    }
 }
