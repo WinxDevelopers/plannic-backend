@@ -28,8 +28,8 @@ public class NotasMateriaController {
     @PostMapping("/cadastro")
     public ResponseEntity<NotasMateria> save(@Valid @RequestBody NotasMateria notasMateria){
         try {
-            MDC.put("nota", notasMateria.getNotaMateria());
-            MDC.put("fluxo", "POST save");
+//            MDC.put("nota", notasMateria.getNotaMateria());
+//            MDC.put("fluxo", "POST save");
             notasMateriaService.save(notasMateria);
         }finally{
             MDC.clear();
@@ -78,7 +78,7 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("/{idusuario}")
+    @GetMapping("notasvsMateria/{idusuario}")
     public ResponseEntity getNotaVsMatsferia(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
@@ -120,11 +120,11 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("notasmateria/{idusuario}")
-    public ResponseEntity getNotaVsMateria(@PathVariable final Integer idusuario) {
+    @GetMapping("notasdata/{idusuario}")
+    public ResponseEntity getNotaVsData(@PathVariable final Integer idusuario,@PathVariable final Integer idmateria) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
-            List lista =notasMateriaService.buscaNotavsMateriaList(idusuario);
+            List lista =notasMateriaService.buscaNotavsData(idusuario,idmateria);
             return new ResponseEntity<>(lista, HttpStatus.OK);
         }finally {
             MDC.clear();

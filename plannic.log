@@ -209,3 +209,6 @@ ttttttttttttteste
 26 fev. 2021 20:40:50,927 57482 [http-nio-8080-exec-4] INFO  UsuarioService  - Senha atualizada
 26 fev. 2021 20:54:04,991 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Senha atualizada
 26 fev. 2021 20:54:43,192 38201 [http-nio-8080-exec-3] INFO  UsuarioService  - Senha atualizada
+27 fev 2021 21:33:50,221 0    [http-nio-8080-exec-2] INFO  NotasMateriaService  - Nota da materia salva
+27 fev 2021 21:40:28,647 0    [http-nio-8080-exec-1] INFO  NotasMateriaService  - Nota da materia salva
+27 fev 2021 21:41:42,734 0    [http-nio-8080-exec-2] INFO  NotasMateriaService  - Nota da materia salva

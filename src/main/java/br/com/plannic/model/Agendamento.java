@@ -31,13 +31,13 @@ public class Agendamento {
     @Column(name = "idusuario")
     private int idUsuario;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy@hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy hh:mm:ss")
     @Column(name = "timestampinicio")
-    private LocalDate timestampInicio;
+    private Date timestampInicio;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy@hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy hh:mm:ss")
     @Column(name = "timestampfim")
-    private LocalDate timestampFim;
+    private Date timestampFim;
 
     @Column(name = "recorrencia")
     private String recorrencia;

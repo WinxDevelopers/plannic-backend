@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao")
+        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao","/swagger-ui.html/*","/swagger-ui.html")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
