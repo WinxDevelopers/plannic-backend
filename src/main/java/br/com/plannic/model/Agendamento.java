@@ -60,9 +60,14 @@
 
         public long getMinEstudo(){
 
-            long days = Duration.between(recorrenciaFim.toInstant(), recorrenciaInicio.toInstant()).toDays();
+            long days;
 
-            long semanas = (long) Math.ceil(Math.abs(days)/7.0);
+            if(recorrenciaFim.compareTo(recorrenciaInicio) == 0)
+                days = 1;
+            else
+                days = Duration.between(recorrenciaFim.toInstant(), recorrenciaInicio.toInstant()).toDays();
+
+                long semanas = (long) Math.ceil(Math.abs(days)/7.0);
 
             long diferencaMinutos = Duration.between(horaFim, horaInicio).toMinutes();
 

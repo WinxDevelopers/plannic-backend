@@ -233,3 +233,5 @@ ttttttttttttteste
 28 fev. 2021 18:02:12,448 46603 [http-nio-8080-exec-4] INFO  AgendamentoService  - Agendamento salvo
 28 fev. 2021 18:02:17,629 51784 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário recuperado
 28 fev. 2021 18:08:30,770 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 19:41:39,215 0    [http-nio-8080-exec-3] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 19:42:57,105 77890 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário recuperado
