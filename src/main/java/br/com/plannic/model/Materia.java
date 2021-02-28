@@ -37,4 +37,7 @@ public class Materia {
     @JsonBackReference
     private Usuario usuario;
 
+    public Materia(String nomeMateria) {
+        this.nomeMateria=nomeMateria;
+    }
 }

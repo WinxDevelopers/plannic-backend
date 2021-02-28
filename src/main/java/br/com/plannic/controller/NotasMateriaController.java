@@ -82,7 +82,7 @@ public class NotasMateriaController {
     public ResponseEntity getNotaVsMatsferia(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
-            List teste = notasMateriaService.buscaNotavfffsTipoList(idusuario);
+            List teste = notasMateriaService.notasVsMateria(idusuario);
 
             return new ResponseEntity<>(teste ,HttpStatus.OK);
         }finally {

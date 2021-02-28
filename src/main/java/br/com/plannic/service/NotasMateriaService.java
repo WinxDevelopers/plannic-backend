@@ -240,44 +240,32 @@ public class NotasMateriaService {
 
     }
 
+    public List<NotasMateriaDTO> notasVsMateria(Integer idusuario) {
 
-//    public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
-//        List<NotasMateria> notasMaterias = repository.findAll();
-////        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
-////                .collect(averagingDouble(Double::doubleValue));
-//        Map<Integer, Double> filtered = notasMaterias.stream()
-//                .filter(t -> t.getIdUsuario()== idusuario )
-//                .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
-//                        Collectors.mapping(NotasMateria::getNotaMateria,
-//                                averagingDouble(Double::doubleValue))));
-//        return  filtered;
-//    }
+        Usuario user = usuarioRepository.findByIdUsuario(idusuario);
 
-    public List<NotasMateriaDTO>buscaNotavfffsTipoList(Integer idusuario) {
+        List<NotasMateriaDTO> list =  new ArrayList<>();
 
-        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
-        List<Materia> materias = materiaRepository.findAll();
-        ModelMapper mapper = new ModelMapper();
+        user.getNotasMateria().forEach(
+                nm ->
+                        list.add(
+                                new NotasMateriaDTO(
+                                        nm.getNotaMateria(),
+                                        user.getMaterias().stream().filter(mat-> mat.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Materia("")).getNomeMateria() )
 
-        List<NotasMateriaDTO> filter1 =
-                notasMaterias.stream()
-                        .filter(t -> t.getIdUsuario()== idusuario)
-                        .map(mt -> mapper.map(mt, NotasMateriaDTO.class))
-                        .collect(Collectors.toList());
+                        ));
 
-        List<NotasMateriaDTO> filter2  = materias.stream()
-                .filter(t ->t.getIdUsuario() ==(idusuario))
-                .map(mt -> mapper.map(mt, NotasMateriaDTO.class))
-                .collect(Collectors.toList());
+        Map<String, Double> groupByMateria =
+                list.stream().collect(Collectors.groupingBy(NotasMateriaDTO::getNomeMateria,Collectors.averagingDouble(NotasMateriaDTO::getNotaMateria)));
 
-        List<NotasMateriaDTO> newList = new ArrayList<>(filter1);
-        newList.addAll(filter2);
 
-        List<NotasMateriaDTO> resultado =newList.stream().filter(x->x.getNotaMateria() != null).collect(Collectors.toList());
+        List<NotasMateriaDTO> NotasMateriaDTO = new ArrayList<>();
 
-        return  resultado;
+        groupByMateria.forEach(
+                (k,v) -> NotasMateriaDTO.add(new NotasMateriaDTO(v,k))
+        );
+        return NotasMateriaDTO;
+
+
     }
-
-
-
 }

@@ -7,12 +7,9 @@ import javax.persistence.Column;
 import java.time.LocalDate;
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class NotasMateriaDTO {
 
-    private int idNotaMateria;
-    private int idMateria;
-    private int idUsuario;
     private Double notaMateria;
     private String nomeMateria;
 }
