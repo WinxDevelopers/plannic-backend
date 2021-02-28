@@ -31,11 +31,9 @@ public class Agendamento {
     @Column(name = "idusuario")
     private int idUsuario;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy hh:mm:ss")
     @Column(name = "timestampinicio")
     private Date timestampInicio;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy hh:mm:ss")
     @Column(name = "timestampfim")
     private Date timestampFim;
 

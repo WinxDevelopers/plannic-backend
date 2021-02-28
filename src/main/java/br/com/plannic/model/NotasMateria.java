@@ -34,7 +34,7 @@ public class NotasMateria {
 
     @Column(name = "tiponota")
     private String tipoNota;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy hh:mm:ss")
+
     @Column(name = "datanota")
     private Date dataNota;
 
