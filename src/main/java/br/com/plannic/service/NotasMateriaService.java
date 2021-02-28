@@ -1,12 +1,8 @@
 package br.com.plannic.service;
 
-import br.com.plannic.dto.MateriaVsNotaDTO;
-import br.com.plannic.dto.NotasVsTipoEstudoDTO;
-import br.com.plannic.dto.TipoEstudoNotaDTO;
-import br.com.plannic.dto.NotasMateriaDTO;
+import br.com.plannic.dto.*;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
-import br.com.plannic.dto.TipoNotaVsNotaDTO;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
@@ -163,21 +159,51 @@ public class NotasMateriaService {
         return  result;
     }
 
-    public  List<MateriaVsNotaDTO> buscaNotavsMateriaList(Integer idusuario) {
-
-        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
-
-        List<MateriaVsNotaDTO> result = notasMaterias.stream()
-                .filter(t -> t.getIdUsuario()== idusuario)
-                .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
-                        Collectors.mapping(NotasMateria::getNotaMateria,
-                                averagingDouble(Double::doubleValue))))
-                .entrySet().stream()
-                .map(MateriaVsNotaDTO:: new )
-                .collect(Collectors.toList());
-
-        return  result;
-    }
+//    public  List<MateriaVsNotaDTO> buscaNotavsMateriaList(Integer idusuario) {
+//
+//        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
+//        List<Materia> materias = materiaRepository.findAll();
+//
+//
+//        Map<List<Integer>, String> mapMateria = materias.stream()
+//                .collect(Collectors.toMap(
+//                        m -> Arrays.asList(m.getIdUsuario(), m.getIdMateria()),
+//                        Materia::getNomeMateria,
+//                        (m1, m2) -> m1 // resolve conflicts in case of any duplicates
+//                ));
+//
+//        List<ResultDTO> result = notasMaterias.stream()
+//                .filter(nm -> mapMateria.containsKey(
+//                        Arrays.asList(nm.getIdUsuario(), nm.getIdMateria())
+//                ))
+//                .collect(Collectors.groupingBy(
+//                        nm -> new KeyResult(nm.getIdUsuario(), nm.getIdMateria(), nm.getTipoNota()),
+//                        Collectors.collectingAndThen(
+//                                Collectors.toList(),
+//                                list -> {
+//                                    double avgNotaMateria = list.stream()
+//                                            .mapToDouble(NotasMateria::getNotaMateria)
+//                                            .average().getAsDouble();
+//                                    int minIdNotaMateria = list.stream()
+//                                            .mapToInt(NotasMateria::getIdNotaMateria).min().getAsInt();
+//                                    return new ValueResult(avgNotaMateria, minIdNotaMateria);
+//                                }
+//                        )
+//                )) // intermediate Map<KeyResult, ValueResult>
+//                .entrySet().stream()
+//                .map(e -> new ResultDTO(
+//                        e.getKey(),
+//                        e.getValue(),
+//                        mapMateria.get(Arrays.asList(
+//                                e.getKey().getIdUsuario(),
+//                                e.getKey().getIdMateria()
+//                        ))
+//                ))
+//                .collect(Collectors.toList());
+//
+//
+//        return  null;
+//    }
 
     public List<TipoEstudoNotaDTO> notasVsTipoEstudo(Integer idusuario) {
 
@@ -237,17 +263,12 @@ public class NotasMateriaService {
                 .map(mt -> mapper.map(mt, NotasMateriaDTO.class))
                 .collect(Collectors.toList());
 
-        Map<Object, NotasMateriaDTO> serverMap1 = filter1.stream().collect(Collectors.toMap(NotasMateriaDTO::getIdMateria, Function.identity()));
-        Map<Object, NotasMateriaDTO> serverMap2 = filter2.stream().collect(Collectors.toMap(NotasMateriaDTO::getIdMateria, Function.identity()));
-        serverMap1.keySet().forEach(key -> serverMap1.merge(key,
-                serverMap2.get(key),
-                (server1, server2) -> {
-                    server1.setNomeMateria(server2.getNomeMateria());
-                    return server1;
-                }));
-        List<NotasMateriaDTO> values = serverMap1.values().stream().collect(Collectors.toList());
+        List<NotasMateriaDTO> newList = new ArrayList<>(filter1);
+        newList.addAll(filter2);
 
-        return  values;
+        List<NotasMateriaDTO> resultado =newList.stream().filter(x->x.getNotaMateria() != null).collect(Collectors.toList());
+
+        return  resultado;
     }
 
 
