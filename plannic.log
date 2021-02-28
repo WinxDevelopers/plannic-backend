@@ -225,3 +225,11 @@ ttttttttttttteste
 28 fev. 2021 16:36:56,089 171790 [http-nio-8080-exec-6] INFO  UsuarioService  - Usuário recuperado
 28 fev. 2021 16:42:32,757 508458 [http-nio-8080-exec-8] INFO  AgendamentoService  - Agendamento salvo
 28 fev. 2021 16:42:54,241 529942 [http-nio-8080-exec-9] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 17:54:59,876 0    [http-nio-8080-exec-1] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 17:55:16,903 17027 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 17:56:55,440 0    [http-nio-8080-exec-1] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 17:57:13,343 17903 [http-nio-8080-exec-2] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 18:01:25,845 0    [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 18:02:12,448 46603 [http-nio-8080-exec-4] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 18:02:17,629 51784 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 18:08:30,770 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado

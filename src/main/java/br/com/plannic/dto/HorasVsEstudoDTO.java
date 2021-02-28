@@ -12,7 +12,7 @@ public class HorasVsEstudoDTO {
 
     private int idMateria;
     private long minEstudo;
-    private String materia;
+    private String nomeMateria;
     private Double notaMateria;
 
 }
