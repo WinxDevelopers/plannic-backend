@@ -4,6 +4,7 @@ import br.com.plannic.dto.MateriaVsNotaDTO;
 import br.com.plannic.dto.NotasVsTipoEstudoDTO;
 import br.com.plannic.dto.TipoEstudoNotaDTO;
 import br.com.plannic.dto.NotasMateriaDTO;
+import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.dto.TipoNotaVsNotaDTO;
