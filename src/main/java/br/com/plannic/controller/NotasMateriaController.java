@@ -82,7 +82,7 @@ public class NotasMateriaController {
     public ResponseEntity getNotaVsMatsferia(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
-            List teste = notasMateriaService.buscaNotavfffsTipoList(idusuario);
+            List teste = notasMateriaService.notasVsMateria(idusuario);
 
             return new ResponseEntity<>(teste ,HttpStatus.OK);
         }finally {
@@ -103,7 +103,7 @@ public class NotasMateriaController {
     public ResponseEntity getNotaMenor8(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
-            return new ResponseEntity<>(notasMateriaService.buscaMenor5(idusuario), HttpStatus.OK);
+            return new ResponseEntity<>(notasMateriaService.buscaMenor4(idusuario), HttpStatus.OK);
         }finally {
             MDC.clear();
         }
