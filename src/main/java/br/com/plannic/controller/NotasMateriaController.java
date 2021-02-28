@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -129,6 +130,19 @@ public class NotasMateriaController {
             MDC.clear();
         }
     }
+
+    @GetMapping("notasvstipo/{idusuario}")
+    public ResponseEntity getNotasvsTipo(@PathVariable final Integer idusuario) {
+        try{
+            MDC.put("fluxo", "GET notas vs tipo de estudo");
+            List lista =notasMateriaService.notasVsTipoEstudo(idusuario);
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+
 
 
 

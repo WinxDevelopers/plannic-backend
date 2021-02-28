@@ -1,10 +1,16 @@
 package br.com.plannic.service;
 
 import br.com.plannic.dto.MateriaVsNotaDTO;
+import br.com.plannic.dto.NotasVsTipoEstudoDTO;
+import br.com.plannic.dto.TipoEstudoNotaDTO;
+import br.com.plannic.model.Agendamento;
+import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.dto.TipoNotaVsNotaDTO;
+import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
+import br.com.plannic.repository.UsuarioRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.modelmapper.ModelMapper;
@@ -13,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.averagingDouble;
@@ -22,14 +29,16 @@ import static java.util.stream.Collectors.averagingDouble;
 public class NotasMateriaService {
 
     private NotasMateriaRepository repository;
-    private  MateriaRepository materiaRepository;
+    private UsuarioRepository usuarioRepository;
 
 
     private static Logger logger = Logger.getLogger(NotasMateriaService.class);
 
-    public NotasMateriaService(NotasMateriaRepository repository) {
+    public NotasMateriaService(NotasMateriaRepository repository, UsuarioRepository usuarioRepository) {
         this.repository = repository;
+        this.usuarioRepository = usuarioRepository;
     }
+
 
     public List<NotasMateria> getAll() {
         ModelMapper mapper = new ModelMapper();
@@ -165,6 +174,35 @@ public class NotasMateriaService {
 
         return  result;
     }
+
+    public List<TipoEstudoNotaDTO> notasVsTipoEstudo(Integer idusuario) {
+
+        Usuario user = usuarioRepository.findByIdUsuario(idusuario);
+
+        List<NotasVsTipoEstudoDTO> list =  new ArrayList<>();
+
+        user.getNotasMateria().forEach(
+                nm -> list.add(new NotasVsTipoEstudoDTO(
+                        nm.getIdMateria(),
+                        nm.getNotaMateria(),
+                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().get().getTipoEstudo() )
+
+                ));
+
+        Map<String, Double> groupByAgendamentoTipo =
+                list.stream().collect(Collectors.groupingBy(NotasVsTipoEstudoDTO::getTipoEstudo,Collectors.averagingDouble(NotasVsTipoEstudoDTO::getNota)));
+
+
+        List<TipoEstudoNotaDTO> tipoEstudoNotaDTO = new ArrayList<>();
+
+        groupByAgendamentoTipo.forEach(
+                (k,v) -> tipoEstudoNotaDTO.add(new TipoEstudoNotaDTO(v,k))
+        );
+        return tipoEstudoNotaDTO;
+
+
+    }
+
 
 //    public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
 //        List<NotasMateria> notasMaterias = repository.findAll();

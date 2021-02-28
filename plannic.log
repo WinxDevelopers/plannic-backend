@@ -207,3 +207,14 @@ ttttttttttttteste
 26 fev. 2021 20:40:50,927 57482 [http-nio-8080-exec-4] INFO  UsuarioService  - Senha atualizada
 26 fev. 2021 20:54:04,991 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Senha atualizada
 26 fev. 2021 20:54:43,192 38201 [http-nio-8080-exec-3] INFO  UsuarioService  - Senha atualizada
+26 fev. 2021 21:04:18,282 0    [http-nio-8080-exec-1] INFO  MateriaService  - Materia salva
+26 fev. 2021 21:04:33,079 14797 [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário recuperado
+27 fev. 2021 22:28:39,240 91460958 [http-nio-8080-exec-5] INFO  AgendamentoService  - Agendamento salvo
+27 fev. 2021 22:38:10,683 0    [http-nio-8080-exec-2] INFO  AgendamentoService  - Agendamento salvo
+27 fev. 2021 22:38:45,056 34373 [http-nio-8080-exec-3] INFO  NotasMateriaService  - Nota da materia salva
+27 fev. 2021 23:25:35,782 0    [http-nio-8080-exec-2] INFO  MateriaService  - Materia salva
+27 fev. 2021 23:27:57,276 141494 [http-nio-8080-exec-6] INFO  AgendamentoService  - Agendamento salvo
+27 fev. 2021 23:30:05,063 269281 [http-nio-8080-exec-7] INFO  AgendamentoService  - Agendamento salvo
+27 fev. 2021 23:32:51,296 435514 [http-nio-8080-exec-6] INFO  NotasMateriaService  - Nota da materia salva
+27 fev. 2021 23:34:21,395 525613 [http-nio-8080-exec-7] INFO  NotasMateriaService  - Nota da materia salva
+27 fev. 2021 23:34:29,429 533647 [http-nio-8080-exec-3] INFO  NotasMateriaService  - Nota da materia salva
