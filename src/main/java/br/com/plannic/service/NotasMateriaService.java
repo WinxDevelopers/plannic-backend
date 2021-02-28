@@ -1,14 +1,11 @@
 package br.com.plannic.service;
 
-import br.com.plannic.dto.MateriaVsNotaDTO;
-import br.com.plannic.dto.NotasVsTipoEstudoDTO;
-import br.com.plannic.dto.TipoEstudoNotaDTO;
-import br.com.plannic.dto.NotasMateriaDTO;
+import br.com.plannic.dto.*;
 import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
-import br.com.plannic.dto.TipoNotaVsNotaDTO;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.repository.AgendamentoRepository;
 import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
 import br.com.plannic.repository.UsuarioRepository;
@@ -19,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -33,15 +32,17 @@ public class NotasMateriaService {
     private UsuarioRepository usuarioRepository;
     private final MateriaRepository materiaRepository;
     private final MateriaRepository materiaRepository1;
+    private final AgendamentoRepository agendamentoRepository;
 
 
     private static Logger logger = Logger.getLogger(NotasMateriaService.class);
 
-    public NotasMateriaService(NotasMateriaRepository repository, MateriaRepository materiaRepository, MateriaRepository materiaRepository1, UsuarioRepository usuarioRepository, MateriaRepository materiaRepository11) {
+    public NotasMateriaService(NotasMateriaRepository repository, MateriaRepository materiaRepository, MateriaRepository materiaRepository1, UsuarioRepository usuarioRepository, MateriaRepository materiaRepository11, AgendamentoRepository agendamentoRepository) {
         this.repository = repository;
         this.materiaRepository = materiaRepository;
         this.usuarioRepository = usuarioRepository;
-        this.materiaRepository1 = materiaRepository11;
+        this.materiaRepository1 = materiaRepository1;
+        this.agendamentoRepository = agendamentoRepository;
     }
 
 
@@ -210,18 +211,28 @@ public class NotasMateriaService {
 
     }
 
+//    public List<HorasVsEstudoDTO> horasVsEstudo(Integer idusuario) {
+    public List<HorasVsEstudoDTO> horasVsEstudo(Integer idusuario) {
 
-//    public Map<Integer, Double> buscaNotavsMateria(Integer idusuario){
-//        List<NotasMateria> notasMaterias = repository.findAll();
-////        Double mediaLimite = notasMaterias.stream().map(NotasMateria::getNotaMateria)
-////                .collect(averagingDouble(Double::doubleValue));
-//        Map<Integer, Double> filtered = notasMaterias.stream()
-//                .filter(t -> t.getIdUsuario()== idusuario )
-//                .collect(Collectors.groupingBy(NotasMateria::getIdMateria,
-//                        Collectors.mapping(NotasMateria::getNotaMateria,
-//                                averagingDouble(Double::doubleValue))));
-//        return  filtered;
-//    }
+        Usuario user = usuarioRepository.findByIdUsuario(idusuario);
+
+        List<HorasVsEstudoDTO> list =  new ArrayList<>();
+
+        Map<Integer, Long> groupbyMateria =
+                user.getAgendamentos().stream().collect(Collectors.groupingBy(Agendamento::getIdMateria,Collectors.summingLong(Agendamento::getMinEstudo)));
+
+        groupbyMateria.forEach(
+                (idmateria, minestudo) -> list.add( new HorasVsEstudoDTO(
+                        idmateria,
+                        minestudo,
+                        user.getMaterias().stream().filter(m-> m.getIdMateria() == idmateria).findFirst().get().getNomeMateria(),
+                        user.getNotasMateria().stream().filter(nt->nt.getIdMateria() == idmateria).collect(Collectors.averagingDouble(NotasMateria::getNotaMateria))
+                ))
+        );
+
+        return list;
+
+    }
 
     public List<NotasMateriaDTO>buscaNotavfffsTipoList(Integer idusuario) {
 

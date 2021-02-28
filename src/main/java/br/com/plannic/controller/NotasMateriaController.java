@@ -142,6 +142,17 @@ public class NotasMateriaController {
         }
     }
 
+    @GetMapping("horasvsnota/{idusuario}")
+    public ResponseEntity getHorasVsNota(@PathVariable final Integer idusuario) {
+        try{
+            MDC.put("fluxo", "GET notas vs tipo de estudo");
+            List list = notasMateriaService.horasVsEstudo(idusuario);
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
 
 
 

@@ -220,3 +220,8 @@ ttttttttttttteste
 27 fev. 2021 23:34:21,395 525613 [http-nio-8080-exec-7] INFO  NotasMateriaService  - Nota da materia salva
 27 fev. 2021 23:34:29,429 533647 [http-nio-8080-exec-3] INFO  NotasMateriaService  - Nota da materia salva
 28 fev. 2021 02:16:39,360 0    [http-nio-8080-exec-5] INFO  MateriaService  - Materias recuperadas
+28 fev. 2021 15:51:56,350 0    [http-nio-8080-exec-2] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 16:34:04,299 0    [http-nio-8080-exec-9] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 16:36:56,089 171790 [http-nio-8080-exec-6] INFO  UsuarioService  - Usuário recuperado
+28 fev. 2021 16:42:32,757 508458 [http-nio-8080-exec-8] INFO  AgendamentoService  - Agendamento salvo
+28 fev. 2021 16:42:54,241 529942 [http-nio-8080-exec-9] INFO  UsuarioService  - Usuário recuperado

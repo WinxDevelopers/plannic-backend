@@ -1,55 +1,71 @@
-package br.com.plannic.model;
+    package br.com.plannic.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+    import com.fasterxml.jackson.annotation.JsonBackReference;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+    import lombok.ToString;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+    import javax.persistence.*;
+    import java.time.Duration;
+    import java.time.LocalTime;
+    import java.time.temporal.ChronoUnit;
+    import java.util.Date;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "agendamento")
-public class Agendamento {
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Entity
+    @Table(name = "agendamento")
+    public class Agendamento {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idagendamento")
-    private int idAgendamento;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "idagendamento")
+        private int idAgendamento;
 
-    @Column(name = "idmateria")
-    private int idMateria;
+        @Column(name = "idmateria")
+        private int idMateria;
 
-    @Column(name = "idusuario")
-    private int idUsuario;
+        @Column(name = "idusuario")
+        private int idUsuario;
 
-    @Column(name = "timestampinicio")
-    private Date timestampInicio;
+        @Column(name = "recorrenciainicio")
+        private Date recorrenciaInicio;
 
-    @Column(name = "timestampfim")
-    private Date timestampFim;
+        @Column(name = "recorrenciafim")
+        private Date recorrenciaFim;
 
-    @Column(name = "recorrencia")
-    private String recorrencia;
+        @Column(name = "recorrencia")
+        private String recorrencia;
 
-    @Column(name = "tipoestudo")
-    private String tipoEstudo;
+        @Column(name = "tipoestudo")
+        private String tipoEstudo;
 
-    @ToString.Exclude
-    @ManyToOne
-    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    @JsonBackReference
-    private Usuario usuario;
+        @Column(name = "horainicio")
+        private LocalTime horaInicio;
 
-    public Agendamento(String tipoEstudo) {
-        this.tipoEstudo=tipoEstudo;
+        @Column(name = "horafim")
+        private LocalTime horaFim;
+
+        @ToString.Exclude
+        @ManyToOne
+        @JoinColumn(name = "idusuario", insertable = false, updatable = false)
+        @JsonBackReference
+        private Usuario usuario;
+
+        public Agendamento(String tipoEstudo) {
+            this.tipoEstudo = tipoEstudo;
+        }
+
+        public long getMinEstudo(){
+
+            long semanas = Duration.between(recorrenciaFim.toInstant(), recorrenciaInicio.toInstant()).toDays() / 7;
+
+            long diferencaMinutos = Duration.between(horaFim, horaInicio).toMinutes();
+
+            long totalMinutos = diferencaMinutos * semanas;
+
+            return totalMinutos;
+        }
     }
-}
