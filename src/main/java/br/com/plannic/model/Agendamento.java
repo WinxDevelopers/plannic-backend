@@ -49,4 +49,7 @@ public class Agendamento {
     @JsonBackReference
     private Usuario usuario;
 
+    public Agendamento(String tipoEstudo) {
+        this.tipoEstudo=tipoEstudo;
+    }
 }

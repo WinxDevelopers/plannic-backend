@@ -1,8 +1,12 @@
 package br.com.plannic.service;
 
-import br.com.plannic.dto.*;
+import br.com.plannic.dto.MateriaVsNotaDTO;
+import br.com.plannic.dto.NotasVsTipoEstudoDTO;
+import br.com.plannic.dto.TipoEstudoNotaDTO;
+import br.com.plannic.dto.NotasMateriaDTO;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.NotasMateria;
+import br.com.plannic.dto.TipoNotaVsNotaDTO;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.repository.NotasMateriaRepository;
@@ -212,10 +216,12 @@ public class NotasMateriaService {
         List<NotasVsTipoEstudoDTO> list =  new ArrayList<>();
 
         user.getNotasMateria().forEach(
-                nm -> list.add(new NotasVsTipoEstudoDTO(
+                nm ->
+                        list.add(
+                                new NotasVsTipoEstudoDTO(
                         nm.getIdMateria(),
                         nm.getNotaMateria(),
-                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().get().getTipoEstudo() )
+                        user.getAgendamentos().stream().filter(ag-> ag.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Agendamento("")).getTipoEstudo() )
 
                 ));
 
