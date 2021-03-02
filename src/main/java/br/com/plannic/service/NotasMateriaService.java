@@ -16,12 +16,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.averagingDouble;
 
 @Service
@@ -95,13 +97,25 @@ public class NotasMateriaService {
         return false;
     }
 
-    public List<NotasMateria> buscaNotavsData(Integer idusuario,Integer idmateria){
-        List<NotasMateria> notasMaterias = repository.findAll(Sort.by("dataNota").descending());
-        List<NotasMateria> filtered =
-                notasMaterias.stream()
-                        .filter(t -> t.getIdUsuario()== idusuario && t.getIdMateria()== idmateria)
-                        .collect(Collectors.toList());
-        return  filtered;
+    public List<DataVsNotaDTO> buscaNotavsData(Integer idusuario,Integer idmateria){
+        Usuario user = usuarioRepository.findByIdUsuario(idusuario, Sort.by("notasMateria.dataNota").descending());
+
+        List<DataVsNotaDTO> list =  new ArrayList<>();
+
+        user.getNotasMateria().forEach(
+                nm ->
+                        list.add(
+                                new DataVsNotaDTO(
+                                        nm.getIdMateria(),
+                                        nm.getNotaMateria(),
+                                        nm.getDataNota(),
+                                        user.getMaterias().stream().filter(mat-> mat.getIdMateria() == nm.getIdMateria()).findFirst().orElse(new Materia("")).getNomeMateria() )
+
+                        ));
+        List<DataVsNotaDTO> filtered = list.stream().filter(t ->  t.getIdMateria()== idmateria).collect(Collectors.toList());
+
+        return filtered;
+
     }
 
     public List<NotasMateriaDTO> buscaMaior8(Integer idusuario) {

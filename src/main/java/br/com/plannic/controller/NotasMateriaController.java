@@ -120,11 +120,11 @@ public class NotasMateriaController {
         }
     }
 
-    @GetMapping("notasdata/{idusuario}")
-    public ResponseEntity getNotaVsData(@PathVariable final Integer idusuario,@PathVariable final Integer idmateria) {
+    @GetMapping("notasvsdata/{idusuario}/{idmateira}")
+    public ResponseEntity getNotaVsData(@PathVariable final Integer idusuario,@PathVariable final Integer idmateira) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
-            List lista =notasMateriaService.buscaNotavsData(idusuario,idmateria);
+            List lista =notasMateriaService.buscaNotavsData(idusuario,idmateira);
             return new ResponseEntity<>(lista, HttpStatus.OK);
         }finally {
             MDC.clear();
