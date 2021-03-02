@@ -98,7 +98,7 @@ public class NotasMateriaService {
     }
 
     public List<DataVsNotaDTO> buscaNotavsData(Integer idusuario,Integer idmateria){
-        Usuario user = usuarioRepository.findByIdUsuario(idusuario, Sort.by("notasMateria.dataNota").descending());
+        Usuario user = usuarioRepository.findByIdUsuario(idusuario);
 
         List<DataVsNotaDTO> list =  new ArrayList<>();
 
@@ -113,7 +113,7 @@ public class NotasMateriaService {
 
                         ));
         List<DataVsNotaDTO> filtered = list.stream().filter(t ->  t.getIdMateria()== idmateria).collect(Collectors.toList());
-
+        filtered.sort(Comparator.comparing(DataVsNotaDTO::getDataNota));
         return filtered;
 
     }
