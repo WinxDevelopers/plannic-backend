@@ -16,3 +16,6 @@ jobs:
           heroku_app_name: "plannic-back"
           heroku_email: "projeto2020if@gmail.com"
           buildpack: "https://github.com/WinxDevelopers/plannic-backend.git"
+          db_url: ${{secrets.DB_URL}}
+          db_username: ${{secrets.DATABASE_USERNAME}}
+          db_password: ${{secrets.DATABASE_PASSWORD}}
