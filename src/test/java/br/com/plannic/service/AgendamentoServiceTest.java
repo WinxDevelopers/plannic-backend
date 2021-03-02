@@ -3,11 +3,15 @@ package br.com.plannic.service;
 import br.com.plannic.controller.AgendamentoController;
 import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.Usuario;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +26,7 @@ import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
 class AgendamentoServiceTest {
 
     @InjectMocks
@@ -31,6 +34,10 @@ class AgendamentoServiceTest {
 
     @Mock
     AgendamentoService agendamentoService;
+
+    public AgendamentoServiceTest() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void getAll() {
