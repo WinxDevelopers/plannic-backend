@@ -25,7 +25,7 @@ import java.util.Collections;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UsuarioServiceTest {
+class UsuarioServiceTest {
 
     @InjectMocks
     UsuarioController usuarioController;

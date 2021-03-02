@@ -1,7 +1,9 @@
 package br.com.plannic.service;
 
 import br.com.plannic.controller.AgendamentoController;
+import br.com.plannic.controller.NotasMateriaController;
 import br.com.plannic.model.Agendamento;
+import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,27 +23,28 @@ import java.time.LocalTime;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
-class AgendamentoServiceTest {
+class NotasMateriaServiceTest {
 
     @InjectMocks
-    AgendamentoController agendamentoController;
+    NotasMateriaController notasMateriaController;
 
     @Mock
-    AgendamentoService agendamentoService;
+    NotasMateriaService notasMateriaService;
 
-    public AgendamentoServiceTest() {
+    public NotasMateriaServiceTest() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void getAll() {
+    void getAll() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -53,25 +56,24 @@ class AgendamentoServiceTest {
                         Collections.emptyList()
                 ));
 
-        Mockito.doNothing().when(agendamentoService).save(agendamento);
+        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
 
-        Mockito.when(agendamentoService.getAll()).thenReturn(Collections.emptyList());
+        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
 
-        ResponseEntity<Agendamento> responseEntity = agendamentoController.save(agendamento);
+        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
 
-        agendamentoController.getAll();
+        notasMateriaController.getAll();
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-
     }
 
     @Test
-    public void save() {
+    void save() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -83,21 +85,20 @@ class AgendamentoServiceTest {
                         Collections.emptyList()
                 ));
 
-        Mockito.doNothing().when(agendamentoService).save(agendamento);
+        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
 
-        ResponseEntity<Agendamento> responseEntity = agendamentoController.save(agendamento);
+        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-
     }
 
     @Test
-    public void update() {
+    void update() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -109,7 +110,7 @@ class AgendamentoServiceTest {
                         Collections.emptyList()
                 ));
 
-        Agendamento agendamento1 = new Agendamento(1, 2, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        NotasMateria notasMateria1 = new NotasMateria(1, 1, 1, 8.0, "p1", new Date(2021 - 02 - 23),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -121,26 +122,26 @@ class AgendamentoServiceTest {
                         Collections.emptyList()
                 ));
 
-        Mockito.doNothing().when(agendamentoService).save(agendamento);
-        Mockito.when(agendamentoService.update(agendamento1)).thenReturn(true);
-        Mockito.when(agendamentoService.getAll()).thenReturn(Collections.emptyList());
+        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
+        Mockito.when(notasMateriaService.update(notasMateria1)).thenReturn(true);
+        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
 
-        ResponseEntity<Agendamento> responseEntity = agendamentoController.save(agendamento);
-        ResponseEntity responseEntityAtualiza = agendamentoController.update(agendamento1);
+        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
+        ResponseEntity responseEntityAtualiza = notasMateriaController.update(notasMateria1);
 
-        agendamentoController.getAll();
+        notasMateriaController.getAll();
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
         assertThat(responseEntityAtualiza.getStatusCodeValue()).isEqualTo(200);
     }
 
     @Test
-    public void delete() {
+    void delete() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -152,17 +153,46 @@ class AgendamentoServiceTest {
                         Collections.emptyList()
                 ));
 
-        Mockito.doNothing().when(agendamentoService).save(agendamento);
-        Mockito.when(agendamentoService.delete(1)).thenReturn(true);
-        Mockito.when(agendamentoService.getAll()).thenReturn(Collections.emptyList());
 
-        ResponseEntity<Agendamento> responseEntity = agendamentoController.save(agendamento);
+        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
+        Mockito.when(notasMateriaService.delete(1)).thenReturn(true);
+        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
 
-        ResponseEntity responseEntityDelete = agendamentoController.delete(1);
+        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
 
-        agendamentoController.getAll();
+        ResponseEntity responseEntityDelete = notasMateriaController.delete(1);
+
+        notasMateriaController.getAll();
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
         assertThat(responseEntityDelete.getStatusCodeValue()).isEqualTo(200);
+    }
+
+    @Test
+    void buscaNotavsData() {
+    }
+
+    @Test
+    void buscaMaior8() {
+    }
+
+    @Test
+    void buscaMenor4() {
+    }
+
+    @Test
+    void buscaNotavsTipoList() {
+    }
+
+    @Test
+    void notasVsTipoEstudo() {
+    }
+
+    @Test
+    void horasVsEstudo() {
+    }
+
+    @Test
+    void notasVsMateria() {
     }
 }

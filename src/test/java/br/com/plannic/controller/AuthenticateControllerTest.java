@@ -1,25 +1,58 @@
 //package br.com.plannic.controller;
 //
 //import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.runner.RunWith;
 //import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//import org.springframework.boot.test.context.SpringBootTest;
+//import org.mockito.junit.MockitoJUnitRunner;
 //import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.GrantedAuthority;
 //
-//import static org.junit.jupiter.api.Assertions.*;
+//import java.util.Collection;
 //
-//@SpringBootTest
-//@ExtendWith(MockitoExtension.class)
+//@RunWith(MockitoJUnitRunner.class)
 //class AuthenticateControllerTest {
 //
 //    @Mock
 //    AuthenticationManager authenticationManager;
 //
-//
 //    @Test
 //    void generateToken() {
-//        authenticationManager.authenticate(new UsernamePasswordAutahenticationToken("teste", "teste"));
+//        authenticationManager.authenticate(new Authentication() {
+//            @Override
+//            public String getName() {
+//                return null;
+//            }
+//
+//            @Override
+//            public Collection<? extends GrantedAuthority> getAuthorities() {
+//                return null;
+//            }
+//
+//            @Override
+//            public Object getCredentials() {
+//                return null;
+//            }
+//
+//            @Override
+//            public Object getDetails() {
+//                return null;
+//            }
+//
+//            @Override
+//            public Object getPrincipal() {
+//                return null;
+//            }
+//
+//            @Override
+//            public boolean isAuthenticated() {
+//                return false;
+//            }
+//
+//            @Override
+//            public void setAuthenticated(boolean b) throws IllegalArgumentException {
+//
+//            }
+//        });
 //    }
 //}

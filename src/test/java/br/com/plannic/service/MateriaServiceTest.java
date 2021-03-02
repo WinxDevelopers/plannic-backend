@@ -3,18 +3,13 @@ package br.com.plannic.service;
 import br.com.plannic.controller.MateriaController;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.Usuario;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,7 +21,7 @@ import java.util.Collections;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MateriaServiceTest {
+class MateriaServiceTest {
 
     @InjectMocks
     MateriaController materiaController;
@@ -41,14 +36,14 @@ public class MateriaServiceTest {
     @Test
     public void adicionarMateria() {
 
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
         Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
                 1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList()
         ));
 
         Mockito.doNothing().when(materiaService).save(materia);
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         ResponseEntity<Materia> responseEntity = materiaController.save(materia);
 
@@ -57,6 +52,9 @@ public class MateriaServiceTest {
 
     @Test
     public void encontrarMaterias() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
                 1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList()
@@ -82,6 +80,8 @@ public class MateriaServiceTest {
     @Test
     public void deletaMaterias() {
 
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
                 1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList()
@@ -103,6 +103,9 @@ public class MateriaServiceTest {
 
     @Test
     public void atualizarMateria() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
                 1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList()
