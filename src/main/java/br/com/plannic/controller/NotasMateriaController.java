@@ -5,6 +5,7 @@ import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class NotasMateriaController {
 
 
     @PostMapping("/cadastro")
+    @ApiOperation(value = "Realiza o cadastro de notas da materia")
     public ResponseEntity<NotasMateria> save(@Valid @RequestBody NotasMateria notasMateria){
         try {
 //            MDC.put("nota", notasMateria.getNotaMateria());
@@ -39,6 +41,7 @@ public class NotasMateriaController {
 
 
     @PutMapping
+    @ApiOperation(value = "Realiza a atualização de nota da materia ")
     public ResponseEntity update(@RequestBody NotasMateria notasMateria) {
         try {
             MDC.put("user_id", notasMateria.getIdUsuario());
@@ -54,6 +57,7 @@ public class NotasMateriaController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Realiza a deleção de nota da materia")
     public ResponseEntity delete(@PathVariable("id") int id) {
         try {
 //            MDC.put("user_id", notasMateria.getIdUsuario());
@@ -69,6 +73,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Realiza a busca de todas as notas cadastradas")
     public ResponseEntity getAll() {
         try{
             MDC.put("fluxo", "GET notas materias");
@@ -79,6 +84,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping("notasvsMateria/{idusuario}")
+    @ApiOperation(value = "Busca da media das notas e sua materia, para criação do grafico")
     public ResponseEntity getNotaVsMatsferia(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias do usuario");
@@ -91,6 +97,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping("notamaior/{idusuario}")
+    @ApiOperation(value = "Verifica se o usuario e qualificado para ser tutor, para criação do emblema")
     public ResponseEntity getNotaMaior8(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 8 ou mais");
@@ -100,6 +107,7 @@ public class NotasMateriaController {
         }
     }
     @GetMapping("notamenor/{idusuario}")
+    @ApiOperation(value = "Verifica se o usuario e qualificado para ser tutor, para criação do emblema")
     public ResponseEntity getNotaMenor8(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
@@ -109,6 +117,7 @@ public class NotasMateriaController {
         }
     }
     @GetMapping("notastipo/{idusuario}")
+    @ApiOperation(value = "Busca a media da nota de cada tipo de estudo, para criação do grafico")
     public ResponseEntity getNotaVsTipo(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
@@ -121,6 +130,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping("notasvsdata/{idusuario}/{idmateira}")
+    @ApiOperation(value = "Busca a media da nota de cada materia trazendo as datas, para criação do grafico")
     public ResponseEntity getNotaVsData(@PathVariable final Integer idusuario,@PathVariable final Integer idmateira) {
         try{
             MDC.put("fluxo", "GET notas materias que o usuario tem 5 ou menos");
@@ -132,6 +142,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping("notasvstipo/{idusuario}")
+    @ApiOperation(value = "Busca a media da nota de cada tipo de estudo, para criação do grafico")
     public ResponseEntity getNotasvsTipo(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas vs tipo de estudo");
@@ -143,6 +154,7 @@ public class NotasMateriaController {
     }
 
     @GetMapping("horasvsnota/{idusuario}")
+    @ApiOperation(value = "Busca as horas gasta e a nota da materia, para criação do grafico")
     public ResponseEntity getHorasVsNota(@PathVariable final Integer idusuario) {
         try{
             MDC.put("fluxo", "GET notas vs tipo de estudo");

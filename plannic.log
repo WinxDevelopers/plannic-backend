@@ -235,3 +235,23 @@ ttttttttttttteste
 28 fev. 2021 18:08:30,770 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado
 28 fev. 2021 19:41:39,215 0    [http-nio-8080-exec-3] INFO  AgendamentoService  - Agendamento salvo
 28 fev. 2021 19:42:57,105 77890 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário recuperado
+13 mar 2021 17:05:48,873 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+13 mar 2021 17:20:04,036 855163 [http-nio-8080-exec-7] INFO  UsuarioService  - Usuário salvo
+13 mar 2021 18:10:05,330 0    [http-nio-8080-exec-1] INFO  AuthenticateController  - Autenticando o usuário.
+13 mar 2021 18:11:22,091 76761 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
+13 mar 2021 18:12:11,388 0    [http-nio-8080-exec-2] INFO  AuthenticateController  - Autenticando o usuário.
+13 mar 2021 18:12:45,180 33792 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+13 mar 2021 18:59:06,953 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+13 mar 2021 19:01:56,986 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+14 mar 2021 11:58:05,594 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+14 mar 2021 12:39:19,207 0    [http-nio-8080-exec-9] INFO  UsuarioService  - Senha atualizada
+14 mar 2021 12:59:20,807 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Senha atualizada
+14 mar 2021 13:01:21,096 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Senha atualizada
+14 mar 2021 13:06:04,288 283192 [http-nio-8080-exec-5] INFO  UsuarioService  - Senha atualizada
+14 mar 2021 13:07:06,487 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Senha atualizada
+14 mar 2021 16:43:43,627 12997140 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+14 mar 2021 16:44:10,684 13024197 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
+14 mar 2021 16:48:31,567 0    [http-nio-8080-exec-1] INFO  AuthenticateController  - Autenticando o usuário.
+14 mar 2021 16:48:59,109 27542 [http-nio-8080-exec-3] INFO  AuthenticateController  - Autenticando o usuário.
+14 mar 2021 17:19:19,728 0    [http-nio-8080-exec-7] INFO  AuthenticateController  - Autenticando o usuário.
+14 mar 2021 18:35:19,315 0    [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário salvo
