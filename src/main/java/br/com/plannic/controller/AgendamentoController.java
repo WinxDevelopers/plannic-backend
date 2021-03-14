@@ -5,6 +5,7 @@ import br.com.plannic.model.NotasMateria;
 import br.com.plannic.service.AgendamentoService;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.NotasMateriaService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class AgendamentoController {
     }
 
     @PostMapping("/cadastro")
+    @ApiOperation(value = "Realiza o cadastro de agendamentos")
     public ResponseEntity<Agendamento> save(@Valid @RequestBody Agendamento agendamento){
         try {
             MDC.put("name", agendamento.getIdAgendamento());
@@ -37,6 +39,7 @@ public class AgendamentoController {
 
 
     @PutMapping
+    @ApiOperation(value = "Realiza a atualização de agendamentos")
     public ResponseEntity update(@RequestBody Agendamento agendamento) {
         try {
             MDC.put("user_id", agendamento.getIdAgendamento());
@@ -52,6 +55,7 @@ public class AgendamentoController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Realiza a deleção de agendamentos")
     public ResponseEntity delete(@PathVariable("id") int id) {
         try {
 //            MDC.put("user_id", agendamento.getIdAgendamento());
@@ -67,6 +71,7 @@ public class AgendamentoController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Realiza a busca de agendamentos cadastrados")
     public ResponseEntity getAll() {
         try{
             MDC.put("fluxo", "GET agendamentos");

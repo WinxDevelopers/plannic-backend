@@ -47,7 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao","/swagger-ui.html/*","/swagger-ui.html", "/notasMateria/notasvstipo/{idusuario}", "/notasMateria/horasvsnota/{idusuario}")
+        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro*","/usuario/verify*", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao","/swagger-ui.html/*","/swagger-ui.html","/swagger-ui.html*", "/notasMateria/notasvstipo/{idusuario}", "/notasMateria/horasvsnota/{idusuario}",            " / v2 / api-docs " ,
+                "/swagger-resources/**",
+                "/swagger-ui.html",
+                "/v2/api-docs",
+                "/webjars/**")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

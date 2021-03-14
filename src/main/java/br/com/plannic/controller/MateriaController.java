@@ -2,6 +2,7 @@ package br.com.plannic.controller;
 
 import br.com.plannic.model.Materia;
 import br.com.plannic.service.MateriaService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class MateriaController {
     }
 
     @PostMapping("/cadastro")
+    @ApiOperation(value = "Realiza o cadastro de materias")
     public ResponseEntity<Materia> save(@Valid @RequestBody Materia materia){
         try {
             MDC.put("name", materia.getNomeMateria());
@@ -34,6 +36,7 @@ public class MateriaController {
     }
 
     @PutMapping
+    @ApiOperation(value = "Realiza a atualização de materias")
     public ResponseEntity update(@RequestBody Materia materia) {
         try {
             MDC.put("name", materia.getDescricao());
@@ -48,6 +51,7 @@ public class MateriaController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Realiza a deleção de materia")
     public ResponseEntity delete(@PathVariable("id") int id) {
         try {
 //            MDC.put("name", materia.getDescricao());
@@ -62,6 +66,7 @@ public class MateriaController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Realiza a busca de todas as materias")
     public ResponseEntity getAll() {
         try{
             MDC.put("fluxo", "GET materia");

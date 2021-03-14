@@ -46,6 +46,12 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("notasmateria")
     List<NotasMateria> notasMateria;
+
+    @Column(name = "codverifica", length = 64)
+    private String CodVerifica;
+
+    @Column(name="ativo")
+    private boolean ativo;
 //
 //    @OneToMany
 //    List<NotasTutor> notasTutor;
