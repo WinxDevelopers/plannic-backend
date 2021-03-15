@@ -57,7 +57,7 @@ public class UsuarioController {
                     .build();
         } else {
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .location(URI.create("https://plannic.herokuapp.com"))
+                    .location(URI.create("https://plannic.herokuapp.com/email"))
                     .build();
         }
     }
