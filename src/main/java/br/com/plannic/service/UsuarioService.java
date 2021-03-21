@@ -91,14 +91,14 @@ public class UsuarioService {
     private void sendVerificationEmail(Usuario user, String url)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
-        String fromAddress = "planicc@planicc.com.br";
-        String senderName = "Planicc";
-        String subject = "Planicc - Verificação de email";
+        String fromAddress = "plannic@plannic.com.br";
+        String senderName = "Plannic";
+        String subject = "Plannic - Verificação de email";
         String content = "Ola [[name]],<br>"
-                + "Por favor confirme seu email para ultilizar o plannic:<br>"
+                + "Por favor confirme seu email para utilizar o Plannic:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">Clique Aqui</a></h3>"
                 + "Obrigado,<br>"
-                + "Planicc.";
+                + "Equipe Plannic.";
 
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
