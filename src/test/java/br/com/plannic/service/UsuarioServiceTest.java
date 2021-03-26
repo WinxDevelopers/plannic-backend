@@ -2,6 +2,7 @@ package br.com.plannic.service;
 
 import br.com.plannic.controller.UsuarioController;
 import br.com.plannic.model.Usuario;
+import freemarker.template.TemplateException;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +21,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -45,7 +47,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    public void adicionarUsuario() throws UnsupportedEncodingException, MessagingException {
+    public void adicionarUsuario() throws IOException, MessagingException, TemplateException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
@@ -60,7 +62,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    public void encontrarUsuarios() throws UnsupportedEncodingException, MessagingException {
+    public void encontrarUsuarios() throws IOException, MessagingException, TemplateException {
 
         Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
         Usuario usuario1 = new Usuario(1, "teste@gmail.com", "senha345", "Usuario Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
@@ -80,7 +82,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    public void deletarUsuarios() throws UnsupportedEncodingException, MessagingException {
+    public void deletarUsuarios() throws IOException, MessagingException, TemplateException {
 
         Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"fdsdf",true);
 
@@ -96,7 +98,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    public void atualizarUsuario() throws UnsupportedEncodingException, MessagingException {
+    public void atualizarUsuario() throws IOException, MessagingException, TemplateException {
 
         Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true);
         Usuario usuario1 = new Usuario(1, "teste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true);

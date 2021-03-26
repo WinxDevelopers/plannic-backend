@@ -4,6 +4,7 @@ import br.com.plannic.controller.UsuarioController;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.UsuarioRepository;
 import com.sun.xml.bind.v2.TODO;
+import freemarker.template.TemplateException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -57,7 +59,7 @@ class CustomUserDetailsServiceTest {
 
 
     @Test
-    void loadUserByUsername() throws UnsupportedEncodingException, MessagingException {
+    void loadUserByUsername() throws IOException, MessagingException, TemplateException {
         Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(),
                 Collections.emptyList(),
                 Collections.emptyList(),

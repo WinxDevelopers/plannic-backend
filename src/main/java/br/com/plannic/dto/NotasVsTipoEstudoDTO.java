@@ -8,7 +8,6 @@ import lombok.Data;
 public class NotasVsTipoEstudoDTO {
 
     private Integer materia;
-    //    private String materiaNome;
     private double nota;
     private String tipoEstudo;
 

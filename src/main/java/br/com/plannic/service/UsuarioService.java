@@ -2,6 +2,9 @@ package br.com.plannic.service;
 
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.UsuarioRepository;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import net.bytebuddy.utility.RandomString;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -11,14 +14,14 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -37,6 +40,8 @@ public class UsuarioService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Autowired
+    private Configuration config;
 
     private static Logger logger = Logger.getLogger(UsuarioService.class);
 
@@ -73,7 +78,7 @@ public class UsuarioService {
         return Collections.emptyList();
     }
 
-    public void save(Usuario usuario,String url) throws UnsupportedEncodingException, MessagingException {
+    public void save(Usuario usuario,String url) throws IOException, MessagingException, TemplateException {
         var senha = usuario.getPassword();
         usuario.setPassword(passwordEncoder.encode(senha));
         ModelMapper mapper = new ModelMapper();
@@ -88,17 +93,21 @@ public class UsuarioService {
         logger.info("Usuário salvo");
     }
 
-    private void sendVerificationEmail(Usuario user, String url)
-            throws MessagingException, UnsupportedEncodingException {
-        String toAddress = user.getEmail();
+    public void sendVerificationEmail(Usuario usuario, String url)
+            throws MessagingException, IOException, TemplateException {
+        String toAddress = usuario.getEmail();
         String fromAddress = "plannic@plannic.com.br";
         String senderName = "Plannic";
         String subject = "Plannic - Verificação de email";
-        String content = "Ola [[name]],<br>"
-                + "Por favor confirme seu email para utilizar o Plannic:<br>"
-                + "<h3><a href=\"[[URL]]\" target=\"_self\">Clique Aqui</a></h3>"
-                + "Obrigado,<br>"
-                + "Equipe Plannic.";
+
+        Template template = config.getTemplate("emailVerificacao.ftl");
+        String verifyURL = url + "/usuario/verify?code=" + usuario.getCodVerifica();
+
+        Map<String,Object> model =new HashMap<>();
+        model.put("nome",usuario.getNome());
+        model.put("url",verifyURL);
+
+        String html = FreeMarkerTemplateUtils.processTemplateIntoString(template,model);
 
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -107,12 +116,7 @@ public class UsuarioService {
         helper.setTo(toAddress);
         helper.setSubject(subject);
 
-        content = content.replace("[[name]]", user.getNome());
-        String verifyURL = url + "/usuario/verify?code=" + user.getCodVerifica();
-
-        content = content.replace("[[URL]]", verifyURL);
-
-        helper.setText(content, true);
+        helper.setText(html, true);
 
         javaMailSender.send(message);
 
@@ -160,7 +164,7 @@ public class UsuarioService {
     }
 
     public boolean updateCodigoVerifica(Usuario usuario, String url)
-            throws UnsupportedEncodingException, MessagingException {
+            throws IOException, MessagingException, TemplateException {
         Usuario usuarios = this.repository.findByEmail(usuario.getEmail());
 
         if (usuarios.getCodVerifica() != null && usuarios.isAtivo() ==false) {

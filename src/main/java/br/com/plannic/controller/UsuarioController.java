@@ -3,6 +3,7 @@ package br.com.plannic.controller;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.service.UsuarioService;
 import br.com.plannic.service.EmailService;
+import freemarker.template.TemplateException;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
@@ -35,14 +37,13 @@ public class UsuarioController {
     @PostMapping("/cadastro")
     @ApiOperation(value = "Realiza o cadastro do usuario")
     public ResponseEntity<Usuario> save(@RequestBody Usuario usuario,HttpServletRequest request)
-    throws UnsupportedEncodingException, MessagingException
-    {
+            throws IOException, MessagingException, TemplateException {
         try {
             MDC.put("name", usuario.getNome());
             MDC.put("fluxo", "POST save");
 //            emailService.welcome(usuario);
             usuarioService.save(usuario,getSiteURL(request));
-        }finally{
+        }  finally{
             MDC.clear();
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -104,8 +105,7 @@ public class UsuarioController {
     @PostMapping("/atualizaverificaemail")
     @ApiOperation(value = "Envia novamente o email para o usuario caso ele nao tenha recebido o email de verificacao")
     public ResponseEntity<Usuario> updateCodeVerifica(@RequestBody Usuario usuario,HttpServletRequest request)
-            throws UnsupportedEncodingException, MessagingException
-    {
+            throws IOException, MessagingException, TemplateException {
         try {
 //            MDC.put("name", usuario.getNome());
 //            MDC.put("fluxo", "POST save");
