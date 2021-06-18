@@ -1,6 +1,8 @@
 package br.com.plannic.controller;
 
 import br.com.plannic.model.Materia;
+import br.com.plannic.model.MateriaBase;
+import br.com.plannic.model.SugestoesMateria;
 import br.com.plannic.service.MateriaService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
@@ -76,12 +78,75 @@ public class MateriaController {
         }
     }
 
+    // Matéria Base
+    @PostMapping("/cadastro/base")
+    @ApiOperation(value = "Realiza o cadastro de materias base")
+    public ResponseEntity<MateriaBase> saveBase(@Valid @RequestBody MateriaBase materiaBase){
+        try {
+            MDC.put("name", materiaBase.getMateriaBase());
+            MDC.put("fluxo", "POST save");
+            materiaService.saveMateriaBase(materiaBase);
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @GetMapping("/base")
     @ApiOperation(value = "Realiza a busca de todas as materias base")
     public ResponseEntity getAllBase() {
         try{
             MDC.put("fluxo", "GET materia");
             return new ResponseEntity<>(materiaService.getAllBase(), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    // Sugetões
+    @PostMapping("/cadastro/sugestoes")
+    @ApiOperation(value = "Realiza a sugestao de uma nova materias")
+    public ResponseEntity<SugestoesMateria> save(@Valid @RequestBody SugestoesMateria sugestoesmateria){
+        try {
+            MDC.put("name", sugestoesmateria.getNomeMateria());
+            MDC.put("fluxo", "POST save");
+            materiaService.saveSugestaoMateria(sugestoesmateria);
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/sugestoes")
+    @ApiOperation(value = "Realiza a atualização da Sugestão")
+    public ResponseEntity updateSugestaoMateria(@RequestBody SugestoesMateria sugestoesmateria) {
+        try {
+            MDC.put("name", sugestoesmateria.getVotos());
+            MDC.put("fluxo", "PUT update");
+            if(materiaService.updateSugestaoMateria(sugestoesmateria)) {
+                if (sugestoesmateria.getTotalVotos() < 5) {
+                    if(sugestoesmateria.getVotos() > 2) {
+                        MateriaBase novaMateria = new MateriaBase(sugestoesmateria.getNomeMateria());
+                        materiaService.saveMateriaBase(novaMateria);
+                        materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                    }
+                } else {
+                    materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                }
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/sugestoes")
+    @ApiOperation(value = "Realiza a busca de todas as sugestões de materias")
+    public ResponseEntity getAllSugestoes() {
+        try{
+            MDC.put("fluxo", "GET materia");
+            return new ResponseEntity<>(materiaService.getAllSugestoes(), HttpStatus.OK);
         }finally {
             MDC.clear();
         }

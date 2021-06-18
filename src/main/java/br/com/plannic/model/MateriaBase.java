@@ -14,10 +14,14 @@ import javax.persistence.*;
 public class MateriaBase {
 
     @Id
-    @Column(name = "idmateriabase")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idmateriabase")
     private int idMateriaBase;
 
     @Column(name = "materiabase")
-    private String materiabase;
+    private String materiaBase;
+
+    public MateriaBase(String materiaBase) {
+        this.materiaBase=materiaBase;
+    }
 }
