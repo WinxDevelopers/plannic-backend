@@ -103,7 +103,7 @@ public class MateriaController {
         }
     }
 
-    // Sugetões
+    // Sugestões
     @PostMapping("/cadastro/sugestoes")
     @ApiOperation(value = "Realiza a sugestao de uma nova materias")
     public ResponseEntity<SugestoesMateria> save(@Valid @RequestBody SugestoesMateria sugestoesmateria){
