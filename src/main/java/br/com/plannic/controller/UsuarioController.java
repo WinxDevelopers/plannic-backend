@@ -157,4 +157,16 @@ public class UsuarioController {
             MDC.clear();
         }
     }
+
+    // Funções
+    @GetMapping("funcao/{id}")
+    @ApiOperation(value = "Realiza a busca da função do usuário")
+    public ResponseEntity getFuncao(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET função");
+            return new ResponseEntity<>(usuarioService.getFuncao(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
 }
