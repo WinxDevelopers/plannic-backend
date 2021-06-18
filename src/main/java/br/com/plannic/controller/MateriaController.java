@@ -75,4 +75,15 @@ public class MateriaController {
             MDC.clear();
         }
     }
+
+    @GetMapping("/base")
+    @ApiOperation(value = "Realiza a busca de todas as materias base")
+    public ResponseEntity getAllBase() {
+        try{
+            MDC.put("fluxo", "GET materia");
+            return new ResponseEntity<>(materiaService.getAllBase(), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
 }

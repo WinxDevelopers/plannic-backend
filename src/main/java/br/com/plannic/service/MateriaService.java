@@ -1,6 +1,8 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.Materia;
+import br.com.plannic.model.MateriaBase;
+import br.com.plannic.repository.MateriaBaseRepository;
 import br.com.plannic.repository.MateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -19,11 +21,13 @@ import java.util.stream.Collectors;
 public class MateriaService {
 
     private final MateriaRepository repository;
+    private final MateriaBaseRepository materiaBaseRepository;
 
     private static Logger logger = Logger.getLogger(MateriaService.class);
 
-    public MateriaService(MateriaRepository repository) {
+    public MateriaService(MateriaRepository repository, MateriaBaseRepository materiaBaseRepository) {
         this.repository = repository;
+        this.materiaBaseRepository = materiaBaseRepository;
     }
 
     public List<Materia> getAll() {
@@ -69,5 +73,20 @@ public class MateriaService {
             return true;
         }
         return false;
+    }
+
+    // Materias Base
+    public List<MateriaBase> getAllBase() {
+        ModelMapper mapper = new ModelMapper();
+        List<MateriaBase> materias = materiaBaseRepository.findAll();
+
+        if (!materias.isEmpty()) {
+            logger.info("Materias base recuperadas");
+            return materias
+                    .stream()
+                    .map(materiaBase -> mapper.map(materiaBase, MateriaBase.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 }
