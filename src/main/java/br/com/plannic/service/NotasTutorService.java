@@ -2,7 +2,6 @@ package br.com.plannic.service;
 
 
 import br.com.plannic.model.NotasTutor;
-import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.NotasTutorRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -19,9 +18,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class NotasTutorService {
 
-    private NotasTutorRepository repository;
+    private final NotasTutorRepository repository;
 
     private static Logger logger = Logger.getLogger(NotasTutorService.class);
+
+    public NotasTutorService(NotasTutorRepository repository) {
+        this.repository = repository;
+    }
 
     public List<NotasTutor> getAll() {
         ModelMapper mapper = new ModelMapper();

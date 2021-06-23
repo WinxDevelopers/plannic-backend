@@ -1,8 +1,11 @@
 package br.com.plannic.service;
 
 import br.com.plannic.controller.MateriaController;
+import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.Materia;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.repository.AgendamentoRepository;
+import br.com.plannic.repository.MateriaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,8 +18,12 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,108 +31,114 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MateriaServiceTest {
 
     @InjectMocks
-    MateriaController materiaController;
+    MateriaService materiaService;
 
     @Mock
-    MateriaService materiaService;
+    MateriaRepository repository;
 
     public MateriaServiceTest() {
         MockitoAnnotations.initMocks(this);
     }
 
+    List<Materia> listMateria = new ArrayList<>();
+
+
+    Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
+            1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
+    ));
+
+
+    Materia materia1 = new Materia(1, 2, "Portugues", "Descrição de Portugues", new Usuario(
+            1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
+    ));
+
     @Test
-    public void adicionarMateria() {
+    public void getAll_exception() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+        Mockito.when(repository.findAll()).thenReturn(listMateria);
 
-        Mockito.doNothing().when(materiaService).save(materia);
+        List<Materia> materias = materiaService.getAll();
 
-        ResponseEntity<Materia> responseEntity = materiaController.save(materia);
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
     }
 
     @Test
-    public void encontrarMaterias() {
+    public void getAll_success() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+        listMateria.add(materia);
 
-        Materia materia1 = new Materia(2, 3, "Portugues", "Descrição de Portugues", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+        Mockito.when(repository.findAll()).thenReturn(listMateria);
 
-        Mockito.doNothing().when(materiaService).save(materia);
+        List<Materia> materia = materiaService.getAll();
 
-        Mockito.when(materiaService.getAll()).thenReturn(Collections.emptyList());
-
-        ResponseEntity<Materia> responseEntity = materiaController.save(materia);
-        ResponseEntity<Materia> responseEntity1 = materiaController.save(materia1);
-
-        materiaController.getAll();
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-        assertThat(responseEntity1.getStatusCodeValue()).isEqualTo(201);
     }
 
     @Test
-    public void deletaMaterias() {
+    public void save() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+        Mockito.when(repository.save(materia)).thenReturn(materia);
 
-        Mockito.doNothing().when(materiaService).save(materia);
-        Mockito.when(materiaService.delete(1)).thenReturn(true);
-        Mockito.when(materiaService.getAll()).thenReturn(Collections.emptyList());
+        materiaService.save(materia);
 
-        ResponseEntity<Materia> responseEntity = materiaController.save(materia);
-
-        ResponseEntity responseEntityDelete = materiaController.delete(1);
-
-        materiaController.getAll();
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-        assertThat(responseEntityDelete.getStatusCodeValue()).isEqualTo(200);
     }
 
     @Test
-    public void atualizarMateria() {
+    public void update() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Materia materia = new Materia(1, 2, "Matematica", "Descrição de Matematica", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+        Mockito.when(repository.findById(materia.getIdMateria())).thenReturn(materia);
 
+        materiaService.update(materia);
 
-        Materia materia1 = new Materia(1, 2, "Portugues", "Descrição de Portugues", new Usuario(
-                1, "teste@teste.com.br", "123456", "Teste", LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true
-        ));
+    }
 
-        Mockito.doNothing().when(materiaService).save(materia);
-        Mockito.when(materiaService.update(materia1)).thenReturn(true);
-        Mockito.when(materiaService.getAll()).thenReturn(Collections.emptyList());
+    @Test
+    public void update_false() {
 
-        ResponseEntity<Materia> responseEntity = materiaController.save(materia);
-        ResponseEntity responseEntityAtualiza = materiaController.update(materia1);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        materiaController.getAll();
+        Mockito.when(repository.findById(materia.getIdMateria())).thenReturn(null);
 
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-        assertThat(responseEntityAtualiza.getStatusCodeValue()).isEqualTo(200);
+        materiaService.update(materia);
+
+    }
+
+    @Test
+    public void delete() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        Mockito.when(repository.findById(materia.getIdMateria())).thenReturn(materia);
+
+        Mockito.doNothing().when(repository).deleteById(materia.getIdMateria());
+
+        materiaService.delete(materia.getIdMateria());
+
+    }
+
+    @Test
+    public void delete_false() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        Mockito.when(repository.findById(materia.getIdMateria())).thenReturn(null);
+
+        Mockito.doNothing().when(repository).deleteById(materia.getIdMateria());
+
+        materiaService.delete(materia.getIdMateria());
+
     }
 }
