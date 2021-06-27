@@ -12,13 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "materia")
-public class Materia {
+@Table(name = "sugestoesmateria")
+public class SugestoesMateria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idmateria")
-    private int idMateria;
+    @Column(name = "idsugestoesmateria")
+    private int idSugestoesMateria;
 
     @Column(name = "idusuario")
     private int idUsuario;
@@ -26,8 +26,11 @@ public class Materia {
     @Column(name = "materia")
     private String nomeMateria;
 
-    @Column(name = "descricao")
-    private String descricao;
+    @Column(name = "votos")
+    private int votos;
+
+    @Column(name = "totalvotos")
+    private int totalVotos;
 
     @ToString.Exclude
     @ManyToOne
@@ -35,7 +38,7 @@ public class Materia {
     @JsonBackReference
     private Usuario usuario;
 
-    public Materia(String nomeMateria) {
+    public SugestoesMateria(String nomeMateria) {
         this.nomeMateria=nomeMateria;
     }
 }

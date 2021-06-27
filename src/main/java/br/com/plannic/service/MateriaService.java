@@ -1,7 +1,11 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.Materia;
+import br.com.plannic.model.MateriaBase;
+import br.com.plannic.model.SugestoesMateria;
+import br.com.plannic.repository.MateriaBaseRepository;
 import br.com.plannic.repository.MateriaRepository;
+import br.com.plannic.repository.SugestoesMateriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.modelmapper.ModelMapper;
@@ -19,11 +23,15 @@ import java.util.stream.Collectors;
 public class MateriaService {
 
     private final MateriaRepository repository;
+    private final MateriaBaseRepository materiaBaseRepository;
+    private final SugestoesMateriaRepository sugestoesMateriaRepository;
 
     private static Logger logger = Logger.getLogger(MateriaService.class);
 
-    public MateriaService(MateriaRepository repository) {
+    public MateriaService(MateriaRepository repository, MateriaBaseRepository materiaBaseRepository, SugestoesMateriaRepository sugestoesMateriaRepository) {
         this.repository = repository;
+        this.materiaBaseRepository = materiaBaseRepository;
+        this.sugestoesMateriaRepository = sugestoesMateriaRepository;
     }
 
     public List<Materia> getAll() {
@@ -66,6 +74,73 @@ public class MateriaService {
         if (materias.isPresent()) {
             logger.info("Materia deletada");
             this.repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    // Materias Base
+    public void saveMateriaBase(MateriaBase materiaBase) {
+        ModelMapper mapper = new ModelMapper();
+        var baseSalva = materiaBaseRepository.save(mapper.map(materiaBase, MateriaBase.class));
+        MDC.put("baseMateria_id", baseSalva.getIdMateriaBase());
+        logger.info("Materia base salva");
+    }
+
+    public List<MateriaBase> getAllBase() {
+        ModelMapper mapper = new ModelMapper();
+        List<MateriaBase> materias = materiaBaseRepository.findAll();
+
+        if (!materias.isEmpty()) {
+            logger.info("Materias base recuperadas");
+            return materias
+                    .stream()
+                    .map(materiaBase -> mapper.map(materiaBase, MateriaBase.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    // Sugestão de Matéria
+    public void saveSugestaoMateria(SugestoesMateria sugestoesmateria) {
+        ModelMapper mapper = new ModelMapper();
+        var sugestaoSalva = sugestoesMateriaRepository.save(mapper.map(sugestoesmateria, SugestoesMateria.class));
+        MDC.put("sugestaoMateria_id", sugestaoSalva.getIdSugestoesMateria());
+        logger.info("Sugestão salva");
+    }
+
+    public boolean updateSugestaoMateria(SugestoesMateria sugestoesmateria) {
+        Optional<SugestoesMateria> sugestoes = Optional.ofNullable(this.sugestoesMateriaRepository.findById(sugestoesmateria.getIdSugestoesMateria()));
+
+        if (sugestoes.isPresent()) {
+            logger.info("Sugestão atualizada");
+            ModelMapper mapper = new ModelMapper();
+            sugestoesMateriaRepository.save(mapper.map(sugestoesmateria, SugestoesMateria.class));
+            return true;
+        }
+        return false;
+    }
+
+    public List<SugestoesMateria> getAllSugestoes() {
+        ModelMapper mapper = new ModelMapper();
+        List<SugestoesMateria> materias = sugestoesMateriaRepository.findAll();
+
+        if (!materias.isEmpty()) {
+            logger.info("Sugestões recuperadas");
+            return materias
+                    .stream()
+                    .map(sugestoesMateria -> mapper.map(sugestoesMateria, SugestoesMateria.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public boolean deleteSugestaoMateria(int id) {
+        Optional<SugestoesMateria> materias = Optional.ofNullable(this.sugestoesMateriaRepository.findById(id));
+
+        if (materias.isPresent()) {
+            logger.info("Sugestão deletada");
+            this.sugestoesMateriaRepository.deleteById(id);
             return true;
         }
         return false;

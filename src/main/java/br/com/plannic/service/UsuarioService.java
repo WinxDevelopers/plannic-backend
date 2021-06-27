@@ -1,6 +1,9 @@
 package br.com.plannic.service;
 
+import br.com.plannic.model.Funcao;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.model.UsuarioFuncao;
+import br.com.plannic.repository.UsuarioFuncaoRepository;
 import br.com.plannic.repository.UsuarioRepository;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -20,7 +23,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,7 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     private final UsuarioRepository repository;
+    private final UsuarioFuncaoRepository usuarioFuncaoRepository;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -46,8 +49,9 @@ public class UsuarioService {
     private static Logger logger = Logger.getLogger(UsuarioService.class);
 
 
-    public UsuarioService(UsuarioRepository repository) {
+    public UsuarioService(UsuarioRepository repository, UsuarioFuncaoRepository usuarioFuncaoRepository) {
         this.repository = repository;
+        this.usuarioFuncaoRepository = usuarioFuncaoRepository;
     }
 
     public List<Usuario> getAll() {
@@ -195,5 +199,19 @@ public class UsuarioService {
 
     public Usuario findByEmail(String email) {
         return this.repository.findByEmail(email);
+    }
+
+    public List<UsuarioFuncao> getFuncao(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<UsuarioFuncao> usuarioFuncao = Optional.ofNullable(this.usuarioFuncaoRepository.findByUsuario(repository.findByIdUsuario(id)));
+
+        if (!usuarioFuncao.isEmpty()) {
+            logger.info("Função recuperada");
+            return usuarioFuncao
+                    .stream()
+                    .map(funcao -> mapper.map(funcao, UsuarioFuncao.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 }

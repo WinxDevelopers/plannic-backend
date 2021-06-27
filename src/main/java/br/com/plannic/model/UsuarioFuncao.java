@@ -12,22 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "materia")
-public class Materia {
+@Table(name = "usuariofuncao")
+public class UsuarioFuncao {
 
     @Id
+    @Column(name = "idusuariofuncao")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idmateria")
-    private int idMateria;
-
-    @Column(name = "idusuario")
-    private int idUsuario;
-
-    @Column(name = "materia")
-    private String nomeMateria;
-
-    @Column(name = "descricao")
-    private String descricao;
+    private int idUsuarioFuncao;
 
     @ToString.Exclude
     @ManyToOne
@@ -35,7 +26,10 @@ public class Materia {
     @JsonBackReference
     private Usuario usuario;
 
-    public Materia(String nomeMateria) {
-        this.nomeMateria=nomeMateria;
-    }
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idfuncao", insertable=false, updatable=false)
+    @JsonBackReference
+    private Funcao funcao;
+
 }
