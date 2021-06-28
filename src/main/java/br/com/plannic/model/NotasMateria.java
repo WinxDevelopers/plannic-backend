@@ -41,7 +41,7 @@ public class NotasMateria {
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    @JsonBackReference(value="idusuarionota")
+    @JsonBackReference(value="idusuario")
     private Usuario usuario;
 
 }

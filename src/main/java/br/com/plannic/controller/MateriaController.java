@@ -110,6 +110,7 @@ public class MateriaController {
         try {
             MDC.put("name", sugestoesmateria.getNomeMateria());
             MDC.put("fluxo", "POST save");
+            sugestoesmateria.setFaltaVotar("1_2_3_10_11");
             materiaService.saveSugestaoMateria(sugestoesmateria);
         }finally{
             MDC.clear();
@@ -124,13 +125,18 @@ public class MateriaController {
             MDC.put("name", sugestoesmateria.getVotos());
             MDC.put("fluxo", "PUT update");
             if(materiaService.updateSugestaoMateria(sugestoesmateria)) {
-                if (sugestoesmateria.getTotalVotos() < 5) {
+                if (sugestoesmateria.getTotalVotos() <= 5) {
                     if(sugestoesmateria.getVotos() > 2) {
                         MateriaBase novaMateria = new MateriaBase(sugestoesmateria.getNomeMateria());
                         materiaService.saveMateriaBase(novaMateria);
+                        materiaService.atualizarMateriaAceita(sugestoesmateria, novaMateria);
+                        materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                    } else {
+                        materiaService.atualizarMateriaRecusada(sugestoesmateria);
                         materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
                     }
                 } else {
+                    materiaService.atualizarMateriaRecusada(sugestoesmateria);
                     materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
                 }
                 return new ResponseEntity<>(HttpStatus.OK);

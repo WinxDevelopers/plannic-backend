@@ -29,12 +29,15 @@ public class SugestoesMateria {
     @Column(name = "votos")
     private int votos;
 
+    @Column(name = "faltavotar")
+    private String faltaVotar;
+
     @Column(name = "totalvotos")
     private int totalVotos;
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "idusuariosugestao", insertable=false, updatable=false)
+    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
     @JsonBackReference
     private Usuario usuario;
 

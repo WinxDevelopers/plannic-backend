@@ -23,6 +23,9 @@ public class Materia {
     @Column(name = "idmateriabase")
     private int idMateriaBase;
 
+    @Column(name = "idsugestao")
+    private int idSugestao;
+
     @Column(name = "idusuario")
     private int idUsuario;
 
@@ -34,14 +37,8 @@ public class Materia {
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "idmateriabase", insertable=false, updatable=false)
-    @JsonBackReference(value="idmateriabase")
-    private MateriaBase materiaBase;
-
-    @ToString.Exclude
-    @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    @JsonBackReference(value="idusuariomateria")
+    @JsonBackReference(value="idusuario")
     private Usuario usuario;
 
     public Materia(String nomeMateria) {

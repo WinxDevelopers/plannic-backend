@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.Null;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +69,7 @@ public class MateriaService {
     }
 
 
+
     public boolean delete(int id) {
         Optional<Materia> materias = Optional.ofNullable(this.repository.findById(id));
 
@@ -85,6 +87,7 @@ public class MateriaService {
         var baseSalva = materiaBaseRepository.save(mapper.map(materiaBase, MateriaBase.class));
         MDC.put("baseMateria_id", baseSalva.getIdMateriaBase());
         logger.info("Materia base salva");
+
     }
 
     public List<MateriaBase> getAllBase() {
@@ -107,6 +110,12 @@ public class MateriaService {
         var sugestaoSalva = sugestoesMateriaRepository.save(mapper.map(sugestoesmateria, SugestoesMateria.class));
         MDC.put("sugestaoMateria_id", sugestaoSalva.getIdSugestoesMateria());
         logger.info("Sugestão salva");
+
+        Materia materia = new Materia(sugestoesmateria.getNomeMateria());
+            materia.setIdSugestao(sugestaoSalva.getIdSugestoesMateria());
+            materia.setIdUsuario(sugestaoSalva.getIdUsuario());
+
+            save(materia);
     }
 
     public boolean updateSugestaoMateria(SugestoesMateria sugestoesmateria) {
@@ -119,6 +128,26 @@ public class MateriaService {
             return true;
         }
         return false;
+    }
+
+
+    public void atualizarMateriaAceita(SugestoesMateria sugestoesMateria, MateriaBase materiaBase) {
+        ModelMapper mapper = new ModelMapper();
+        Materia materia = this.repository.findByIdSugestao(sugestoesMateria.getIdSugestoesMateria());
+        if (materia.getIdMateria() != 0) {
+            logger.info("Materia atualizada");
+            materia.setIdMateriaBase(materiaBase.getIdMateriaBase());
+            materia.setIdSugestao(0);
+            repository.save(mapper.map(materia, Materia.class));
+        }
+    }
+
+    public void atualizarMateriaRecusada(SugestoesMateria sugestoesMateria) {
+        Materia materia = this.repository.findByIdSugestao(sugestoesMateria.getIdSugestoesMateria());
+        if (materia.getIdMateria() != 0) {
+            logger.info("Materia Excluída");
+            repository.deleteById(materia.getIdMateria());
+        }
     }
 
     public List<SugestoesMateria> getAllSugestoes() {
