@@ -34,7 +34,7 @@ public class SugestoesMateria {
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
+    @JoinColumn(name = "idusuariosugestao", insertable=false, updatable=false)
     @JsonBackReference
     private Usuario usuario;
 

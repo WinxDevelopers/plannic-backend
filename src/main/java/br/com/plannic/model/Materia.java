@@ -35,13 +35,13 @@ public class Materia {
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idmateriabase", insertable=false, updatable=false)
-    @JsonBackReference
+    @JsonBackReference(value="idmateriabase")
     private MateriaBase materiaBase;
 
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    @JsonBackReference
+    @JsonBackReference(value="idusuariomateria")
     private Usuario usuario;
 
     public Materia(String nomeMateria) {

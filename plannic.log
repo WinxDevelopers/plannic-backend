@@ -1748,3 +1748,9 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 27 jun. 2021 21:17:35,073 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
 27 jun. 2021 21:18:34,699 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
 27 jun. 2021 21:18:35,884 1185 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
+28 jun. 2021 12:38:13,540 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+28 jun. 2021 12:38:14,723 1183 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
+28 jun. 2021 12:41:47,725 0    [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+28 jun. 2021 12:41:50,962 3237 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
+28 jun. 2021 12:41:56,578 8853 [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado
+28 jun. 2021 12:41:56,608 8883 [http-nio-8080-exec-10] INFO  MateriaService  - Materias base recuperadas
