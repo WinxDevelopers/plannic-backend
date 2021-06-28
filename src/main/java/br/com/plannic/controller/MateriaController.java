@@ -125,19 +125,27 @@ public class MateriaController {
             MDC.put("name", sugestoesmateria.getVotos());
             MDC.put("fluxo", "PUT update");
             if(materiaService.updateSugestaoMateria(sugestoesmateria)) {
-                if (sugestoesmateria.getTotalVotos() <= 5) {
+                if (sugestoesmateria.getTotalVotos() < 5) {
                     if(sugestoesmateria.getVotos() > 2) {
                         MateriaBase novaMateria = new MateriaBase(sugestoesmateria.getNomeMateria());
                         materiaService.saveMateriaBase(novaMateria);
                         materiaService.atualizarMateriaAceita(sugestoesmateria, novaMateria);
                         materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
                     } else {
-                        materiaService.atualizarMateriaRecusada(sugestoesmateria);
-                        materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                        materiaService.updateSugestaoMateria(sugestoesmateria);
                     }
                 } else {
-                    materiaService.atualizarMateriaRecusada(sugestoesmateria);
-                    materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                    if (sugestoesmateria.getTotalVotos() == 5) {
+                        if(sugestoesmateria.getVotos() > 2) {
+                            MateriaBase novaMateria = new MateriaBase(sugestoesmateria.getNomeMateria());
+                            materiaService.saveMateriaBase(novaMateria);
+                            materiaService.atualizarMateriaAceita(sugestoesmateria, novaMateria);
+                            materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                        } else {
+                            materiaService.atualizarMateriaRecusada(sugestoesmateria);
+                            materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
+                        }
+                    }
                 }
                 return new ResponseEntity<>(HttpStatus.OK);
             }
