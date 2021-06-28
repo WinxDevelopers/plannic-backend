@@ -1727,3 +1727,24 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 26 mar 2021 16:42:27,619 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
 26 mar 2021 16:51:06,886 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
 26 mar 2021 16:55:32,595 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:00:35,488 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:00:57,467 21979 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
+27 jun. 2021 21:01:17,260 41772 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
+27 jun. 2021 21:02:26,516 111028 [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:03:05,899 150411 [http-nio-8080-exec-1] INFO  MateriaService  - Função de usuário salva
+27 jun. 2021 21:04:22,206 226718 [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
+27 jun. 2021 21:04:24,332 228844 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário recuperado
+27 jun. 2021 21:04:36,255 240767 [http-nio-8080-exec-10] INFO  MateriaService  - Materia salva
+27 jun. 2021 21:04:37,595 242107 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
+27 jun. 2021 21:05:03,128 267640 [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário recuperado
+27 jun. 2021 21:05:03,510 268022 [http-nio-8080-exec-5] INFO  MateriaService  - Materias recuperadas
+27 jun. 2021 21:05:42,093 306605 [http-nio-8080-exec-1] INFO  MateriaService  - Materia salva
+27 jun. 2021 21:05:43,537 308049 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário recuperado
+27 jun. 2021 21:05:44,063 308575 [http-nio-8080-exec-8] INFO  MateriaService  - Materias recuperadas
+27 jun. 2021 21:10:11,562 0    [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:10:22,579 11017 [http-nio-8080-exec-3] INFO  MateriaService  - Função de usuário salva
+27 jun. 2021 21:13:07,048 1    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:13:08,310 1263 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
+27 jun. 2021 21:17:35,073 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:18:34,699 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
+27 jun. 2021 21:18:35,884 1185 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva

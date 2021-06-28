@@ -3,6 +3,7 @@ package br.com.plannic.service;
 import br.com.plannic.model.Funcao;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.model.UsuarioFuncao;
+import br.com.plannic.repository.FuncaoRepository;
 import br.com.plannic.repository.UsuarioFuncaoRepository;
 import br.com.plannic.repository.UsuarioRepository;
 import freemarker.template.Configuration;
@@ -39,6 +40,8 @@ public class UsuarioService {
 
     private final UsuarioRepository repository;
     private final UsuarioFuncaoRepository usuarioFuncaoRepository;
+    private final FuncaoRepository funcaoRepository;
+    private final FuncaoService funcaoService;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -49,9 +52,12 @@ public class UsuarioService {
     private static Logger logger = Logger.getLogger(UsuarioService.class);
 
 
-    public UsuarioService(UsuarioRepository repository, UsuarioFuncaoRepository usuarioFuncaoRepository) {
+    public UsuarioService(PasswordEncoder passwordEncoder, UsuarioRepository repository, UsuarioFuncaoRepository usuarioFuncaoRepository, FuncaoRepository funcaoRepository, FuncaoService funcaoService) {
+        this.passwordEncoder = passwordEncoder;
         this.repository = repository;
         this.usuarioFuncaoRepository = usuarioFuncaoRepository;
+        this.funcaoRepository = funcaoRepository;
+        this.funcaoService = funcaoService;
     }
 
     public List<Usuario> getAll() {
@@ -95,6 +101,10 @@ public class UsuarioService {
 
         MDC.put("user_id", usuarioSalvo.getIdUsuario());
         logger.info("Usuário salvo");
+
+        Funcao funcao = funcaoRepository.findById(2);
+        UsuarioFuncao usuarioFuncao = new UsuarioFuncao(usuario.getIdUsuario(),funcao.getIdFuncao());
+        funcaoService.save(usuarioFuncao);
     }
 
     public void sendVerificationEmail(Usuario usuario, String url)

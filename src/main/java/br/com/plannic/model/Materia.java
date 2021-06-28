@@ -20,6 +20,9 @@ public class Materia {
     @Column(name = "idmateria")
     private int idMateria;
 
+    @Column(name = "idmateriabase")
+    private int idMateriaBase;
+
     @Column(name = "idusuario")
     private int idUsuario;
 
@@ -28,6 +31,12 @@ public class Materia {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idmateriabase", insertable=false, updatable=false)
+    @JsonBackReference
+    private MateriaBase materiaBase;
 
     @ToString.Exclude
     @ManyToOne
