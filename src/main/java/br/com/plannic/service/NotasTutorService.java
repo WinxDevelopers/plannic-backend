@@ -40,7 +40,7 @@ public class NotasTutorService {
     public void save(NotasTutor notasTutor) {
         ModelMapper mapper = new ModelMapper();
         var notasTutorSalva = repository.save(mapper.map(notasTutor, NotasTutor.class));
-        MDC.put("user_id", notasTutorSalva.getIdUsuario());
+        MDC.put("notaTutor_id", notasTutorSalva.getIdNotaTutor());
         logger.info("Nota salva");
 
 

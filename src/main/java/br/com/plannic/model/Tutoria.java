@@ -11,13 +11,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "notastutor")
-public class NotasTutor {
+@Table(name = "tutoria")
+public class Tutoria {
 
     @Id
-    @GeneratedValue
-    @Column(name = "idnotatutor")
-    private int idNotaTutor;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idtutoria")
+    private int idTutoria;
 
     @Column(name = "idusuarioaluno")
     private int idUsuarioAluno;
@@ -27,12 +27,6 @@ public class NotasTutor {
 
     @Column(name = "idmateriabase")
     private int idMateriaBase;
-
-    @Column(name = "notatutor")
-    private Integer notaTutor;
-
-    @Column(name = "descricaonota")
-    private String descricaoNota;
 
     @ToString.Exclude
     @ManyToOne
