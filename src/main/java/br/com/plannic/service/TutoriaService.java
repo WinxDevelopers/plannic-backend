@@ -1,6 +1,7 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.Tutoria;
+import br.com.plannic.model.UsuarioFuncao;
 import br.com.plannic.repository.TutoriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -75,4 +76,31 @@ public class TutoriaService {
         return false;
     }
 
+    public List<Tutoria> getTutor(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByIdTutor(id));
+
+        if (!tutoria.isEmpty()) {
+            logger.info("Tutor recuperado");
+            return tutoria
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutoria.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public List<Tutoria> getAluno(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByIdAluno(id));
+
+        if (!tutoria.isEmpty()) {
+            logger.info("Aluno recuperado");
+            return tutoria
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutoria.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 }

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TutoriaRepository extends JpaRepository<Tutoria,Integer> {
     Tutoria findById(int id);
-
+    Tutoria findByIdTutor(int idUsuarioTutor);
+    Tutoria findByIdAluno(int idUsuarioAluno);
 }
