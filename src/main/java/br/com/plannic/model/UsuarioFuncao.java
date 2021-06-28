@@ -20,6 +20,12 @@ public class UsuarioFuncao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuarioFuncao;
 
+    @Column(name = "idusuario")
+    private int idUsuario;
+
+    @Column(name = "idfuncao")
+    private int idfuncao;
+
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
@@ -32,4 +38,8 @@ public class UsuarioFuncao {
     @JsonBackReference
     private Funcao funcao;
 
+    public UsuarioFuncao(int idUsuario, int idfuncao) {
+        this.idUsuario = idUsuario;
+        this.idfuncao = idfuncao;
+    }
 }

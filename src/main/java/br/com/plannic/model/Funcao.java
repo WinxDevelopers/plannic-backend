@@ -20,4 +20,9 @@ public class Funcao {
 
     @Column(name = "funcao")
     private String funcao;
+
+    public Funcao(String funcao) {
+
+        this.funcao=funcao;
+    }
 }
