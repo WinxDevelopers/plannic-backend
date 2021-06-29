@@ -73,4 +73,29 @@ public class TutorService {
         }
         return false;
     }
+
+    public List<Tutor> getByMateria(int id, int idMateria) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Tutor> tutores = Optional.ofNullable(this.repository.findByIdMateriaBase(id, idMateria));
+
+        if (!tutores.isEmpty()) {
+            logger.info("Tutores recuperados");
+            return  tutores
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutor.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public boolean deleteAfterTutoria(int id, int idMateria) {
+        Tutor tutor = this.repository.findByTutoria(id, idMateria);
+
+        if (tutor.getIdTutor() != 0) {
+            logger.info("Tutor deletado");
+            this.repository.deleteById(tutor.getIdTutor());
+            return true;
+        }
+        return false;
+    }
 }

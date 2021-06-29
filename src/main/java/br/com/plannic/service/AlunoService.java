@@ -73,4 +73,29 @@ public class AlunoService {
         }
         return false;
     }
+
+    public List<Aluno> getByMateria(int id, int idMateria) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Aluno> alunos = Optional.ofNullable(this.repository.findByIdMateriaBase(id, idMateria));
+
+        if (!alunos.isEmpty()) {
+            logger.info("Alunos recuperados");
+            return  alunos
+                    .stream()
+                    .map(aluno -> mapper.map(aluno, Aluno.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public boolean deleteAfterTutoria(int id, int idMateria) {
+        Aluno aluno = this.repository.findByTutoria(id, idMateria);
+
+        if (aluno.getIdAluno() != 0) {
+            logger.info("Aluno deletado");
+            this.repository.deleteById(aluno.getIdAluno());
+            return true;
+        }
+        return false;
+    }
 }
