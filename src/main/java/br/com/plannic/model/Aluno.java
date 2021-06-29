@@ -11,19 +11,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tutoria")
-public class Tutoria {
+@Table(name = "aluno")
+public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idtutoria")
-    private int idTutoria;
+    @Column(name = "idaluno")
+    private int idAluno;
 
     @Column(name = "idusuarioaluno")
     private int idUsuarioAluno;
-
-    @Column(name = "idusuariotutor")
-    private int idUsuarioTutor;
 
     @Column(name = "idmateriabase")
     private int idMateriaBase;
@@ -32,11 +29,6 @@ public class Tutoria {
     @ManyToOne
     @JoinColumn(name = "idusuarioaluno", insertable=false, updatable=false)
     private Usuario usuarioAluno;
-
-    @ToString.Exclude
-    @ManyToOne
-    @JoinColumn(name = "idusuariotutor", insertable=false, updatable=false)
-    private Usuario usuarioTutor;
 
     @ToString.Exclude
     @ManyToOne

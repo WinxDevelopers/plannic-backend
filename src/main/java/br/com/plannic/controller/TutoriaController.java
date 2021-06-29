@@ -1,6 +1,10 @@
 package br.com.plannic.controller;
 
+import br.com.plannic.model.Aluno;
+import br.com.plannic.model.Tutor;
 import br.com.plannic.model.Tutoria;
+import br.com.plannic.service.AlunoService;
+import br.com.plannic.service.TutorService;
 import br.com.plannic.service.TutoriaService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
@@ -15,10 +19,90 @@ import javax.validation.Valid;
 public class TutoriaController {
 
     private TutoriaService tutoriaService;
+    private AlunoService alunoService;
+    private TutorService tutorService;
 
     @Autowired
-    public TutoriaController(TutoriaService tutoriaService) {
+    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService) {
         this.tutoriaService = tutoriaService;
+        this.alunoService = alunoService;
+        this.tutorService = tutorService;
+    }
+
+    @PostMapping("/aluno")
+    @ApiOperation(value = "Realiza o cadastro de alunos")
+    public ResponseEntity<Aluno> save(@Valid @RequestBody Aluno aluno){
+        try {
+            MDC.put("name", aluno.getIdAluno());
+            MDC.put("fluxo", "POST save");
+            alunoService.save(aluno);
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/aluno")
+    @ApiOperation(value = "Realiza a busca de todos os alunos")
+    public ResponseEntity getAlunos() {
+        try{
+            MDC.put("fluxo", "GET alunos");
+            return new ResponseEntity<>(alunoService.getAll(), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @DeleteMapping("/aluno/{id}")
+    @ApiOperation(value = "Realiza a deleção de alunos")
+    public ResponseEntity deleteAluno(@PathVariable("id") int id) {
+        try {
+            MDC.put("fluxo", "DELETE aluno");
+            if (alunoService.delete(id)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/tutor")
+    @ApiOperation(value = "Realiza o cadastro de tutores")
+    public ResponseEntity<Tutor> save(@Valid @RequestBody Tutor tutor){
+        try {
+            MDC.put("name", tutor.getIdTutor());
+            MDC.put("fluxo", "POST save");
+            tutorService.save(tutor);
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/tutor")
+    @ApiOperation(value = "Realiza a busca de todos os alunos")
+    public ResponseEntity getTutores() {
+        try{
+            MDC.put("fluxo", "GET tutores");
+            return new ResponseEntity<>(tutorService.getAll(), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @DeleteMapping("/tutor/{id}")
+    @ApiOperation(value = "Realiza a deleção de alunos")
+    public ResponseEntity deleteTutor(@PathVariable("id") int id) {
+        try {
+            MDC.put("fluxo", "DELETE aluno");
+            if (tutorService.delete(id)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/cadastro")
@@ -34,29 +118,22 @@ public class TutoriaController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
-    @PutMapping
-    @ApiOperation(value = "Realiza a atualização de tutorias")
-    public ResponseEntity update(@RequestBody Tutoria tutoria) {
-        try {
-            MDC.put("tutoria_id", tutoria.getIdTutoria());
-            MDC.put("tutor_id", tutoria.getUsuarioTutor());
-            MDC.put("aluno_id", tutoria.getUsuarioAluno());
-            MDC.put("fluxo", "PUT update");
-            if(tutoriaService.update(tutoria)) {
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
-        }finally{
+    @GetMapping("/cadastro")
+    @ApiOperation(value = "Realiza a busca de todos os alunos")
+    public ResponseEntity getTutorias() {
+        try{
+            MDC.put("fluxo", "GET tutorias");
+            return new ResponseEntity<>(tutoriaService.getAll(), HttpStatus.OK);
+        }finally {
             MDC.clear();
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation(value = "Realiza a deleção de tutorias")
-    public ResponseEntity delete(@PathVariable("id") int id) {
+    @DeleteMapping("/cadastro/{id}")
+    @ApiOperation(value = "Realiza a deleção de alunos")
+    public ResponseEntity deleteTutoria(@PathVariable("id") int id) {
         try {
-            MDC.put("fluxo", "DELETE delete");
+            MDC.put("fluxo", "DELETE aluno");
             if (tutoriaService.delete(id)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
@@ -66,38 +143,4 @@ public class TutoriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping
-    @ApiOperation(value = "Realiza a busca de todas as tutorias")
-    public ResponseEntity getAll() {
-        try{
-            MDC.put("fluxo", "GET tutorias");
-            return new ResponseEntity<>(tutoriaService.getAll(), HttpStatus.OK);
-        }finally {
-            MDC.clear();
-        }
-    }
-
-    //Tutor
-    @GetMapping("tutor/{id}")
-    @ApiOperation(value = "Realiza a busca de tutorias do usuário")
-    public ResponseEntity getTutor(@PathVariable("id") int id) {
-        try{
-            MDC.put("fluxo", "GET tutoria");
-            return new ResponseEntity<>(tutoriaService.getTutor(id), HttpStatus.OK);
-        }finally {
-            MDC.clear();
-        }
-    }
-
-    //Tutor
-    @GetMapping("aluno/{id}")
-    @ApiOperation(value = "Realiza a busca de tutorias como aluno")
-    public ResponseEntity getAluno(@PathVariable("id") int id) {
-        try{
-            MDC.put("fluxo", "GET aluno");
-            return new ResponseEntity<>(tutoriaService.getAluno(id), HttpStatus.OK);
-        }finally {
-            MDC.clear();
-        }
-    }
 }

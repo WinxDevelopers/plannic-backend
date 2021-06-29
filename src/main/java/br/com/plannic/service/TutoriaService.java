@@ -103,4 +103,32 @@ public class TutoriaService {
         }
         return Collections.emptyList();
     }
+
+    public List<Tutoria> getTutoresDisponiveis(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByTutores(id));
+
+        if (!tutoria.isEmpty()) {
+            logger.info("Tutores recuperados");
+            return tutoria
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutoria.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public List<Tutoria> getAlunosDisponiveis(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByAlunos(id));
+
+        if (!tutoria.isEmpty()) {
+            logger.info("Alunos recuperados");
+            return tutoria
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutoria.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 }
