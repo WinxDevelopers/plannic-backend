@@ -9,15 +9,9 @@ import org.springframework.stereotype.Repository;
 public interface TutoriaRepository extends JpaRepository<Tutoria,Integer> {
     Tutoria findById(int id);
 
-    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioAluno IS NOT NULL AND  u.idUsuarioTutor = ?1")
+    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioTutor = ?1")
         Tutoria findByIdUsuarioTutor(Integer idUsuarioTutor);
 
-    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioAluno = ?1 AND  u.idUsuarioTutor IS NOT NULL")
+    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioAluno = ?1")
         Tutoria findByIdUsuarioAluno(Integer idUsuarioAluno);
-
-    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioAluno IS NOT NULL AND  u.idUsuarioTutor IS NULL AND u.idUsuarioAluno <> ?1")
-        Tutoria findByAlunos(Integer idUsuarioAluno);
-
-    @Query("SELECT u FROM Tutoria u WHERE u.idUsuarioAluno IS NULL AND  u.idUsuarioTutor IS NOT NULL AND u.idUsuarioTutor <> ?1")
-        Tutoria findByTutores(Integer idUsuarioTutor);
 }
