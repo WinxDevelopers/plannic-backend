@@ -4,6 +4,7 @@ import br.com.plannic.model.Materia;
 import br.com.plannic.model.MateriaBase;
 import br.com.plannic.model.SugestoesMateria;
 import br.com.plannic.service.MateriaService;
+import br.com.plannic.service.MaterialService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,12 @@ import javax.validation.Valid;
 public class MateriaController {
 
     private MateriaService materiaService;
+    private MaterialService materialService;
 
     @Autowired
-    public MateriaController(MateriaService materiaService) {
+    public MateriaController(MateriaService materiaService, MaterialService materialService) {
         this.materiaService = materiaService;
+        this.materialService = materialService;
     }
 
     @PostMapping("/cadastro")

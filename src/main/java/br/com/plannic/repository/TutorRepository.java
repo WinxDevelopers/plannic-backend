@@ -6,13 +6,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TutorRepository extends JpaRepository<Tutor,Integer> {
     Tutor findById(int id);
 
     @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor <> ?1 AND u.idMateriaBase = ?2")
-        Tutor findByIdMateriaBase(Integer id, Integer idMateriaBase);
+        List<Tutor> findByIdMateriaBase(Integer id, Integer idMateriaBase);
 
     @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor = ?1 AND u.idMateriaBase = ?2")
-        Tutor findByTutoria(Integer id, Integer idMateriaBase);
+        List<Tutor> findByTutoria(Integer id, Integer idMateriaBase);
+
+    @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor = ?1 AND u.idMateriaBase = ?2")
+        Tutor findByTutoriaUnique(Integer id, Integer idMateriaBase);
 }

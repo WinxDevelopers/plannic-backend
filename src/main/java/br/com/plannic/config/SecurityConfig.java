@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro*","/usuario/verify*", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao","/swagger-ui.html/*","/swagger-ui.html","/swagger-ui.html*", "/notasMateria/notasvstipo/{idusuario}", "/notasMateria/horasvsnota/{idusuario}", "/tutoria/**"," / v2 / api-docs " ,
+        http.csrf().disable().cors().and().authorizeRequests().antMatchers("/authenticate/**","/usuario/cadastro*","/usuario/verify*", "/materia/cadastro", "/usuario", "/agendamento/cadastro", "/notasMateria/cadastro", "/materia", "/notasMateria", "agendamento", "/materia/{id}", "/notasMateria/{id}", "/usuario/{id}", "/agendamento/{id}", "/usuario/redefinicao","/swagger-ui.html/*","/swagger-ui.html","/swagger-ui.html*", "/notasMateria/notasvstipo/{idusuario}", "/notasMateria/horasvsnota/{idusuario}", "/tutoria/**","/material/**"," / v2 / api-docs " ,
                 "/swagger-resources/**",
                 "/swagger-ui.html",
                 "/v2/api-docs",

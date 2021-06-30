@@ -76,7 +76,7 @@ public class AlunoService {
 
     public List<Aluno> getByMateria(int id, int idMateria) {
         ModelMapper mapper = new ModelMapper();
-        Optional<Aluno> alunos = Optional.ofNullable(this.repository.findByIdMateriaBase(id, idMateria));
+        List<Aluno> alunos = this.repository.findByIdMateriaBase(id, idMateria);
 
         if (!alunos.isEmpty()) {
             logger.info("Alunos recuperados");
@@ -89,7 +89,7 @@ public class AlunoService {
     }
 
     public boolean deleteAfterTutoria(int id, int idMateria) {
-        Aluno aluno = this.repository.findByTutoria(id, idMateria);
+        Aluno aluno = this.repository.findByTutoriaUnique(id, idMateria);
 
         if (aluno.getIdAluno() != 0) {
             logger.info("Aluno deletado");
