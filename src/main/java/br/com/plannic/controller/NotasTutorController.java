@@ -19,7 +19,7 @@ public class NotasTutorController {
     @PostMapping
     public ResponseEntity<NotasTutor> save(@Valid @RequestBody NotasTutor notasTutor){
         try {
-            MDC.put("Id user", notasTutor.getIdUsuario());
+            MDC.put("notaTuto_id", notasTutor.getNotaTutor());
             MDC.put("fluxo", "POST save");
             notasTutorService.save(notasTutor);
         }finally{
@@ -32,8 +32,8 @@ public class NotasTutorController {
     @PutMapping
     public ResponseEntity update(@RequestBody NotasTutor notasTutor) {
         try {
-            MDC.put("user_id", notasTutor.getIdUsuario());
-            MDC.put("nota", notasTutor.getIdNotaUsuario());
+            MDC.put("notaTutor_id", notasTutor.getIdNotaTutor());
+            MDC.put("nota", notasTutor.getNotaTutor());
             MDC.put("fluxo", "PUT update");
             if(notasTutorService.update(notasTutor)) {
                 return new ResponseEntity<>(HttpStatus.OK);
