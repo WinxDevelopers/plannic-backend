@@ -100,4 +100,15 @@ public class MaterialController {
             MDC.clear();
         }
     }
+
+    @GetMapping("/download/{idMaterial}")
+    @ApiOperation(value = "Realiza a busca de material por id")
+    public ResponseEntity getMaterialById(@PathVariable("idMaterial") int idMaterial) {
+        try{
+            MDC.put("fluxo", "GET material por matéria");
+            return new ResponseEntity<>(materialService.getMaterialById(idMaterial), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
 }

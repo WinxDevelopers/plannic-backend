@@ -1,8 +1,6 @@
 package br.com.plannic.service;
 
-import br.com.plannic.model.Materia;
 import br.com.plannic.model.Material;
-import br.com.plannic.model.Tutor;
 import br.com.plannic.repository.MaterialRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
@@ -96,5 +94,11 @@ public class MaterialService {
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    public Material getMaterialById(int idMaterial) {
+        Material material = this.repository.findById(idMaterial);
+
+        return material;
     }
 }
