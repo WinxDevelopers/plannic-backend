@@ -145,7 +145,6 @@ public class MateriaController {
                             materiaService.atualizarMateriaAceita(sugestoesmateria, novaMateria);
                             materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
                         } else {
-                            materiaService.atualizarMateriaRecusada(sugestoesmateria);
                             materiaService.deleteSugestaoMateria(sugestoesmateria.getIdSugestoesMateria());
                         }
                     }
