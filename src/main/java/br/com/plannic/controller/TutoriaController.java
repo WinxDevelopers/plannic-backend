@@ -1,9 +1,11 @@
 package br.com.plannic.controller;
 
 import br.com.plannic.model.Aluno;
+import br.com.plannic.model.NotasUsuario;
 import br.com.plannic.model.Tutor;
 import br.com.plannic.model.Tutoria;
 import br.com.plannic.service.AlunoService;
+import br.com.plannic.service.NotasUsuarioService;
 import br.com.plannic.service.TutorService;
 import br.com.plannic.service.TutoriaService;
 import io.swagger.annotations.ApiOperation;
@@ -21,12 +23,14 @@ public class TutoriaController {
     private TutoriaService tutoriaService;
     private AlunoService alunoService;
     private TutorService tutorService;
+    private NotasUsuarioService notasUsuarioService;
 
     @Autowired
-    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService) {
+    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService, NotasUsuarioService notasUsuarioService) {
         this.tutoriaService = tutoriaService;
         this.alunoService = alunoService;
         this.tutorService = tutorService;
+        this.notasUsuarioService = notasUsuarioService;
     }
 
     @PostMapping("/aluno")
@@ -136,6 +140,18 @@ public class TutoriaController {
             tutoriaService.save(tutoria);
             alunoService.deleteAfterTutoria(tutoria.getIdUsuarioAluno(), tutoria.getIdMateriaBase());
             tutorService.deleteAfterTutoria(tutoria.getIdUsuarioTutor(), tutoria.getIdMateriaBase());
+                NotasUsuario notasUsuarioTutor = new NotasUsuario();
+                notasUsuarioTutor.setIdAvalia(tutoria.getIdUsuarioAluno());
+                notasUsuarioTutor.setIdAvaliado(tutoria.getIdUsuarioTutor());
+                notasUsuarioTutor.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioTutor.setAtivo(false);
+            notasUsuarioService.save(notasUsuarioTutor);
+                NotasUsuario notasUsuarioAluno = new NotasUsuario();
+                notasUsuarioAluno.setIdAvalia(tutoria.getIdUsuarioTutor());
+                notasUsuarioAluno.setIdAvaliado(tutoria.getIdUsuarioAluno());
+                notasUsuarioAluno.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioAluno.setAtivo(false);
+            notasUsuarioService.save(notasUsuarioAluno);
         }finally{
             MDC.clear();
         }
@@ -153,12 +169,13 @@ public class TutoriaController {
         }
     }
 
-    @DeleteMapping("/cadastro/{id}")
+    @DeleteMapping("/cadastro/{idUsuario}/{idTutoria}")
     @ApiOperation(value = "Realiza a deleção de tutorias")
-    public ResponseEntity deleteTutoria(@PathVariable("id") int id) {
+    public ResponseEntity deleteTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
         try {
-            MDC.put("fluxo", "DELETE aluno");
-            if (tutoriaService.delete(id)) {
+            MDC.put("fluxo", "DELETE tutoria");
+            if (tutoriaService.delete(idTutoria)) {
+                notasUsuarioService.ativa(idUsuario, idTutoria);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{

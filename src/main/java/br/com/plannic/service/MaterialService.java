@@ -18,7 +18,7 @@ public class MaterialService {
 
     private final MaterialRepository repository;
 
-    private static Logger logger = Logger.getLogger(MateriaService.class);
+    private static Logger logger = Logger.getLogger(MaterialService.class);
 
     public MaterialService(MaterialRepository repository) {
         this.repository = repository;

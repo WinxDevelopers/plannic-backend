@@ -1,7 +1,6 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.Tutoria;
-import br.com.plannic.model.UsuarioFuncao;
 import br.com.plannic.repository.TutoriaRepository;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
