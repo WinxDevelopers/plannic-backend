@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/materia")
@@ -29,7 +30,7 @@ public class MateriaController {
 
     @PostMapping("/cadastro")
     @ApiOperation(value = "Realiza o cadastro de materias")
-    public ResponseEntity<Materia> save(@Valid @RequestBody Materia materia){
+    public ResponseEntity<?> save(@Valid @RequestBody Materia materia){
         try {
             MDC.put("name", materia.getNomeMateria());
             MDC.put("fluxo", "POST save");
@@ -37,7 +38,9 @@ public class MateriaController {
         }finally{
             MDC.clear();
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        HashMap jsonMessage= new HashMap();
+        jsonMessage.put("idMateria", materia.getIdMateria());
+        return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -84,7 +87,7 @@ public class MateriaController {
     // Matéria Base
     @PostMapping("/cadastro/base")
     @ApiOperation(value = "Realiza o cadastro de materias base")
-    public ResponseEntity<MateriaBase> saveBase(@Valid @RequestBody MateriaBase materiaBase){
+    public ResponseEntity<?> saveBase(@Valid @RequestBody MateriaBase materiaBase){
         try {
             MDC.put("name", materiaBase.getMateriaBase());
             MDC.put("fluxo", "POST save");
@@ -92,7 +95,9 @@ public class MateriaController {
         }finally{
             MDC.clear();
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        HashMap jsonMessage= new HashMap();
+        jsonMessage.put("idMateria", materiaBase.getIdMateriaBase());
+        return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
     @GetMapping("/base")
@@ -109,7 +114,7 @@ public class MateriaController {
     // Sugestões
     @PostMapping("/cadastro/sugestoes")
     @ApiOperation(value = "Realiza a sugestao de uma nova materias")
-    public ResponseEntity<SugestoesMateria> save(@Valid @RequestBody SugestoesMateria sugestoesmateria){
+    public ResponseEntity<?> save(@Valid @RequestBody SugestoesMateria sugestoesmateria){
         try {
             MDC.put("name", sugestoesmateria.getNomeMateria());
             MDC.put("fluxo", "POST save");
@@ -118,7 +123,9 @@ public class MateriaController {
         }finally{
             MDC.clear();
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        HashMap jsonMessage= new HashMap();
+        jsonMessage.put("idMateria", sugestoesmateria.getIdSugestoesMateria());
+        return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
     @PutMapping("/sugestoes")
