@@ -14,7 +14,7 @@ public class FuncaoService {
 
     private final UsuarioFuncaoRepository repository;
 
-    private static Logger logger = Logger.getLogger(MateriaService.class);
+    private static Logger logger = Logger.getLogger(FuncaoService.class);
 
     public FuncaoService(UsuarioFuncaoRepository repository) {
         this.repository = repository;
