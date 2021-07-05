@@ -25,7 +25,7 @@ public class MateriaController {
     private final MateriaRepository repository;
 
     @Autowired
-    public MateriaController(MateriaService materiaService, MaterialService materialService) {
+    public MateriaController(MateriaService materiaService, MaterialService materialService, MateriaRepository repository) {
         this.materiaService = materiaService;
         this.materialService = materialService;
         this.repository = repository;
