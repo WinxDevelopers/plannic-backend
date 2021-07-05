@@ -21,11 +21,13 @@ public class MateriaController {
 
     private MateriaService materiaService;
     private MaterialService materialService;
+    private final MateriaRepository repository;
 
     @Autowired
     public MateriaController(MateriaService materiaService, MaterialService materialService) {
         this.materiaService = materiaService;
         this.materialService = materialService;
+        this.repository = repository;
     }
 
     @PostMapping("/cadastro")
@@ -124,7 +126,8 @@ public class MateriaController {
             MDC.clear();
         }
         HashMap jsonMessage= new HashMap();
-        jsonMessage.put("idMateria", sugestoesmateria.getIdSugestoesMateria());
+        Materia materia = repository.this.repository.findByIdSugestao(sugestoesmateria.getIdSugestoesMateria());
+        jsonMessage.put("idMateria", materia.getIdMateria());
         return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
