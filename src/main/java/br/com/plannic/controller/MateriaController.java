@@ -99,7 +99,8 @@ public class MateriaController {
             MDC.clear();
         }
         HashMap jsonMessage= new HashMap();
-        jsonMessage.put("idMateria", materiaBase.getIdMateriaBase());
+        Materia materia = this.repository.findByIdMateriaBase(materiaBase.getIdMateriaBase());
+        jsonMessage.put("idMateria", materia.getIdMateria());
         return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
@@ -127,7 +128,7 @@ public class MateriaController {
             MDC.clear();
         }
         HashMap jsonMessage= new HashMap();
-        Materia materia = repository.this.repository.findByIdSugestao(sugestoesmateria.getIdSugestoesMateria());
+        Materia materia = this.repository.findByIdSugestao(sugestoesmateria.getIdSugestoesMateria());
         jsonMessage.put("idMateria", materia.getIdMateria());
         return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
