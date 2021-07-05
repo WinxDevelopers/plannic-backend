@@ -5,6 +5,7 @@ import br.com.plannic.model.MateriaBase;
 import br.com.plannic.model.SugestoesMateria;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.MaterialService;
+import br.com.plannic.repository.MateriaRepository;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
