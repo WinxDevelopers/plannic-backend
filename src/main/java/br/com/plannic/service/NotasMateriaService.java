@@ -72,7 +72,7 @@ public class NotasMateriaService {
 
 
     public boolean update(NotasMateria notasMateria) {
-        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(notasMateria.getIdMateria()));
+        Optional<NotasMateria> notasMaterias = Optional.ofNullable(this.repository.findById(notasMateria.getIdNotaMateria()));
 
         if (notasMaterias.isPresent()) {
             logger.info("Nota da materia atualizado");
