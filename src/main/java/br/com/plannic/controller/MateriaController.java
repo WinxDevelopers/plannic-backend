@@ -5,6 +5,7 @@ import br.com.plannic.model.MateriaBase;
 import br.com.plannic.model.SugestoesMateria;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.MaterialService;
+import br.com.plannic.repository.MateriaRepository;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,13 @@ public class MateriaController {
 
     private MateriaService materiaService;
     private MaterialService materialService;
+    private final MateriaRepository repository;
 
     @Autowired
-    public MateriaController(MateriaService materiaService, MaterialService materialService) {
+    public MateriaController(MateriaService materiaService, MaterialService materialService, MateriaRepository repository) {
         this.materiaService = materiaService;
         this.materialService = materialService;
+        this.repository = repository;
     }
 
     @PostMapping("/cadastro")
@@ -96,7 +99,8 @@ public class MateriaController {
             MDC.clear();
         }
         HashMap jsonMessage= new HashMap();
-        jsonMessage.put("idMateria", materiaBase.getIdMateriaBase());
+        Materia materia = this.repository.findByIdMateriaBase(materiaBase.getIdMateriaBase());
+        jsonMessage.put("idMateria", materia.getIdMateria());
         return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
@@ -124,7 +128,8 @@ public class MateriaController {
             MDC.clear();
         }
         HashMap jsonMessage= new HashMap();
-        jsonMessage.put("idMateria", sugestoesmateria.getIdSugestoesMateria());
+        Materia materia = this.repository.findByIdSugestao(sugestoesmateria.getIdSugestoesMateria());
+        jsonMessage.put("idMateria", materia.getIdMateria());
         return new ResponseEntity<>(jsonMessage, HttpStatus.CREATED);
     }
 
