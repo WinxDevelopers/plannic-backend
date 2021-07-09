@@ -41,7 +41,7 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda","400", "prova", LocalTime.now(), LocalTime.now(),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -74,7 +74,7 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "400","prova", LocalTime.now(), LocalTime.now(),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -102,7 +102,7 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "400","prova", LocalTime.now(), LocalTime.now(),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -116,7 +116,7 @@ class AgendamentoServiceTest {
                         true
                 ));
 
-        Agendamento agendamento1 = new Agendamento(1, 2, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        Agendamento agendamento1 = new Agendamento(1, 2, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "400","prova", LocalTime.now(), LocalTime.now(),
                 new Usuario(
                         1,
                         "teste@teste.com",
@@ -149,7 +149,7 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+        Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "400","prova", LocalTime.now(), LocalTime.now(),
                 new Usuario(
                         1,
                         "teste@teste.com",
