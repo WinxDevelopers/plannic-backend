@@ -1,6 +1,8 @@
 package br.com.plannic.controller;
 
+import br.com.plannic.model.Materia;
 import br.com.plannic.model.Material;
+import br.com.plannic.repository.MateriaRepository;
 import br.com.plannic.service.MateriaService;
 import br.com.plannic.service.MaterialService;
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +20,13 @@ public class MaterialController {
 
     private MateriaService materiaService;
     private MaterialService materialService;
+    private MateriaRepository materiaRepository;
 
     @Autowired
-    public MaterialController(MateriaService materiaService, MaterialService materialService) {
+    public MaterialController(MateriaService materiaService, MaterialService materialService, MateriaRepository materiaRepository) {
         this.materiaService = materiaService;
         this.materialService = materialService;
+        this.materiaRepository = materiaRepository;
     }
 
     @PostMapping("/cadastro")
@@ -31,6 +35,8 @@ public class MaterialController {
         try {
             MDC.put("name", material.getIdMaterial());
             MDC.put("fluxo", "POST save");
+            Materia materia = this.materiaRepository.findById(material.getIdMateria());
+            material.setIdMateriaBase(materia.getIdMateriaBase());
             materialService.save(material);
         }finally{
             MDC.clear();
