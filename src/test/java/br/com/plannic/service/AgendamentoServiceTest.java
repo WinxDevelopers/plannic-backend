@@ -52,6 +52,7 @@ class AgendamentoServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "codteste",
                         true
                 ));
@@ -84,6 +85,7 @@ class AgendamentoServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "codteste",
                         true
                 ));
@@ -112,6 +114,7 @@ class AgendamentoServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "codteste",
                         true
                 ));
@@ -123,6 +126,7 @@ class AgendamentoServiceTest {
                         "teste123",
                         "teste",
                         LocalDateTime.now(),
+                        Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
@@ -156,6 +160,7 @@ class AgendamentoServiceTest {
                         "teste123",
                         "teste",
                         LocalDateTime.now(),
+                        Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),

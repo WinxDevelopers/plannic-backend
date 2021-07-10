@@ -156,7 +156,7 @@ public class UsuarioService {
         if (usuarios.isPresent()) {
             logger.info("Usuário atualizado");
             ModelMapper mapper = new ModelMapper();
-            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
+            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getTelegramUsuario(), usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
             repository.save(mapper.map(user, Usuario.class));
             return true;
         }

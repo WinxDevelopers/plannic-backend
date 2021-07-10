@@ -54,6 +54,7 @@ class NotasMateriaServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "teste",
                         true
                 ));
@@ -85,6 +86,7 @@ class NotasMateriaServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "teste",
                         true
                 ));
@@ -112,6 +114,7 @@ class NotasMateriaServiceTest {
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
+                        Collections.emptyList(),
                         "teste",
                         true
                 ));
@@ -123,6 +126,7 @@ class NotasMateriaServiceTest {
                         "teste123",
                         "teste",
                         LocalDateTime.now(),
+                        Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
@@ -156,6 +160,7 @@ class NotasMateriaServiceTest {
                         "teste123",
                         "teste",
                         LocalDateTime.now(),
+                        Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
                         Collections.emptyList(),
