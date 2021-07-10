@@ -36,8 +36,8 @@ public class NotificacaoService {
         TelegramBot bot = new TelegramBot(TOKEN);
         logger.info("começou o fluxo do telegram");
 
-        List<Agendamento> agendamentos = repository.findAllAgendamentosTelegram();
-        logger.info("pegou os agendamentos");
+         List<Agendamento> agendamentos = repository.findAllAgendamentosTelegram();
+        logger.info("pegou os agendamentos" + agendamentos.size());
 
         for (Agendamento agendamento : agendamentos) {
             logger.info("ta dentro do for");
@@ -58,7 +58,7 @@ public class NotificacaoService {
                         .replyMarkup(new ForceReply());
 
                 SendResponse sendResponse = bot.execute(request);
-                logger.info("Notificação enviada com sucesso.");
+                logger.info("Notificação enviada com sucesso. {}" + sendResponse.message() );
             }
         }
     }
