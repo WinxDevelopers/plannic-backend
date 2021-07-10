@@ -2,6 +2,7 @@ package br.com.plannic.service;
 
 import br.com.plannic.model.NotasUsuario;
 import br.com.plannic.model.TelegramUsuario;
+import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.NotasUsuarioRepository;
 import br.com.plannic.repository.TelegramUsuarioRepository;
 import org.apache.log4j.Logger;
@@ -35,17 +36,21 @@ public class TelegramUsuarioService {
         logger.info("id do telegram do usuário salvo");
     }
 
+    public TelegramUsuario findByIdUsuario(int email) {
+        return this.repository.findByIdUsuario(email);
+    }
 
+    public List<TelegramUsuario> findAll() {
+        ModelMapper mapper = new ModelMapper();
+        List<TelegramUsuario> telegramUsuarios = repository.findAll();
 
-//    public Double getNotaUsuario(int idAvaliado) {
-//        List<NotasUsuario> notasUsuarios = this.repository.findNotaUsuario(idAvaliado);
-//
-//        if (!notasUsuarios.isEmpty()) {
-//            logger.info("Notas do usuário recuperadas");
-//            return notasUsuarios
-//                    .stream()
-//                    .collect(Collectors.averagingDouble(NotasUsuario::getNota));
-//        }
-//        return Double.valueOf(0);
-//    }
+        if (!telegramUsuarios.isEmpty()) {
+            logger.info("Telegram Usuarios recuperados");
+            return telegramUsuarios
+                    .stream()
+                    .map(telegramUsuario -> mapper.map(telegramUsuarios, TelegramUsuario.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 }
