@@ -50,6 +50,8 @@ public class MaterialController {
         try {
             MDC.put("name", material.getNomeMaterial());
             MDC.put("fluxo", "PUT update");
+            Materia materia = this.materiaRepository.findById(material.getIdMateria());
+            material.setIdMateriaBase(materia.getIdMateriaBase());
             if(materialService.update(material)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
