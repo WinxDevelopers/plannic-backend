@@ -34,12 +34,15 @@ public class NotificacaoService {
     @Scheduled(cron = "0 * * * * *")
     public void sendMessage() {
         TelegramBot bot = new TelegramBot(TOKEN);
+        logger.info("começou o fluxo do telegram");
 
         List<Agendamento> agendamentos = repository.findAllAgendamentosTelegram();
+        logger.info("pegou os agendamentos");
 
         for (Agendamento agendamento : agendamentos) {
+            logger.info("ta dentro do for");
             if (agendamento.getUsuario().getTelegramUsuario().isEmpty()) {
-                logger.debug("Usuario não possui chat id registrado");
+                logger.info("Usuario não possui chat id registrado");
             } else {
                 String chatId = agendamento.getUsuario().getTelegramUsuario().stream().findFirst().get().getIdTelegram();
                 LocalTime horarioInicio = agendamento.getHoraInicio();
