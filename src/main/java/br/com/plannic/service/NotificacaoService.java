@@ -97,7 +97,7 @@ public class NotificacaoService {
                         "Aluno: <a href=\"tg://user?id=" + chatIdAluno + "\">Usuário Aluno</a>\n";
             } else {
                 message = "Uma nova tutoria da matéria " + nomeMateria + " foi iniciada.\n" +
-                        "Tutor: " + usernameTutor + "\n"+
+                        "Tutor: @" + usernameTutor + "\n"+
                         "Aluno: <a href=\"tg://user?id=" + chatIdAluno + "\">Usuário Aluno</a>\n";
             }
         } else {

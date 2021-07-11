@@ -88,6 +88,21 @@ public class AlunoService {
         return Collections.emptyList();
     }
 
+    public List<Aluno> getAlunos(int id) {
+        ModelMapper mapper = new ModelMapper();
+        List<Aluno> alunos = this.repository.findAlunos(id);
+
+        if (!alunos.isEmpty()) {
+            logger.info("Alunos recuperados");
+            return  alunos
+                    .stream()
+                    .map(aluno -> mapper.map(aluno, Aluno.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+
     public boolean deleteAfterTutoria(int id, int idMateria) {
         Aluno aluno = this.repository.findByTutoriaUnique(id, idMateria);
 

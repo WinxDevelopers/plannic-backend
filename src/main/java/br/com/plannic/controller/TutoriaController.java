@@ -81,6 +81,17 @@ public class TutoriaController {
         }
     }
 
+    @GetMapping("/aluno/{id}")
+    @ApiOperation(value = "Realiza a busca de todos os alunos ")
+    public ResponseEntity getAlunos(@PathVariable("id") int id) {
+        try {
+            MDC.put("fluxo", "GET alunos por matéria");
+            return new ResponseEntity<>(alunoService.getAlunos(id), HttpStatus.OK);
+        } finally {
+            MDC.clear();
+        }
+    }
+
     @PostMapping("/tutor")
     @ApiOperation(value = "Realiza o cadastro de tutores")
     public ResponseEntity<Tutor> save(@Valid @RequestBody Tutor tutor){
@@ -125,6 +136,17 @@ public class TutoriaController {
         try {
             MDC.put("fluxo", "GET tutores por matéria");
             return new ResponseEntity<>(tutorService.getByMateria(id, idMateria), HttpStatus.OK);
+        } finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/tutor/{id}")
+    @ApiOperation(value = "Realiza a busca de todos os tutores")
+    public ResponseEntity getTutores(@PathVariable("id") int id){
+        try {
+            MDC.put("fluxo", "GET tutores por matéria");
+            return new ResponseEntity<>(tutorService.getTutores(id), HttpStatus.OK);
         } finally {
             MDC.clear();
         }

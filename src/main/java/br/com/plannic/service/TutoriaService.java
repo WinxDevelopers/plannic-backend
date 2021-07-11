@@ -77,7 +77,7 @@ public class TutoriaService {
 
     public List<Tutoria> getTutor(int id) {
         ModelMapper mapper = new ModelMapper();
-        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByIdUsuarioTutor(id));
+        List<Tutoria> tutoria = this.repository.findByIdUsuarioTutor(id);
 
         if (!tutoria.isEmpty()) {
             logger.info("Tutor recuperado");
@@ -91,7 +91,7 @@ public class TutoriaService {
 
     public List<Tutoria> getAluno(int id) {
         ModelMapper mapper = new ModelMapper();
-        Optional<Tutoria> tutoria = Optional.ofNullable(this.repository.findByIdUsuarioAluno(id));
+        List <Tutoria> tutoria = this.repository.findByIdUsuarioAluno(id);
 
         if (!tutoria.isEmpty()) {
             logger.info("Aluno recuperado");
