@@ -26,6 +26,9 @@ public class TelegramUsuario {
     @Column(name = "idtelegram",unique = true)
     private String idTelegram;
 
+    @Column(name = "username",unique = true)
+    private String username;
+
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)

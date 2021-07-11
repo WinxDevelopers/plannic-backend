@@ -4,10 +4,7 @@ import br.com.plannic.model.Aluno;
 import br.com.plannic.model.NotasUsuario;
 import br.com.plannic.model.Tutor;
 import br.com.plannic.model.Tutoria;
-import br.com.plannic.service.AlunoService;
-import br.com.plannic.service.NotasUsuarioService;
-import br.com.plannic.service.TutorService;
-import br.com.plannic.service.TutoriaService;
+import br.com.plannic.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +21,15 @@ public class TutoriaController {
     private AlunoService alunoService;
     private TutorService tutorService;
     private NotasUsuarioService notasUsuarioService;
+    private NotificacaoService notificacaoService;
 
     @Autowired
-    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService, NotasUsuarioService notasUsuarioService) {
+    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService, NotasUsuarioService notasUsuarioService, NotificacaoService notificacaoService) {
         this.tutoriaService = tutoriaService;
         this.alunoService = alunoService;
         this.tutorService = tutorService;
         this.notasUsuarioService = notasUsuarioService;
+        this.notificacaoService = notificacaoService;
     }
 
     @PostMapping("/aluno")
@@ -138,6 +137,7 @@ public class TutoriaController {
             MDC.put("name", tutoria.getIdTutoria());
             MDC.put("fluxo", "POST save");
             tutoriaService.save(tutoria);
+            notificacaoService.sendTutoria(tutoria);
             alunoService.deleteAfterTutoria(tutoria.getIdUsuarioAluno(), tutoria.getIdMateriaBase());
             tutorService.deleteAfterTutoria(tutoria.getIdUsuarioTutor(), tutoria.getIdMateriaBase());
                 NotasUsuario notasUsuarioTutor = new NotasUsuario();
