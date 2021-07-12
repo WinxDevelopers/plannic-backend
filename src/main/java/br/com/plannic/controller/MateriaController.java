@@ -122,7 +122,7 @@ public class MateriaController {
         try {
             MDC.put("name", sugestoesmateria.getNomeMateria());
             MDC.put("fluxo", "POST save");
-            sugestoesmateria.setFaltaVotar("1_2_3_10_11");
+            sugestoesmateria.setFaltaVotar("10_11_22_23_26");
             materiaService.saveSugestaoMateria(sugestoesmateria);
         }finally{
             MDC.clear();

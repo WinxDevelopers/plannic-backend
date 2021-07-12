@@ -142,14 +142,6 @@ public class MateriaService {
         }
     }
 
-    public void atualizarMateriaRecusada(SugestoesMateria sugestoesMateria) {
-        Materia materia = this.repository.findByIdSugestao(sugestoesMateria.getIdSugestoesMateria());
-        if (materia.getIdMateria() != 0) {
-            logger.info("Materia Excluída");
-            repository.deleteById(materia.getIdMateria());
-        }
-    }
-
     public List<SugestoesMateria> getAllSugestoes() {
         ModelMapper mapper = new ModelMapper();
         List<SugestoesMateria> materias = sugestoesMateriaRepository.findAll();
