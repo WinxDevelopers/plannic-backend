@@ -118,6 +118,15 @@ public class MateriaService {
             save(materia);
     }
 
+    public int saveSugestao(SugestoesMateria sugestoesmateria) {
+        ModelMapper mapper = new ModelMapper();
+        var sugestaoSalva = sugestoesMateriaRepository.save(mapper.map(sugestoesmateria, SugestoesMateria.class));
+        MDC.put("sugestaoMateria_id", sugestaoSalva.getIdSugestoesMateria());
+        logger.info("Sugestão salva");
+
+        return sugestaoSalva.getIdSugestoesMateria();
+    }
+
     public boolean updateSugestaoMateria(SugestoesMateria sugestoesmateria) {
         Optional<SugestoesMateria> sugestoes = Optional.ofNullable(this.sugestoesMateriaRepository.findById(sugestoesmateria.getIdSugestoesMateria()));
 
