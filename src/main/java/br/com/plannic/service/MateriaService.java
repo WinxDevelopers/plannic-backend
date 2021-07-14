@@ -118,6 +118,15 @@ public class MateriaService {
             save(materia);
     }
 
+    public int saveSugestao(SugestoesMateria sugestoesmateria) {
+        ModelMapper mapper = new ModelMapper();
+        var sugestaoSalva = sugestoesMateriaRepository.save(mapper.map(sugestoesmateria, SugestoesMateria.class));
+        MDC.put("sugestaoMateria_id", sugestaoSalva.getIdSugestoesMateria());
+        logger.info("Sugestão salva");
+
+        return sugestaoSalva.getIdSugestoesMateria();
+    }
+
     public boolean updateSugestaoMateria(SugestoesMateria sugestoesmateria) {
         Optional<SugestoesMateria> sugestoes = Optional.ofNullable(this.sugestoesMateriaRepository.findById(sugestoesmateria.getIdSugestoesMateria()));
 
@@ -139,14 +148,6 @@ public class MateriaService {
             materia.setIdMateriaBase(materiaBase.getIdMateriaBase());
             materia.setIdSugestao(0);
             repository.save(mapper.map(materia, Materia.class));
-        }
-    }
-
-    public void atualizarMateriaRecusada(SugestoesMateria sugestoesMateria) {
-        Materia materia = this.repository.findByIdSugestao(sugestoesMateria.getIdSugestoesMateria());
-        if (materia.getIdMateria() != 0) {
-            logger.info("Materia Excluída");
-            repository.deleteById(materia.getIdMateria());
         }
     }
 

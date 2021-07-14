@@ -88,6 +88,20 @@ public class TutorService {
         return Collections.emptyList();
     }
 
+    public List<Tutor> getTutores(int id) {
+        ModelMapper mapper = new ModelMapper();
+        List<Tutor> tutores = this.repository.findTutores(id);
+
+        if (!tutores.isEmpty()) {
+            logger.info("Tutores recuperados");
+            return  tutores
+                    .stream()
+                    .map(tutor -> mapper.map(tutor, Tutor.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
     public boolean deleteAfterTutoria(int id, int idMateria) {
         Tutor tutor = this.repository.findByTutoriaUnique(id, idMateria);
 

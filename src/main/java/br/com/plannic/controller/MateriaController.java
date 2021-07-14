@@ -52,8 +52,19 @@ public class MateriaController {
         try {
             MDC.put("name", materia.getDescricao());
             MDC.put("fluxo", "PUT update");
-            if(materiaService.update(materia)) {
-                return new ResponseEntity<>(HttpStatus.OK);
+            if(materia.getIdMateriaBase() == 0) {
+                SugestoesMateria sugestoesMateria = new SugestoesMateria(materia.getNomeMateria());
+                sugestoesMateria.setIdUsuario(materia.getIdUsuario());
+                sugestoesMateria.setFaltaVotar("10_11_22_23_26");
+                materia.setIdSugestao(materiaService.saveSugestao(sugestoesMateria));
+                if(materiaService.update(materia)) {
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+            } else {
+                materia.setIdSugestao(0);
+                if(materiaService.update(materia)) {
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
             }
         }finally{
             MDC.clear();
@@ -122,7 +133,7 @@ public class MateriaController {
         try {
             MDC.put("name", sugestoesmateria.getNomeMateria());
             MDC.put("fluxo", "POST save");
-            sugestoesmateria.setFaltaVotar("1_2_3_10_11");
+            sugestoesmateria.setFaltaVotar("10_11_22_23_26");
             materiaService.saveSugestaoMateria(sugestoesmateria);
         }finally{
             MDC.clear();
