@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.core.userdetails.User;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,9 @@ class CustomUserDetailsServiceTest {
 
     @Mock
     UsuarioService usuarioService;
+
+    @Mock
+    UsuarioRepository repository;
 
 
     @Mock
@@ -70,9 +74,10 @@ class CustomUserDetailsServiceTest {
         String url = "google.com.br";
 
         Mockito.doNothing().when(usuarioService).save(usuario,url);
+        when(repository.findByEmail(usuario.getEmail())).thenReturn(usuario);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
+        User user = (User) customUserDetailsService.loadUserByUsername(usuario.getEmail());
 
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
+        assertThat(user.getUsername()).isEqualTo("usuarioteste@gmail.com");
     }
 }

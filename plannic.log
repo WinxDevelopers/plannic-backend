@@ -1727,65 +1727,174 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 26 mar 2021 16:42:27,619 0    [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
 26 mar 2021 16:51:06,886 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
 26 mar 2021 16:55:32,595 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:00:35,488 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:00:57,467 21979 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
-27 jun. 2021 21:01:17,260 41772 [http-nio-8080-exec-5] INFO  AuthenticateController  - Autenticando o usuário.
-27 jun. 2021 21:02:26,516 111028 [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:03:05,899 150411 [http-nio-8080-exec-1] INFO  MateriaService  - Função de usuário salva
-27 jun. 2021 21:04:22,206 226718 [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
-27 jun. 2021 21:04:24,332 228844 [http-nio-8080-exec-5] INFO  UsuarioService  - Usuário recuperado
-27 jun. 2021 21:04:36,255 240767 [http-nio-8080-exec-10] INFO  MateriaService  - Materia salva
-27 jun. 2021 21:04:37,595 242107 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
-27 jun. 2021 21:05:03,128 267640 [http-nio-8080-exec-8] INFO  UsuarioService  - Usuário recuperado
-27 jun. 2021 21:05:03,510 268022 [http-nio-8080-exec-5] INFO  MateriaService  - Materias recuperadas
-27 jun. 2021 21:05:42,093 306605 [http-nio-8080-exec-1] INFO  MateriaService  - Materia salva
-27 jun. 2021 21:05:43,537 308049 [http-nio-8080-exec-4] INFO  UsuarioService  - Usuário recuperado
-27 jun. 2021 21:05:44,063 308575 [http-nio-8080-exec-8] INFO  MateriaService  - Materias recuperadas
-27 jun. 2021 21:10:11,562 0    [http-nio-8080-exec-3] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:10:22,579 11017 [http-nio-8080-exec-3] INFO  MateriaService  - Função de usuário salva
-27 jun. 2021 21:13:07,048 1    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:13:08,310 1263 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
-27 jun. 2021 21:17:35,073 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:18:34,699 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-27 jun. 2021 21:18:35,884 1185 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
-28 jun. 2021 12:38:13,540 0    [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário salvo
-28 jun. 2021 12:38:14,723 1183 [http-nio-8080-exec-2] INFO  MateriaService  - Função de usuário salva
-28 jun. 2021 12:41:47,725 0    [http-nio-8080-exec-4] INFO  AuthenticateController  - Autenticando o usuário.
-28 jun. 2021 12:41:50,962 3237 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
-28 jun. 2021 12:41:56,578 8853 [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado
-28 jun. 2021 12:41:56,608 8883 [http-nio-8080-exec-10] INFO  MateriaService  - Materias base recuperadas
-10 jul 2021 14:14:02,332 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:15:01,843 59511 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:16:01,820 119488 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:23:01,995 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:24:01,677 59682 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:26:36,354 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:28:12,843 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:30:02,161 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:31:02,000 59839 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:32:01,958 119797 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:33:01,978 179817 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:34:01,953 239792 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:35:01,985 299824 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:36:01,934 359773 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:37:01,916 419755 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:38:01,917 479756 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:39:01,933 539772 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:40:01,956 599795 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:41:01,924 659763 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:42:01,933 719772 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:43:01,955 779794 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:44:02,000 839839 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:48:22,717 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:50:02,220 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:51:01,915 59695 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:55:25,294 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 14:59:02,066 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:09:02,464 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:09:04,197 1733 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:10:02,085 59621 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:10:03,654 61190 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:12:16,737 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:12:38,035 21298 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:15:02,041 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
-10 jul 2021 15:16:01,838 59797 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+22 jun 2021 21:13:36,781 1    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:15:06,733 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:15:40,149 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:17:10,941 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:17:32,299 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:22:03,190 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:22:27,416 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:23:30,109 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:23:45,238 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:29:17,888 1    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:29:17,905 18   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:33:50,078 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:33:50,099 21   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:34:11,394 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:34:11,416 22   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:38:37,650 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:38:37,670 20   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:39:03,043 25393 [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:39:03,044 25394 [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:39:09,447 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:39:09,463 16   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:39:38,591 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:39:38,610 19   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:42:52,026 193435 [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:42:52,029 193438 [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:42:57,532 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:42:57,550 18   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:46:00,553 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:46:00,571 18   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:46:51,747 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:46:51,767 20   [main] ERROR AuthenticateController  - Erro na autenticação do usuário
+22 jun 2021 21:48:08,571 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:48:14,615 6044 [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:48:18,219 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 21:48:18,259 40   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 22:47:34,215 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 22:47:34,256 41   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 22:54:27,078 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 22:54:27,118 40   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 22:58:56,353 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 22:58:56,639 286  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:03:36,501 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:03:36,624 123  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:04:55,272 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:04:55,390 118  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:06:26,535 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:06:26,679 144  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:07:00,626 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:07:00,752 126  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:07:39,296 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:07:39,334 38   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:08:03,912 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:08:03,946 34   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:11:04,026 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:11:04,268 242  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:11:33,495 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:11:33,565 70   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:15:10,464 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:15:10,786 322  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+22 jun 2021 23:45:01,985 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:45:02,014 29   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:52:21,239 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:52:21,274 35   [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:58:38,769 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+22 jun 2021 23:58:38,888 119  [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:15:04,597 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:15:04,694 97   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:15:53,915 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:15:54,015 100  [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:17:21,365 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:17:21,466 101  [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:18:34,943 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:18:35,042 99   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:19:25,993 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:19:26,049 56   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:38:05,542 0    [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 00:38:34,698 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:38:34,775 77   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:38:34,888 190  [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 00:40:50,926 0    [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 00:40:56,681 0    [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 00:42:42,544 0    [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 00:44:21,192 0    [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 00:44:37,693 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:44:37,760 67   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 00:44:37,839 146  [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 00:44:37,842 149  [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 00:44:37,878 185  [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 00:44:37,884 191  [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 00:49:47,964 0    [main] INFO  MateriaService  - Materia deletada
+23 jun 2021 00:49:47,987 23   [main] INFO  MateriaService  - Materia atualizada
+23 jun 2021 00:49:48,063 99   [main] INFO  MateriaService  - Materias recuperadas
+23 jun 2021 00:49:48,067 103  [main] INFO  MateriaService  - Materia salva
+23 jun 2021 00:50:56,852 0    [main] INFO  MateriaService  - Materia deletada
+23 jun 2021 00:50:56,872 20   [main] INFO  MateriaService  - Materia atualizada
+23 jun 2021 00:50:56,921 69   [main] INFO  MateriaService  - Materias recuperadas
+23 jun 2021 00:50:56,927 75   [main] INFO  MateriaService  - Materia salva
+23 jun 2021 00:54:08,895 0    [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 00:54:08,919 24   [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 00:54:08,967 72   [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 00:54:08,973 78   [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 00:59:34,948 0    [main] INFO  NotasMateriaService  - Notas da materia deletada
+23 jun 2021 00:59:34,973 25   [main] INFO  NotasMateriaService  - Nota da materia atualizado
+23 jun 2021 00:59:35,040 92   [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+23 jun 2021 00:59:35,046 98   [main] INFO  NotasMateriaService  - Nota da materia salva
+23 jun 2021 01:10:07,719 0    [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:10:07,737 18   [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:10:07,786 67   [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:10:07,789 70   [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:10:18,814 0    [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:10:18,828 14   [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:10:18,866 52   [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:10:18,870 56   [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:10:42,455 0    [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:10:42,478 23   [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:10:42,522 67   [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:10:42,527 72   [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:10:57,622 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:10:57,696 74   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:10:57,776 154  [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:10:57,779 157  [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:10:57,821 199  [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:10:57,826 204  [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:10:57,880 258  [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 01:10:57,883 261  [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 01:10:57,891 269  [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 01:10:57,896 274  [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 01:10:59,059 1437 [main] INFO  NotasMateriaService  - Notas da materia deletada
+23 jun 2021 01:10:59,061 1439 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+23 jun 2021 01:10:59,069 1447 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+23 jun 2021 01:10:59,072 1450 [main] INFO  NotasMateriaService  - Nota da materia salva
+23 jun 2021 01:10:59,122 1500 [main] INFO  MateriaService  - Materia deletada
+23 jun 2021 01:10:59,125 1503 [main] INFO  MateriaService  - Materia atualizada
+23 jun 2021 01:10:59,132 1510 [main] INFO  MateriaService  - Materias recuperadas
+23 jun 2021 01:10:59,134 1512 [main] INFO  MateriaService  - Materia salva
+23 jun 2021 01:12:35,925 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:12:35,998 73   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:12:36,230 305  [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:12:36,238 313  [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:12:36,354 429  [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:12:36,362 437  [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:12:36,451 526  [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 01:12:36,460 535  [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 01:12:36,479 554  [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 01:12:36,484 559  [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 01:12:39,138 3213 [main] INFO  NotasMateriaService  - Notas da materia deletada
+23 jun 2021 01:12:39,141 3216 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+23 jun 2021 01:12:39,156 3231 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+23 jun 2021 01:12:39,163 3238 [main] INFO  NotasMateriaService  - Nota da materia salva
+23 jun 2021 01:12:39,319 3394 [main] INFO  MateriaService  - Materia deletada
+23 jun 2021 01:12:39,323 3398 [main] INFO  MateriaService  - Materia atualizada
+23 jun 2021 01:12:39,338 3413 [main] INFO  MateriaService  - Materias recuperadas
+23 jun 2021 01:12:39,347 3422 [main] INFO  MateriaService  - Materia salva
+23 jun 2021 01:13:25,980 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:13:26,040 60   [main] INFO  AuthenticateController  - Autenticando o usuário.
+23 jun 2021 01:13:26,113 133  [main] INFO  NotasTutorService  - Nota deletada
+23 jun 2021 01:13:26,117 137  [main] INFO  NotasTutorService  - Nota atualizado
+23 jun 2021 01:13:26,155 175  [main] INFO  NotasTutorService  - Notas recuperadas
+23 jun 2021 01:13:26,161 181  [main] INFO  NotasTutorService  - Nota salva
+23 jun 2021 01:13:26,210 230  [main] INFO  AgendamentoService  - Agendamento deletado
+23 jun 2021 01:13:26,212 232  [main] INFO  AgendamentoService  - agendamento atualizado
+23 jun 2021 01:13:26,219 239  [main] INFO  AgendamentoService  - agendamentos recuperados
+23 jun 2021 01:13:26,223 243  [main] INFO  AgendamentoService  - Agendamento salvo
+23 jun 2021 01:13:27,354 1374 [main] INFO  NotasMateriaService  - Notas da materia deletada
+23 jun 2021 01:13:27,358 1378 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+23 jun 2021 01:13:27,367 1387 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+23 jun 2021 01:13:27,371 1391 [main] INFO  NotasMateriaService  - Nota da materia salva
+23 jun 2021 01:13:27,432 1452 [main] INFO  MateriaService  - Materia deletada
+23 jun 2021 01:13:27,435 1455 [main] INFO  MateriaService  - Materia atualizada
+23 jun 2021 01:13:27,440 1460 [main] INFO  MateriaService  - Materias recuperadas
+23 jun 2021 01:13:27,444 1464 [main] INFO  MateriaService  - Materia salva

@@ -30,7 +30,6 @@ public class AgendamentoService {
         this.repository = repository;
     }
 
-
     public List<Agendamento> getAll() {
         ModelMapper mapper = new ModelMapper();
         List<Agendamento> agendamentos = repository.findAll();

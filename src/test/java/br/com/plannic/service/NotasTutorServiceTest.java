@@ -1,8 +1,10 @@
 package br.com.plannic.service;
 
 import br.com.plannic.model.Agendamento;
+import br.com.plannic.model.NotasMateria;
+import br.com.plannic.model.NotasTutor;
 import br.com.plannic.model.Usuario;
-import br.com.plannic.repository.AgendamentoRepository;
+import br.com.plannic.repository.NotasTutorRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,55 +16,54 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-class AgendamentoServiceTest {
+class NotasTutorServiceTest {
 
     @InjectMocks
-    AgendamentoService agendamentoService;
+    NotasTutorService notasTutorService;
 
     @Mock
-    AgendamentoRepository repository;
+    NotasTutorRepository repository;
 
-    public AgendamentoServiceTest() {
+    public NotasTutorServiceTest() {
         MockitoAnnotations.initMocks(this);
     }
 
-    List<Agendamento> listAgendamento = new ArrayList<>();
 
-    Agendamento agendamento = new Agendamento(1, 1, 1, new Date(2021 - 02 - 23), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+    List<NotasTutor> listNotas = new ArrayList<>();
+
+    NotasTutor notasTutor = new NotasTutor(
+            1, 1, 3, 2, "descricao", 1,
             new Usuario(
                     1,
                     "teste@teste.com",
                     "teste123",
                     "teste",
-
                     LocalDateTime.now(),
                     Collections.emptyList(),
                     Collections.emptyList(),
                     Collections.emptyList(),
-                    "codteste",
+                    "teste",
                     true
             ));
 
-    Agendamento agendamento1 = new Agendamento(1, 1, 1, new Date(2021 - 02 - 25), new Date(2021 - 02 - 24), "segunda", "prova", LocalTime.now(), LocalTime.now(),
+    NotasTutor notasTutor1 = new NotasTutor(
+            1, 1, 3, 5, "descricao", 1,
             new Usuario(
                     1,
                     "teste@teste.com",
                     "teste123",
                     "teste",
-
                     LocalDateTime.now(),
                     Collections.emptyList(),
                     Collections.emptyList(),
                     Collections.emptyList(),
-                    "codteste",
+                    "teste",
                     true
             ));
 
@@ -72,9 +73,9 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Mockito.when(repository.findAll()).thenReturn(listAgendamento);
+        Mockito.when(repository.findAll()).thenReturn(listNotas);
 
-        List<Agendamento> agendamentos = agendamentoService.getAll();
+        List<NotasTutor> notasTutor = notasTutorService.getAll();
 
     }
 
@@ -84,11 +85,11 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        listAgendamento.add(agendamento);
+        listNotas.add(notasTutor);
 
-        Mockito.when(repository.findAll()).thenReturn(listAgendamento);
+        Mockito.when(repository.findAll()).thenReturn(listNotas);
 
-        List<Agendamento> agendamentos = agendamentoService.getAll();
+        List<NotasTutor> notasTutors = notasTutorService.getAll();
 
     }
 
@@ -98,9 +99,9 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Mockito.when(repository.save(agendamento)).thenReturn(agendamento);
+        Mockito.when(repository.save(notasTutor)).thenReturn(notasTutor);
 
-        agendamentoService.save(agendamento);
+        notasTutorService.save(notasTutor);
 
     }
 
@@ -110,23 +111,12 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(agendamento);
+        Mockito.when(repository.findById(notasTutor.getIdUsuarioTutor())).thenReturn(java.util.Optional.ofNullable(notasTutor));
 
-        agendamentoService.update(agendamento1);
-
-    }
-
-    @Test
-    public void update_false() {
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(null);
-
-        agendamentoService.update(agendamento1);
+        notasTutorService.update(notasTutor);
 
     }
+
 
     @Test
     public void delete() {
@@ -134,25 +124,12 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(agendamento);
+        Mockito.when(repository.findById(notasTutor.getIdUsuarioTutor())).thenReturn(java.util.Optional.ofNullable(notasTutor));
 
-        Mockito.doNothing().when(repository).deleteById(agendamento.getIdAgendamento());
+        Mockito.doNothing().when(repository).deleteById(notasTutor.getIdUsuarioTutor());
 
-        agendamentoService.delete(agendamento.getIdAgendamento());
-
-    }
-
-    @Test
-    public void delete_false() {
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(null);
-
-        Mockito.doNothing().when(repository).deleteById(agendamento.getIdAgendamento());
-
-        agendamentoService.delete(agendamento.getIdAgendamento());
+        notasTutorService.delete(notasTutor);
 
     }
 }
+
