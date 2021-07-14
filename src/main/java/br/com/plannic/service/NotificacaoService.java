@@ -58,6 +58,7 @@ public class NotificacaoService {
                         .replyMarkup(new ForceReply());
 
                 SendResponse sendResponse = bot.execute(request);
+                sendResponse.isOk();
                 logger.info("Notificação enviada com sucesso. {}" + sendResponse.message() );
             }
         }
