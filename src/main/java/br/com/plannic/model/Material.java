@@ -12,36 +12,44 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "materia")
-public class Materia {
+@Table(name = "material")
+public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idmaterial")
+    private int idMaterial;
+
+    @Column(name = "idusuario")
+    private int idUsuario;
+
     @Column(name = "idmateria")
     private int idMateria;
 
     @Column(name = "idmateriabase")
     private int idMateriaBase;
 
-    @Column(name = "idsugestao")
-    private int idSugestao;
+    @Column(name = "nomematerial")
+    private String nomeMaterial;
 
-    @Column(name = "idusuario")
-    private int idUsuario;
+    @Column(name = "material")
+    private String material;
 
-    @Column(name = "materia")
-    private String nomeMateria;
+    @Column(name = "tipomaterial")
+    private String tipoMaterial;
 
-    @Column(name = "descricao")
-    private String descricao;
+    @Column(name="publico")
+    private boolean publico;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idmateria", insertable=false, updatable=false)
+    @JsonBackReference(value="idmateria")
+    private Materia materia;
 
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
     @JsonBackReference(value="idusuario")
     private Usuario usuario;
-
-    public Materia(String nomeMateria) {
-        this.nomeMateria=nomeMateria;
-    }
 }

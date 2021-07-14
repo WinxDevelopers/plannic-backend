@@ -1,6 +1,10 @@
 package br.com.plannic.service;
 
+import br.com.plannic.model.Funcao;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.model.UsuarioFuncao;
+import br.com.plannic.repository.FuncaoRepository;
+import br.com.plannic.repository.UsuarioFuncaoRepository;
 import br.com.plannic.repository.UsuarioRepository;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -20,7 +24,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,6 +39,9 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     private final UsuarioRepository repository;
+    private final UsuarioFuncaoRepository usuarioFuncaoRepository;
+    private final FuncaoRepository funcaoRepository;
+    private final FuncaoService funcaoService;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -46,8 +52,12 @@ public class UsuarioService {
     private static Logger logger = Logger.getLogger(UsuarioService.class);
 
 
-    public UsuarioService(UsuarioRepository repository) {
+    public UsuarioService(PasswordEncoder passwordEncoder, UsuarioRepository repository, UsuarioFuncaoRepository usuarioFuncaoRepository, FuncaoRepository funcaoRepository, FuncaoService funcaoService) {
+        this.passwordEncoder = passwordEncoder;
         this.repository = repository;
+        this.usuarioFuncaoRepository = usuarioFuncaoRepository;
+        this.funcaoRepository = funcaoRepository;
+        this.funcaoService = funcaoService;
     }
 
     public List<Usuario> getAll() {
@@ -91,6 +101,10 @@ public class UsuarioService {
 
         MDC.put("user_id", usuarioSalvo.getIdUsuario());
         logger.info("Usuário salvo");
+
+        Funcao funcao = funcaoRepository.findById(2);
+        UsuarioFuncao usuarioFuncao = new UsuarioFuncao(usuario.getIdUsuario(),funcao.getIdFuncao());
+        funcaoService.save(usuarioFuncao);
     }
 
     public void sendVerificationEmail(Usuario usuario, String url)
@@ -142,7 +156,7 @@ public class UsuarioService {
         if (usuarios.isPresent()) {
             logger.info("Usuário atualizado");
             ModelMapper mapper = new ModelMapper();
-            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
+            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getTelegramUsuario(), usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
             repository.save(mapper.map(user, Usuario.class));
             return true;
         }
@@ -195,5 +209,19 @@ public class UsuarioService {
 
     public Usuario findByEmail(String email) {
         return this.repository.findByEmail(email);
+    }
+
+    public List<UsuarioFuncao> getFuncao(int id) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<UsuarioFuncao> usuarioFuncao = Optional.ofNullable(this.usuarioFuncaoRepository.findByUsuario(repository.findByIdUsuario(id)));
+
+        if (!usuarioFuncao.isEmpty()) {
+            logger.info("Função recuperada");
+            return usuarioFuncao
+                    .stream()
+                    .map(funcao -> mapper.map(funcao, UsuarioFuncao.class))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 }

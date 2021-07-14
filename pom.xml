@@ -114,6 +114,11 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.pengrad</groupId>
+			<artifactId>java-telegram-bot-api</artifactId>
+			<version>5.2.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

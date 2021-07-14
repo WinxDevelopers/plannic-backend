@@ -39,6 +39,9 @@
         @Column(name = "recorrencia")
         private String recorrencia;
 
+        @Column(name = "temponotificacao")
+        private String tempoNotificacao;
+
         @Column(name = "tipoestudo")
         private String tipoEstudo;
 

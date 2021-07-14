@@ -11,42 +11,27 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "notastutor")
-public class NotasTutor {
+@Table(name = "aluno")
+public class Aluno {
 
     @Id
-    @GeneratedValue
-    @Column(name = "idnotatutor")
-    private int idNotaTutor;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idaluno")
+    private int idAluno;
 
     @Column(name = "idusuarioaluno")
     private int idUsuarioAluno;
 
-    @Column(name = "idusuariotutor")
-    private int idUsuarioTutor;
-
     @Column(name = "idmateriabase")
     private int idMateriaBase;
 
-    @Column(name = "notatutor")
-    private Integer notaTutor;
-
-    @Column(name = "descricaonota")
-    private String descricaoNota;
-
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
+    @JoinColumn(name = "idusuarioaluno", insertable=false, updatable=false)
     private Usuario usuarioAluno;
-
-    @ToString.Exclude
-    @ManyToOne
-    @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    private Usuario usuarioTutor;
 
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idmateriabase", insertable=false, updatable=false)
     private MateriaBase materiaBase;
-
 }

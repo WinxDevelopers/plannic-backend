@@ -1,42 +1,33 @@
 package br.com.plannic.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "notasmateria")
-public class NotasMateria {
+@Table(name = "telegramusuario")
+public class TelegramUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idnotamateria")
-    private int idNotaMateria;
+    @Column(name = "idtelegramusuario")
+    private int idTelegramUsuario;
 
-    @Column(name = "idmateria")
-    private int idMateria;
-
-    @Column(name = "idusuario")
+    @Column(name = "idusuario",unique = true)
     private int idUsuario;
 
-    @Column(name = "notamateria")
-    private Double notaMateria;
+    @Column(name = "idtelegram",unique = true)
+    private String idTelegram;
 
-    @Column(name = "tiponota")
-    private String tipoNota;
-
-    @Column(name = "datanota")
-    private Date dataNota;
+    @Column(name = "username",unique = true)
+    private String username;
 
     @ToString.Exclude
     @ManyToOne

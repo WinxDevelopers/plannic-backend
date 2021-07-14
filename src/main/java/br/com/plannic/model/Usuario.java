@@ -47,6 +47,10 @@ public class Usuario {
     @JsonIgnoreProperties("notasmateria")
     List<NotasMateria> notasMateria;
 
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("telegramUsuario")
+    List<TelegramUsuario> telegramUsuario;
+
     @Column(name = "codverifica", length = 64)
     private String CodVerifica;
 

@@ -16,7 +16,6 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
 @RestController
@@ -153,6 +152,18 @@ public class UsuarioController {
         try{
             MDC.put("fluxo", "GET usuarios");
             return new ResponseEntity<>(usuarioService.getUser(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    // Funções
+    @GetMapping("funcao/{id}")
+    @ApiOperation(value = "Realiza a busca da função do usuário")
+    public ResponseEntity getFuncao(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET função");
+            return new ResponseEntity<>(usuarioService.getFuncao(id), HttpStatus.OK);
         }finally {
             MDC.clear();
         }

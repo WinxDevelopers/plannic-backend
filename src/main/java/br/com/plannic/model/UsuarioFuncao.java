@@ -1,47 +1,45 @@
 package br.com.plannic.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "notasmateria")
-public class NotasMateria {
+@Table(name = "usuariofuncao")
+public class UsuarioFuncao {
 
     @Id
+    @Column(name = "idusuariofuncao")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idnotamateria")
-    private int idNotaMateria;
-
-    @Column(name = "idmateria")
-    private int idMateria;
+    private int idUsuarioFuncao;
 
     @Column(name = "idusuario")
     private int idUsuario;
 
-    @Column(name = "notamateria")
-    private Double notaMateria;
-
-    @Column(name = "tiponota")
-    private String tipoNota;
-
-    @Column(name = "datanota")
-    private Date dataNota;
+    @Column(name = "idfuncao")
+    private int idfuncao;
 
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "idusuario", insertable=false, updatable=false)
-    @JsonBackReference(value="idusuario")
+    @JsonBackReference(value="idusuariofuncao")
     private Usuario usuario;
 
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idfuncao", insertable=false, updatable=false)
+    @JsonBackReference(value="idfuncao")
+    private Funcao funcao;
+
+    public UsuarioFuncao(int idUsuario, int idfuncao) {
+        this.idUsuario = idUsuario;
+        this.idfuncao = idfuncao;
+    }
 }

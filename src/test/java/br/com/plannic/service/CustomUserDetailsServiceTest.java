@@ -68,6 +68,7 @@ class CustomUserDetailsServiceTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 "codteste",
                 true);
         String url = "google.com.br";
