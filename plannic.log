@@ -1789,3 +1789,31 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 10 jul 2021 15:12:38,035 21298 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
 10 jul 2021 15:15:02,041 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
 10 jul 2021 15:16:01,838 59797 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+14 jul 2021 20:29:33,152 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+14 jul 2021 20:29:33,314 162  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+14 jul 2021 20:29:36,164 3012 [main] INFO  AgendamentoService  - Agendamento deletado
+14 jul 2021 20:29:36,166 3014 [main] INFO  AgendamentoService  - agendamento atualizado
+14 jul 2021 20:29:36,225 3073 [main] INFO  AgendamentoService  - agendamentos recuperados
+14 jul 2021 20:29:36,227 3075 [main] INFO  AgendamentoService  - Agendamento salvo
+14 jul 2021 20:29:36,358 3206 [main] INFO  MateriaService  - Materia deletada
+14 jul 2021 20:29:36,361 3209 [main] INFO  MateriaService  - Materia atualizada
+14 jul 2021 20:29:36,367 3215 [main] INFO  MateriaService  - Materias recuperadas
+14 jul 2021 20:29:36,369 3217 [main] INFO  MateriaService  - Materia salva
+14 jul 2021 20:29:36,414 3262 [main] INFO  NotasMateriaService  - Notas da materia deletada
+14 jul 2021 20:29:36,415 3263 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+14 jul 2021 20:29:36,422 3270 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+14 jul 2021 20:29:36,425 3273 [main] INFO  NotasMateriaService  - Nota da materia salva
+14 jul 2021 20:33:09,683 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+14 jul 2021 20:33:09,748 65   [main] INFO  AuthenticateController  - Autenticando o usuário.
+14 jul 2021 20:33:09,825 142  [main] INFO  AgendamentoService  - Agendamento deletado
+14 jul 2021 20:33:09,828 145  [main] INFO  AgendamentoService  - agendamento atualizado
+14 jul 2021 20:33:09,875 192  [main] INFO  AgendamentoService  - agendamentos recuperados
+14 jul 2021 20:33:09,879 196  [main] INFO  AgendamentoService  - Agendamento salvo
+14 jul 2021 20:33:11,164 1481 [main] INFO  NotasMateriaService  - Notas da materia deletada
+14 jul 2021 20:33:11,167 1484 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+14 jul 2021 20:33:11,174 1491 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+14 jul 2021 20:33:11,177 1494 [main] INFO  NotasMateriaService  - Nota da materia salva
+14 jul 2021 20:33:11,243 1560 [main] INFO  MateriaService  - Materia deletada
+14 jul 2021 20:33:11,246 1563 [main] INFO  MateriaService  - Materia atualizada
+14 jul 2021 20:33:11,254 1571 [main] INFO  MateriaService  - Materias recuperadas
+14 jul 2021 20:33:11,258 1575 [main] INFO  MateriaService  - Materia salva

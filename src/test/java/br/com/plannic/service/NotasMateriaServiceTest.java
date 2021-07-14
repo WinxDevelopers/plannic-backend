@@ -1,10 +1,8 @@
 package br.com.plannic.service;
 
-import br.com.plannic.controller.AgendamentoController;
-import br.com.plannic.controller.NotasMateriaController;
-import br.com.plannic.model.Agendamento;
 import br.com.plannic.model.NotasMateria;
 import br.com.plannic.model.Usuario;
+import br.com.plannic.repository.NotasMateriaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,202 +10,148 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 class NotasMateriaServiceTest {
 
     @InjectMocks
-    NotasMateriaController notasMateriaController;
+    NotasMateriaService notasMateriaService;
 
     @Mock
-    NotasMateriaService notasMateriaService;
+    NotasMateriaRepository repository;
 
     public NotasMateriaServiceTest() {
         MockitoAnnotations.initMocks(this);
     }
 
+    List<NotasMateria> listNotas = new ArrayList<>();
+
+    NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
+            new Usuario(
+                    1,
+                    "teste@teste.com",
+                    "teste123",
+                    "teste",
+                    LocalDateTime.now(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    "teste",
+                    true
+            ));
+
+    NotasMateria notasMateria1 = new NotasMateria(1, 1, 1, 8.0, "p1", new Date(2021 - 02 - 23),
+            new Usuario(
+                    1,
+                    "teste@teste.com",
+                    "teste123",
+                    "teste",
+                    LocalDateTime.now(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    "teste",
+                    true
+            ));
+
     @Test
-    void getAll() {
+    public void getAll_exception() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
-                new Usuario(
-                        1,
-                        "teste@teste.com",
-                        "teste123",
-                        "teste",
-                        LocalDateTime.now(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "teste",
-                        true
-                ));
+        Mockito.when(repository.findAll()).thenReturn(listNotas);
 
-        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
+        List<NotasMateria> notasMaterias = notasMateriaService.getAll();
 
-        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
-
-        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
-
-        notasMateriaController.getAll();
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
     }
 
     @Test
-    void save() {
+    public void getAll_success() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
-                new Usuario(
-                        1,
-                        "teste@teste.com",
-                        "teste123",
-                        "teste",
-                        LocalDateTime.now(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "teste",
-                        true
-                ));
+        listNotas.add(notasMateria);
 
-        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
+        Mockito.when(repository.findAll()).thenReturn(listNotas);
 
-        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
+        List<NotasMateria> notasMaterias = notasMateriaService.getAll();
 
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
     }
 
     @Test
-    void update() {
+    public void save() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
-                new Usuario(
-                        1,
-                        "teste@teste.com",
-                        "teste123",
-                        "teste",
-                        LocalDateTime.now(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "teste",
-                        true
-                ));
+        Mockito.when(repository.save(notasMateria)).thenReturn(notasMateria);
 
-        NotasMateria notasMateria1 = new NotasMateria(1, 1, 1, 8.0, "p1", new Date(2021 - 02 - 23),
-                new Usuario(
-                        1,
-                        "teste@teste.com",
-                        "teste123",
-                        "teste",
-                        LocalDateTime.now(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "teste",
-                        true
-                ));
+        notasMateriaService.save(notasMateria);
 
-        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
-        Mockito.when(notasMateriaService.update(notasMateria1)).thenReturn(true);
-        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
-
-        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
-        ResponseEntity responseEntityAtualiza = notasMateriaController.update(notasMateria1);
-
-        notasMateriaController.getAll();
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-        assertThat(responseEntityAtualiza.getStatusCodeValue()).isEqualTo(200);
     }
 
     @Test
-    void delete() {
+    public void update() {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        NotasMateria notasMateria = new NotasMateria(1, 1, 1, 7.0, "p1", new Date(2021 - 02 - 23),
-                new Usuario(
-                        1,
-                        "teste@teste.com",
-                        "teste123",
-                        "teste",
-                        LocalDateTime.now(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "teste",
-                        true
-                ));
+        Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(notasMateria);
 
+        notasMateriaService.update(notasMateria1);
 
-        Mockito.doNothing().when(notasMateriaService).save(notasMateria);
-        Mockito.when(notasMateriaService.delete(1)).thenReturn(true);
-        Mockito.when(notasMateriaService.getAll()).thenReturn(Collections.emptyList());
-
-        ResponseEntity<NotasMateria> responseEntity = notasMateriaController.save(notasMateria);
-
-        ResponseEntity responseEntityDelete = notasMateriaController.delete(1);
-
-        notasMateriaController.getAll();
-
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-        assertThat(responseEntityDelete.getStatusCodeValue()).isEqualTo(200);
     }
 
     @Test
-    void buscaNotavsData() {
+    public void update_false() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(null);
+
+        notasMateriaService.update(notasMateria1);
+
     }
 
     @Test
-    void buscaMaior8() {
+    public void delete() {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(notasMateria);
+
+        Mockito.doNothing().when(repository).deleteById(notasMateria.getIdMateria());
+
+        notasMateriaService.delete(notasMateria.getIdMateria());
+
     }
 
     @Test
-    void buscaMenor4() {
-    }
+    public void delete_false() {
 
-    @Test
-    void buscaNotavsTipoList() {
-    }
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-    @Test
-    void notasVsTipoEstudo() {
-    }
+        Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(null);
 
-    @Test
-    void horasVsEstudo() {
-    }
+        Mockito.doNothing().when(repository).deleteById(notasMateria.getIdMateria());
 
-    @Test
-    void notasVsMateria() {
+        notasMateriaService.delete(notasMateria.getIdMateria());
+
     }
 }
