@@ -228,4 +228,26 @@ public class TutoriaController {
         }
     }
 
+    @GetMapping("/alunos/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getAlunosById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros aluno");
+            return new ResponseEntity<>(alunoService.getAlunosById(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/tutores/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getTutoresById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros tutor");
+            return new ResponseEntity<>(tutorService.getTutoresById(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
 }
