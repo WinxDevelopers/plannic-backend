@@ -206,6 +206,20 @@ public class TutoriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/cancela/{idUsuario}/{idTutoria}")
+    @ApiOperation(value = "Realiza a deleção de tutorias")
+    public ResponseEntity cancelaTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
+        try {
+            MDC.put("fluxo", "DELETE tutoria");
+            if (tutoriaService.delete(idTutoria)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/cadastro/aluno/{id}")
     @ApiOperation(value = "Realiza a busca de todas as tutorias em que o usuário é aluno")
     public ResponseEntity getTutoriasByAluno(@PathVariable("id") int id) {
