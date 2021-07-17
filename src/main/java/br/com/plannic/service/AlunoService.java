@@ -81,7 +81,6 @@ public class AlunoService {
     }
 
     public List<AlunoDTO> getByMateria(int id, int idMateria) {
-        ModelMapper mapper = new ModelMapper();
         List<Aluno> alunos = this.repository.findByIdMateriaBase(id, idMateria);
         List<AlunoDTO> list =  new ArrayList<>();
 
@@ -100,7 +99,6 @@ public class AlunoService {
     }
 
     public List<AlunoDTO> getAlunos(int id) {
-        ModelMapper mapper = new ModelMapper();
         List<Aluno> alunos = this.repository.findAlunos(id);
         List<AlunoDTO> list =  new ArrayList<>();
 
@@ -121,12 +119,13 @@ public class AlunoService {
     public boolean deleteAfterTutoria(int id, int idMateria) {
         Aluno aluno = this.repository.findByTutoriaUnique(id, idMateria);
 
-        if (aluno.getIdAluno() != 0) {
+        if (aluno != null) {
             logger.info("Aluno deletado");
             this.repository.deleteById(aluno.getIdAluno());
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public List<Aluno> getAlunosById(int id) {
