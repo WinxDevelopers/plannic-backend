@@ -117,7 +117,7 @@ public class TutorService {
     public boolean deleteAfterTutoria(int id, int idMateria) {
         Tutor tutor = this.repository.findByTutoriaUnique(id, idMateria);
 
-        if (tutor.getIdTutor() != 0) {
+        if (tutor != null) {
             logger.info("Tutor deletado");
             this.repository.deleteById(tutor.getIdTutor());
             return true;

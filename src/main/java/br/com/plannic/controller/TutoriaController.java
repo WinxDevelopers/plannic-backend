@@ -166,12 +166,14 @@ public class TutoriaController {
                 notasUsuarioTutor.setIdAvalia(tutoria.getIdUsuarioAluno());
                 notasUsuarioTutor.setIdAvaliado(tutoria.getIdUsuarioTutor());
                 notasUsuarioTutor.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioTutor.setIdMateriaBase(tutoria.getIdMateriaBase());
                 notasUsuarioTutor.setAtivo(false);
             notasUsuarioService.save(notasUsuarioTutor);
                 NotasUsuario notasUsuarioAluno = new NotasUsuario();
                 notasUsuarioAluno.setIdAvalia(tutoria.getIdUsuarioTutor());
                 notasUsuarioAluno.setIdAvaliado(tutoria.getIdUsuarioAluno());
                 notasUsuarioAluno.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioAluno.setIdMateriaBase(tutoria.getIdMateriaBase());
                 notasUsuarioAluno.setAtivo(false);
             notasUsuarioService.save(notasUsuarioAluno);
         }finally{
@@ -196,8 +198,7 @@ public class TutoriaController {
     public ResponseEntity deleteTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
         try {
             MDC.put("fluxo", "DELETE tutoria");
-            if (tutoriaService.delete(idTutoria)) {
-                notasUsuarioService.ativa(idUsuario, idTutoria);
+            if (notasUsuarioService.ativa(idUsuario, idTutoria) && tutoriaService.delete(idTutoria)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
