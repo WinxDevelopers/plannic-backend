@@ -92,6 +92,7 @@ public class NotasUsuarioService {
                                         nu.getIdAvaliado(),
                                         nu.getUsuarioAvaliado().getNome(),
                                         nu.getIdTutoria(),
+                                        nu.getMateriaBase().getIdMateriaBase(),
                                         nu.getMateriaBase().getMateriaBase(),
                                         nu.getNota()
                                         )

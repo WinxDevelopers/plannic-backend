@@ -12,6 +12,7 @@ public class NotasUsuarioDTO {
     private int idAvaliado;
     private String nomeAvaliado;
     private int idTutoria;
+    private int idMateriaBase;
     private String nomeMateria;
     private Double nota;
 }
