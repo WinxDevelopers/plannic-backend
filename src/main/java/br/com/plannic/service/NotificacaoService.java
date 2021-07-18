@@ -18,7 +18,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -56,9 +59,11 @@ public class NotificacaoService {
                 String chatId = agendamento.getUsuario().getTelegramUsuario().stream().findFirst().get().getIdTelegram();
                 LocalTime horarioInicio = agendamento.getHoraInicio();
                 LocalTime horarioFim = agendamento.getHoraFim();
+                SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+                String data = formatador.format(agendamento.getRecorrenciaInicio());
                 int idMateria = agendamento.getIdMateria();
                 String nomeMateria = agendamento.getUsuario().getMaterias().stream().filter(materia -> materia.getIdMateria() == idMateria).findFirst().get().getNomeMateria();
-                String message = "Você tem um agendamento de estudo para a matéria " + nomeMateria + " entre os horários " + horarioInicio + " e " + horarioFim + ".";
+                String message = "Você tem um agendamento de estudo para a matéria " + nomeMateria + " entre os horários " + horarioInicio + " e " + horarioFim + ", no dia " + data + ".";
 
                 SendMessage request = new SendMessage(chatId, message)
                         .parseMode(ParseMode.HTML)
