@@ -206,6 +206,20 @@ public class TutoriaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/cancela/{idUsuario}/{idTutoria}")
+    @ApiOperation(value = "Realiza a deleção de tutorias")
+    public ResponseEntity cancelaTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
+        try {
+            MDC.put("fluxo", "DELETE tutoria");
+            if (tutoriaService.delete(idTutoria)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/cadastro/aluno/{id}")
     @ApiOperation(value = "Realiza a busca de todas as tutorias em que o usuário é aluno")
     public ResponseEntity getTutoriasByAluno(@PathVariable("id") int id) {
@@ -223,6 +237,28 @@ public class TutoriaController {
         try{
             MDC.put("fluxo", "GET tutorias aluno");
             return new ResponseEntity<>(tutoriaService.getTutor(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/alunos/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getAlunosById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros aluno");
+            return new ResponseEntity<>(alunoService.getAlunosById(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/tutores/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getTutoresById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros tutor");
+            return new ResponseEntity<>(tutorService.getTutoresById(id), HttpStatus.OK);
         }finally {
             MDC.clear();
         }

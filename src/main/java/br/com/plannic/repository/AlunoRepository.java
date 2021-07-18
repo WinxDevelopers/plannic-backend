@@ -23,4 +23,6 @@ public interface AlunoRepository extends JpaRepository<Aluno,Integer> {
     @Query("SELECT u FROM Aluno u WHERE u.idUsuarioAluno = ?1 AND u.idMateriaBase = ?2")
         Aluno findByTutoriaUnique(Integer id, Integer idMateriaBase);
 
+    @Query("SELECT u FROM Aluno u WHERE u.idUsuarioAluno = ?1")
+        List<Aluno> findAlunosByIdUsuario(Integer id);
 }
