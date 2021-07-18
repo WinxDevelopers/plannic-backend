@@ -12,7 +12,7 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
     @Query(value = "" +
             "SELECT * " +
             "FROM public.agendamento a " +
-            "WHERE a.temponotificacao != 'N' and (a.horainicio - ((cast(a.temponotificacao as integer) / 60 ) * interval '1 minute')) = cast(to_timestamp(to_char(now(),'HH24:MI:00'),'HH24:MI:00')as time) ",
+            "WHERE a.temponotificacao != 'N' and recorrenciainicio = current_date and (a.horainicio - ((cast(a.temponotificacao as integer) / 60 ) * interval '1 minute')) = cast(to_timestamp(to_char(now(),'HH24:MI:00'),'HH24:MI:00')as time)",
             nativeQuery = true )
     List<Agendamento> findAllAgendamentosTelegram();
 }
