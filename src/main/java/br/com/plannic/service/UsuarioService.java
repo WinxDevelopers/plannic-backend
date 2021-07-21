@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -24,6 +25,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -136,6 +139,35 @@ public class UsuarioService {
 
     }
 
+    public void sendRedefinicaoSenha(Usuario usuario, String url)
+            throws MessagingException, IOException, TemplateException {
+        String toAddress = usuario.getEmail();
+        String fromAddress = "plannic@plannic.com.br";
+        String senderName = "Plannic";
+        String subject = "Plannic - Verificação de email";
+
+        Template template = config.getTemplate("redefinicaoSenha.ftl");
+        String verifyURL = url + "/usuario/verify?code=" + usuario.getCodVerifica();
+
+        Map<String,Object> model =new HashMap<>();
+        model.put("nome",usuario.getNome());
+        model.put("url",verifyURL);
+
+        String html = FreeMarkerTemplateUtils.processTemplateIntoString(template,model);
+
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        helper.setText(html, true);
+
+        javaMailSender.send(message);
+
+    }
+
     public boolean verify(String verificationCode) {
         Usuario user = repository.findByVerificationCode(verificationCode);
 
@@ -156,7 +188,7 @@ public class UsuarioService {
         if (usuarios.isPresent()) {
             logger.info("Usuário atualizado");
             ModelMapper mapper = new ModelMapper();
-            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(), usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
+            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(),usuario.getTokenReset(),usuario.getTokenCreationDate() ,usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
             repository.save(mapper.map(user, Usuario.class));
             return true;
         }
@@ -223,5 +255,81 @@ public class UsuarioService {
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+//    public Usuario updateResetPassword(String token, String email){
+//        Usuario usuario = repository.findByEmail(email);
+//        if(usuario!=null){
+//            usuario.setPasswordReset(token);
+//            repository.save(usuario);
+//        }
+//        return usuario;
+//    }
+//    public Usuario get(String resetPasswordToken){
+//        return repository.findByPasswordReset(resetPasswordToken);
+//    }
+//
+//
+//     public boolean updatePassword(Usuario usuario, String newPassword){
+//         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//         String encodePassword =passwordEncoder.encode(newPassword);
+//         usuario.setPassword(encodePassword);
+//         usuario.setPasswordReset(null);
+//         repository.save(usuario);
+//         return true;
+//     }
+
+    private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration diff = Duration.between(tokenCreationDate, now);
+
+        return diff.toMinutes() >= 30;
+    }
+
+    public String forgotPassword(String email) throws MessagingException, TemplateException, IOException {
+
+        Optional<Usuario> userOptional = Optional
+                .ofNullable(repository.findByEmail(email));
+        Usuario usuario = repository.findByEmail(email);
+        if (!userOptional.isPresent()) {
+            return "Invalid email id.";
+        }
+        String token = RandomString.make(30);
+        Usuario user = userOptional.get();
+        user.setTokenReset(token);
+        user.setTokenCreationDate(LocalDateTime.now());
+        String url ="https://plannic.herokuapp.com/senhaForgot/"+token;
+        user = repository.save(user);
+        sendRedefinicaoSenha(usuario,url);
+
+        return user.getTokenReset();
+    }
+
+    public String resetPassword(String token, String password) {
+
+        Optional<Usuario> userOptional = Optional
+                .ofNullable(repository.findByTokenReset(token));
+
+        if (!userOptional.isPresent()) {
+            return "Invalid token.";
+        }
+
+        LocalDateTime tokenCreationDate = userOptional.get().getTokenCreationDate();
+
+        if (isTokenExpired(tokenCreationDate)) {
+            return "Token expired.";
+
+        }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodePassword =passwordEncoder.encode(password);
+        Usuario user = userOptional.get();
+        user.setPassword(encodePassword);
+        user.setTokenReset(null);
+        user.setTokenCreationDate(null);
+
+        repository.save(user);
+
+        return "Your password successfully updated.";
     }
 }
