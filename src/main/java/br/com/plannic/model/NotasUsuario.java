@@ -31,6 +31,9 @@ public class NotasUsuario {
     @Column(name = "idtutoria")
     private int idTutoria;
 
+    @Column(name = "idmateriabase")
+    private int idMateriaBase;
+
     @Column(name = "nota")
     private Double nota;
 
@@ -46,6 +49,11 @@ public class NotasUsuario {
     @ManyToOne
     @JoinColumn(name = "idavaliado", insertable=false, updatable=false)
     private Usuario usuarioAvaliado;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idmateriabase", insertable=false, updatable=false)
+    private MateriaBase materiaBase;
 
     public NotasUsuario() {
 

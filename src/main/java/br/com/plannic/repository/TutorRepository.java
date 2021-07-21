@@ -15,9 +15,15 @@ public interface TutorRepository extends JpaRepository<Tutor,Integer> {
     @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor <> ?1 AND u.idMateriaBase = ?2")
         List<Tutor> findByIdMateriaBase(Integer id, Integer idMateriaBase);
 
+    @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor <> ?1")
+        List<Tutor> findTutores(Integer id);
+
     @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor = ?1 AND u.idMateriaBase = ?2")
         List<Tutor> findByTutoria(Integer id, Integer idMateriaBase);
 
     @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor = ?1 AND u.idMateriaBase = ?2")
         Tutor findByTutoriaUnique(Integer id, Integer idMateriaBase);
+
+    @Query("SELECT u FROM Tutor u WHERE u.idUsuarioTutor = ?1")
+        List<Tutor> findTutoresByIdUsuario(Integer id);
 }

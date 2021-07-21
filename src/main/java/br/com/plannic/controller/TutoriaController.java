@@ -4,10 +4,7 @@ import br.com.plannic.model.Aluno;
 import br.com.plannic.model.NotasUsuario;
 import br.com.plannic.model.Tutor;
 import br.com.plannic.model.Tutoria;
-import br.com.plannic.service.AlunoService;
-import br.com.plannic.service.NotasUsuarioService;
-import br.com.plannic.service.TutorService;
-import br.com.plannic.service.TutoriaService;
+import br.com.plannic.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +21,15 @@ public class TutoriaController {
     private AlunoService alunoService;
     private TutorService tutorService;
     private NotasUsuarioService notasUsuarioService;
+    private NotificacaoService notificacaoService;
 
     @Autowired
-    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService, NotasUsuarioService notasUsuarioService) {
+    public TutoriaController(TutoriaService tutoriaService, AlunoService alunoService, TutorService tutorService, NotasUsuarioService notasUsuarioService, NotificacaoService notificacaoService) {
         this.tutoriaService = tutoriaService;
         this.alunoService = alunoService;
         this.tutorService = tutorService;
         this.notasUsuarioService = notasUsuarioService;
+        this.notificacaoService = notificacaoService;
     }
 
     @PostMapping("/aluno")
@@ -77,6 +76,17 @@ public class TutoriaController {
         try {
             MDC.put("fluxo", "GET alunos por matéria");
             return new ResponseEntity<>(alunoService.getByMateria(id, idMateria), HttpStatus.OK);
+        } finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/aluno/{id}")
+    @ApiOperation(value = "Realiza a busca de todos os alunos ")
+    public ResponseEntity getAlunos(@PathVariable("id") int id) {
+        try {
+            MDC.put("fluxo", "GET alunos por matéria");
+            return new ResponseEntity<>(alunoService.getAlunos(id), HttpStatus.OK);
         } finally {
             MDC.clear();
         }
@@ -131,6 +141,17 @@ public class TutoriaController {
         }
     }
 
+    @GetMapping("/tutor/{id}")
+    @ApiOperation(value = "Realiza a busca de todos os tutores")
+    public ResponseEntity getTutores(@PathVariable("id") int id){
+        try {
+            MDC.put("fluxo", "GET tutores por matéria");
+            return new ResponseEntity<>(tutorService.getTutores(id), HttpStatus.OK);
+        } finally {
+            MDC.clear();
+        }
+    }
+
     @PostMapping("/cadastro")
     @ApiOperation(value = "Realiza o cadastro de tutorias")
     public ResponseEntity<Tutoria> save(@Valid @RequestBody Tutoria tutoria){
@@ -138,18 +159,21 @@ public class TutoriaController {
             MDC.put("name", tutoria.getIdTutoria());
             MDC.put("fluxo", "POST save");
             tutoriaService.save(tutoria);
+            notificacaoService.sendTutoria(tutoria);
             alunoService.deleteAfterTutoria(tutoria.getIdUsuarioAluno(), tutoria.getIdMateriaBase());
             tutorService.deleteAfterTutoria(tutoria.getIdUsuarioTutor(), tutoria.getIdMateriaBase());
                 NotasUsuario notasUsuarioTutor = new NotasUsuario();
                 notasUsuarioTutor.setIdAvalia(tutoria.getIdUsuarioAluno());
                 notasUsuarioTutor.setIdAvaliado(tutoria.getIdUsuarioTutor());
                 notasUsuarioTutor.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioTutor.setIdMateriaBase(tutoria.getIdMateriaBase());
                 notasUsuarioTutor.setAtivo(false);
             notasUsuarioService.save(notasUsuarioTutor);
                 NotasUsuario notasUsuarioAluno = new NotasUsuario();
                 notasUsuarioAluno.setIdAvalia(tutoria.getIdUsuarioTutor());
                 notasUsuarioAluno.setIdAvaliado(tutoria.getIdUsuarioAluno());
                 notasUsuarioAluno.setIdTutoria(tutoria.getIdTutoria());
+                notasUsuarioAluno.setIdMateriaBase(tutoria.getIdMateriaBase());
                 notasUsuarioAluno.setAtivo(false);
             notasUsuarioService.save(notasUsuarioAluno);
         }finally{
@@ -174,8 +198,21 @@ public class TutoriaController {
     public ResponseEntity deleteTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
         try {
             MDC.put("fluxo", "DELETE tutoria");
+            if (notasUsuarioService.ativa(idUsuario, idTutoria) && tutoriaService.delete(idTutoria)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }finally{
+            MDC.clear();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/cancela/{idUsuario}/{idTutoria}")
+    @ApiOperation(value = "Realiza a deleção de tutorias")
+    public ResponseEntity cancelaTutoria(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTutoria") int idTutoria) {
+        try {
+            MDC.put("fluxo", "DELETE tutoria");
             if (tutoriaService.delete(idTutoria)) {
-                notasUsuarioService.ativa(idUsuario, idTutoria);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }finally{
@@ -201,6 +238,28 @@ public class TutoriaController {
         try{
             MDC.put("fluxo", "GET tutorias aluno");
             return new ResponseEntity<>(tutoriaService.getTutor(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/alunos/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getAlunosById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros aluno");
+            return new ResponseEntity<>(alunoService.getAlunosById(id), HttpStatus.OK);
+        }finally {
+            MDC.clear();
+        }
+    }
+
+    @GetMapping("/tutores/{id}")
+    @ApiOperation(value = "Realiza a busca cadastros como aluno")
+    public ResponseEntity getTutoresById(@PathVariable("id") int id) {
+        try{
+            MDC.put("fluxo", "GET cadastros tutor");
+            return new ResponseEntity<>(tutorService.getTutoresById(id), HttpStatus.OK);
         }finally {
             MDC.clear();
         }

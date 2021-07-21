@@ -1754,3 +1754,66 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 28 jun. 2021 12:41:50,962 3237 [http-nio-8080-exec-2] INFO  UsuarioService  - Usuário recuperado
 28 jun. 2021 12:41:56,578 8853 [http-nio-8080-exec-1] INFO  UsuarioService  - Usuário recuperado
 28 jun. 2021 12:41:56,608 8883 [http-nio-8080-exec-10] INFO  MateriaService  - Materias base recuperadas
+10 jul 2021 14:14:02,332 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:15:01,843 59511 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:16:01,820 119488 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:23:01,995 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:24:01,677 59682 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:26:36,354 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:28:12,843 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:30:02,161 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:31:02,000 59839 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:32:01,958 119797 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:33:01,978 179817 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:34:01,953 239792 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:35:01,985 299824 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:36:01,934 359773 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:37:01,916 419755 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:38:01,917 479756 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:39:01,933 539772 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:40:01,956 599795 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:41:01,924 659763 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:42:01,933 719772 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:43:01,955 779794 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:44:02,000 839839 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:48:22,717 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:50:02,220 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:51:01,915 59695 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:55:25,294 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 14:59:02,066 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:09:02,464 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:09:04,197 1733 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:10:02,085 59621 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:10:03,654 61190 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:12:16,737 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:12:38,035 21298 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:15:02,041 0    [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+10 jul 2021 15:16:01,838 59797 [scheduling-1] INFO  NotificacaoService  - Notificação enviada com sucesso.
+14 jul 2021 20:29:33,152 0    [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+14 jul 2021 20:29:33,314 162  [main] INFO  AuthenticateController  - Autenticando o usu�rio.
+14 jul 2021 20:29:36,164 3012 [main] INFO  AgendamentoService  - Agendamento deletado
+14 jul 2021 20:29:36,166 3014 [main] INFO  AgendamentoService  - agendamento atualizado
+14 jul 2021 20:29:36,225 3073 [main] INFO  AgendamentoService  - agendamentos recuperados
+14 jul 2021 20:29:36,227 3075 [main] INFO  AgendamentoService  - Agendamento salvo
+14 jul 2021 20:29:36,358 3206 [main] INFO  MateriaService  - Materia deletada
+14 jul 2021 20:29:36,361 3209 [main] INFO  MateriaService  - Materia atualizada
+14 jul 2021 20:29:36,367 3215 [main] INFO  MateriaService  - Materias recuperadas
+14 jul 2021 20:29:36,369 3217 [main] INFO  MateriaService  - Materia salva
+14 jul 2021 20:29:36,414 3262 [main] INFO  NotasMateriaService  - Notas da materia deletada
+14 jul 2021 20:29:36,415 3263 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+14 jul 2021 20:29:36,422 3270 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+14 jul 2021 20:29:36,425 3273 [main] INFO  NotasMateriaService  - Nota da materia salva
+14 jul 2021 20:33:09,683 0    [main] INFO  AuthenticateController  - Autenticando o usuário.
+14 jul 2021 20:33:09,748 65   [main] INFO  AuthenticateController  - Autenticando o usuário.
+14 jul 2021 20:33:09,825 142  [main] INFO  AgendamentoService  - Agendamento deletado
+14 jul 2021 20:33:09,828 145  [main] INFO  AgendamentoService  - agendamento atualizado
+14 jul 2021 20:33:09,875 192  [main] INFO  AgendamentoService  - agendamentos recuperados
+14 jul 2021 20:33:09,879 196  [main] INFO  AgendamentoService  - Agendamento salvo
+14 jul 2021 20:33:11,164 1481 [main] INFO  NotasMateriaService  - Notas da materia deletada
+14 jul 2021 20:33:11,167 1484 [main] INFO  NotasMateriaService  - Nota da materia atualizado
+14 jul 2021 20:33:11,174 1491 [main] INFO  NotasMateriaService  - Notas das materias recuperadas
+14 jul 2021 20:33:11,177 1494 [main] INFO  NotasMateriaService  - Nota da materia salva
+14 jul 2021 20:33:11,243 1560 [main] INFO  MateriaService  - Materia deletada
+14 jul 2021 20:33:11,246 1563 [main] INFO  MateriaService  - Materia atualizada
+14 jul 2021 20:33:11,254 1571 [main] INFO  MateriaService  - Materias recuperadas
+14 jul 2021 20:33:11,258 1575 [main] INFO  MateriaService  - Materia salva

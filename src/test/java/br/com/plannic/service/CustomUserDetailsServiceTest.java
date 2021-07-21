@@ -3,9 +3,7 @@ package br.com.plannic.service;
 import br.com.plannic.controller.UsuarioController;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.repository.UsuarioRepository;
-import com.sun.xml.bind.v2.TODO;
 import freemarker.template.TemplateException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,25 +11,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.core.userdetails.User;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,6 +31,9 @@ class CustomUserDetailsServiceTest {
 
     @Mock
     UsuarioService usuarioService;
+
+    @Mock
+    UsuarioRepository repository;
 
 
     @Mock
@@ -64,14 +56,16 @@ class CustomUserDetailsServiceTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 "codteste",
                 true);
         String url = "google.com.br";
 
-        Mockito.doNothing().when(usuarioService).save(usuario,url);
+        Mockito.doNothing().when(usuarioService).save(usuario, url);
+        when(repository.findByEmail(usuario.getEmail())).thenReturn(usuario);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
+        User user = (User) customUserDetailsService.loadUserByUsername(usuario.getEmail());
 
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
+        assertThat(user.getUsername()).isEqualTo("usuarioteste@gmail.com");
     }
 }

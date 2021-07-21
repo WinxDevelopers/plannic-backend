@@ -23,6 +23,9 @@ public class Material {
     @Column(name = "idusuario")
     private int idUsuario;
 
+    @Column(name = "idmateria")
+    private int idMateria;
+
     @Column(name = "idmateriabase")
     private int idMateriaBase;
 
@@ -37,6 +40,12 @@ public class Material {
 
     @Column(name="publico")
     private boolean publico;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "idmateria", insertable=false, updatable=false)
+    @JsonBackReference(value="idmateria")
+    private Materia materia;
 
     @ToString.Exclude
     @ManyToOne

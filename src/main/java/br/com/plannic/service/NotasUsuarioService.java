@@ -1,6 +1,8 @@
 package br.com.plannic.service;
 
+import br.com.plannic.dto.AlunoDTO;
 import br.com.plannic.dto.NotasMateriaDTO;
+import br.com.plannic.dto.NotasUsuarioDTO;
 import br.com.plannic.model.NotasUsuario;
 import br.com.plannic.model.Tutoria;
 import br.com.plannic.repository.NotasUsuarioRepository;
@@ -9,6 +11,7 @@ import org.apache.log4j.MDC;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -75,18 +78,28 @@ public class NotasUsuarioService {
         return false;
     }
 
-    public List<NotasUsuario> getAvalia(int idAvalia) {
-        ModelMapper mapper = new ModelMapper();
+    public List<NotasUsuarioDTO> getAvalia(int idAvalia) {
         List<NotasUsuario> notasUsuarios = this.repository.findAvaliar(idAvalia);
+        List<NotasUsuarioDTO> list =  new ArrayList<>();
 
-        if (!notasUsuarios.isEmpty()) {
-            logger.info("Avaliações pendentes recuperadas");
-            return notasUsuarios
-                    .stream()
-                    .map(notasUsuario -> mapper.map(notasUsuario, NotasUsuario.class))
-                    .collect(Collectors.toList());
-        }
-        return Collections.emptyList();
+        notasUsuarios.forEach(
+                nu ->
+                        list.add(
+                                new NotasUsuarioDTO(
+                                        nu.getIdNotaUsuario(),
+                                        nu.getIdAvalia(),
+                                        nu.getUsuarioAvalia().getNome(),
+                                        nu.getIdAvaliado(),
+                                        nu.getUsuarioAvaliado().getNome(),
+                                        nu.getIdTutoria(),
+                                        nu.getMateriaBase().getIdMateriaBase(),
+                                        nu.getMateriaBase().getMateriaBase(),
+                                        nu.getNota()
+                                        )
+                        ));
+
+        List<NotasUsuarioDTO> filtered = list.stream().collect(Collectors.toList());
+        return filtered;
     }
 
     public Double getNotaUsuario(int idAvaliado) {
