@@ -10,7 +10,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findByEmail(String username);
     Usuario findByIdUsuario(int id);
     Usuario findByIdUsuario(int id, Sort sort);
-
+    Usuario findByTokenReset(String tokenReset);
     @Query("SELECT u FROM Usuario u WHERE u.CodVerifica = ?1")
      Usuario findByVerificationCode(String code);
 }

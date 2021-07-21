@@ -47,21 +47,13 @@ class UsuarioServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         String url = "google.com";
-        Usuario usuario = new Usuario(
-                1,
-                "usuarioteste@gmail.com",
-                "senha123", "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "",
-                true);
 
-        Mockito.doNothing().when(usuarioService).save(usuario, url);
+        Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste",LocalDateTime.now(),"",LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
+        Mockito.doNothing().when(usuarioService).save(usuario,url);
+
+        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario,request);
+
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
     }
@@ -69,46 +61,15 @@ class UsuarioServiceTest {
     @Test
     public void encontrarUsuarios() throws IOException, MessagingException, TemplateException {
 
-        Usuario usuario = new Usuario(
-                1,
-                "usuarioteste@gmail.com",
-                "senha123",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "",
-                true);
-        Usuario usuario1 = new Usuario(
-                1,
-                "teste@gmail.com",
-                "senha345",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "",
-                true);
-        Usuario usuario2 = new Usuario(
-                1,
-                "usuario@gmail.com",
-                "senha567",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "",
-                true);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
-        ResponseEntity<Usuario> responseEntity1 = usuarioController.save(usuario1, request);
-        ResponseEntity<Usuario> responseEntity2 = usuarioController.save(usuario2, request);
+        Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), "",LocalDateTime.now(),Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
+        Usuario usuario1 = new Usuario(1, "teste@gmail.com", "senha345", "Usuario Teste", LocalDateTime.now(),"",LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
+        Usuario usuario2 = new Usuario(1, "usuario@gmail.com", "senha567", "Usuario Teste", LocalDateTime.now(), "",LocalDateTime.now(),Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"",true);
+
+        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario,request);
+        ResponseEntity<Usuario> responseEntity1 = usuarioController.save(usuario1,request);
+        ResponseEntity<Usuario> responseEntity2 = usuarioController.save(usuario2,request);
+
         Mockito.when(usuarioService.getAll()).thenReturn(Collections.emptyList());
 
 
@@ -122,20 +83,11 @@ class UsuarioServiceTest {
     @Test
     public void deletarUsuarios() throws IOException, MessagingException, TemplateException {
 
-        Usuario usuario = new Usuario(
-                1,
-                "usuarioteste@gmail.com",
-                "senha123",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "fdsdf",
-                true);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
+        Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(), "",LocalDateTime.now(),Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"fdsdf",true);
+
+        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario,request);
+
         Mockito.when(usuarioService.delete(1)).thenReturn(true);
 
         ResponseEntity responseEntityDelete = usuarioController.delete(1);
@@ -149,32 +101,12 @@ class UsuarioServiceTest {
     @Test
     public void atualizarUsuario() throws IOException, MessagingException, TemplateException {
 
-        Usuario usuario = new Usuario(
-                1,
-                "usuarioteste@gmail.com",
-                "senha123",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "teste",
-                true);
-        Usuario usuario1 = new Usuario(
-                1,
-                "teste@gmail.com",
-                "senha123",
-                "Usuario Teste",
-                LocalDateTime.now(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                "teste",
-                true);
 
-        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario, request);
+        Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(),"",LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true);
+        Usuario usuario1 = new Usuario(1, "teste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(),"",LocalDateTime.now(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),"teste",true);
+
+        ResponseEntity<Usuario> responseEntity = usuarioController.save(usuario,request);
+
         ResponseEntity responseEntityAtualiza = usuarioController.update(usuario1);
 
         usuarioController.getAll();

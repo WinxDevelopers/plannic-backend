@@ -35,6 +35,12 @@ public class Usuario {
     @Column(name = "data")
     private LocalDateTime data = LocalDateTime.now();
 
+    @Column(name = "passwordreset")
+    private String tokenReset;
+
+    @Column(name="tokenCreationDate",columnDefinition = "TIMESTAMP")
+    private LocalDateTime tokenCreationDate;
+
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("materias")
     List<Materia> materias;

@@ -1,5 +1,6 @@
 package br.com.plannic.controller;
 
+
 import br.com.plannic.model.AuthRequest;
 import br.com.plannic.model.Usuario;
 import br.com.plannic.service.UsuarioService;
@@ -106,3 +107,4 @@ class AuthenticateControllerTest {
 
     }
 }
+

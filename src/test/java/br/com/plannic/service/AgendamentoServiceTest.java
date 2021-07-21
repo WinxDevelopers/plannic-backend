@@ -72,9 +72,11 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findAll()).thenReturn(listAgendamento);
 
         List<Agendamento> agendamentos = agendamentoService.getAll();
+
 
     }
 
@@ -98,6 +100,7 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.save(agendamento)).thenReturn(agendamento);
 
         agendamentoService.save(agendamento);
@@ -106,6 +109,7 @@ class AgendamentoServiceTest {
 
     @Test
     public void update() {
+
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
@@ -122,9 +126,11 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(null);
 
         agendamentoService.update(agendamento1);
+
 
     }
 
@@ -134,9 +140,11 @@ class AgendamentoServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findById(agendamento.getIdAgendamento())).thenReturn(agendamento);
 
         Mockito.doNothing().when(repository).deleteById(agendamento.getIdAgendamento());
+
 
         agendamentoService.delete(agendamento.getIdAgendamento());
 

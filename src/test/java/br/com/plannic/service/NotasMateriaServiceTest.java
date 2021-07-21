@@ -71,7 +71,9 @@ class NotasMateriaServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findAll()).thenReturn(listNotas);
+
 
         List<NotasMateria> notasMaterias = notasMateriaService.getAll();
 
@@ -97,9 +99,11 @@ class NotasMateriaServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.save(notasMateria)).thenReturn(notasMateria);
 
         notasMateriaService.save(notasMateria);
+
 
     }
 
@@ -109,9 +113,11 @@ class NotasMateriaServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(notasMateria);
 
         notasMateriaService.update(notasMateria1);
+
 
     }
 
@@ -121,7 +127,9 @@ class NotasMateriaServiceTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+
         Mockito.when(repository.findById(notasMateria.getIdMateria())).thenReturn(null);
+
 
         notasMateriaService.update(notasMateria1);
 
