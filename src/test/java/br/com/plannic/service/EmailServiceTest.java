@@ -27,7 +27,7 @@ class EmailServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(),
+    Usuario usuario = new Usuario(1, "usuarioteste@gmail.com", "senha123", "Usuario Teste", LocalDateTime.now(),"",LocalDateTime.now(),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),

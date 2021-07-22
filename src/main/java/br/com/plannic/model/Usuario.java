@@ -62,6 +62,8 @@ public class Usuario {
 
     @Column(name="ativo")
     private boolean ativo;
+
+
 //
 //    @OneToMany
 //    List<NotasTutor> notasTutor;

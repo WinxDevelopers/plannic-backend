@@ -144,14 +144,12 @@ public class UsuarioService {
         String toAddress = usuario.getEmail();
         String fromAddress = "plannic@plannic.com.br";
         String senderName = "Plannic";
-        String subject = "Plannic - Verificação de email";
+        String subject = "Plannic - Redefinição de senha";
 
         Template template = config.getTemplate("redefinicaoSenha.ftl");
-        String verifyURL = url + "/usuario/verify?code=" + usuario.getCodVerifica();
 
         Map<String,Object> model =new HashMap<>();
-        model.put("nome",usuario.getNome());
-        model.put("url",verifyURL);
+        model.put("url",url);
 
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template,model);
 
@@ -189,7 +187,7 @@ public class UsuarioService {
             logger.info("Usuário atualizado");
             ModelMapper mapper = new ModelMapper();
 
-            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(),usuario.getTokenReset(),usuario.getTokenCreationDate() ,usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
+            Usuario user = new Usuario(usuario.getIdUsuario(), usuario.getEmail(), usuarios.get().getPassword(), usuario.getNome(), usuario.getData(),usuario.getTokenReset(),usuario.getTokenCreationDate(),usuarios.get().getMaterias(), usuarios.get().getAgendamentos(), usuarios.get().getNotasMateria(),usuarios.get().getTelegramUsuario(), usuarios.get().getCodVerifica(),usuarios.get().isAtivo());
 
             repository.save(mapper.map(user, Usuario.class));
             return true;
@@ -259,27 +257,6 @@ public class UsuarioService {
         return Collections.emptyList();
     }
 
-//    public Usuario updateResetPassword(String token, String email){
-//        Usuario usuario = repository.findByEmail(email);
-//        if(usuario!=null){
-//            usuario.setPasswordReset(token);
-//            repository.save(usuario);
-//        }
-//        return usuario;
-//    }
-//    public Usuario get(String resetPasswordToken){
-//        return repository.findByPasswordReset(resetPasswordToken);
-//    }
-//
-//
-//     public boolean updatePassword(Usuario usuario, String newPassword){
-//         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//         String encodePassword =passwordEncoder.encode(newPassword);
-//         usuario.setPassword(encodePassword);
-//         usuario.setPasswordReset(null);
-//         repository.save(usuario);
-//         return true;
-//     }
 
     private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
 
